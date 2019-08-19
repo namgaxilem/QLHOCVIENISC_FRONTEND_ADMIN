@@ -1,29 +1,22 @@
 adminApp.config(function($routeProvider) {
   $routeProvider
-    //
     .when("/chuyennganh", {
-      templateUrl: "page_chuyennganh/chuyennganhView.html"
-    })
-    .when("/dangky", {
-      templateUrl: "page_dangky/dangkyView.html"
-    })
-    .when("/dangnhap", {
-      templateUrl: "page_dangnhap/dangnhapView.html"
+      templateUrl: "app/components/quanly/page_chuyennganh/chuyennganhView.html"
     })
     .when("/diemhocvien", {
-      templateUrl: "page_diemhocvien/diemhocvienView.html"
+      templateUrl: "app/components/quanly/page_diemhocvien/diemhocvienView.html"
     })
-    .when("/forgetpass", {
-      templateUrl: "page_forgetpass/forgetpassView.html"
+    .when("/giangvien", {
+      templateUrl: "app/components/quanly/page_dangky/dangkyView.html"
     })
     .when("/gopy", {
-      templateUrl: "page_gopy/gopyView.html"
+      templateUrl: "app/components/quanly/page_gopy/gopyView.html"
     })
     .when("/hocvien", {
-      templateUrl: "/page_hocvien/hocvienView.html"
+      templateUrl: "app/components/quanly/page_hocvien/hocvienView.html"
     })
     .when("/khoahoc", {
-      templateUrl: "page_khoahoc/khoahocView.html"
+      templateUrl: "/page_khoahoc/khoahocView.html"
     })
     .when("/monhoc", {
       templateUrl: "/page_monhoc/monhocView.html"
