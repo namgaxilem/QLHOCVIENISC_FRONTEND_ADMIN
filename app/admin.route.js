@@ -16,31 +16,32 @@ adminApp.config(function($routeProvider) {
       templateUrl: "app/components/quanly/page_hocvien/hocvienView.html"
     })
     .when("/khoahoc", {
-      templateUrl: "/page_khoahoc/khoahocView.html"
+      templateUrl: "app/components/quanly/page_khoahoc/khoahocView.html"
     })
     .when("/monhoc", {
-      templateUrl: "/page_monhoc/monhocView.html"
+      templateUrl: "app/components/quanly/page_monhoc/monhocView.html"
     })
     .when("/phonghoc", {
-      templateUrl: "/page_phonghoc/phonghocView.html"
+      templateUrl: "app/components/quanly/page_phonghoc/phonghocView.html"
     })
     .when("/taikhoan", {
-      templateUrl: "page_taikhoan/taikhoanView.html"
+      templateUrl: "app/components/quanly/page_taikhoan/taikhoanView.html"
     })
     .when("/thoikhoabieu", {
-      templateUrl: "/page_thoikhoabieu/thoikhoabieuView.html"
+      templateUrl: "app/components/quanly/page_thoikhoabieu/thoikhoabieuView.html"
     })
     .when("/thongbao", {
-      templateUrl: "/page_thongbao/thongbaoView.html"
+      templateUrl: "app/components/quanly/page_thongbao/thongbaoView.html"
     })
     .when("/tinhnang", {
-      templateUrl: "/page_tinhnang/tinhnangView.html"
+      templateUrl: "app/components/quanly/page_tinhnang/tinhnangView.html"
     })
     .when("/trangchu", {
-      templateUrl: "/page_trangchu/trangchuView.html"
+      templateUrl: "app/components/quanly/page_trangchu/trangchuView.html"
     })
     .when("/truonglienket", {
-      templateUrl: "/page_truonglienket/truonglienketView.html"
+      templateUrl: "app/components/quanly/page_truonglienket/truonglienketView.html",
+      controller: "truonglienketController"
     })
     //otherwise
     .otherwise({
