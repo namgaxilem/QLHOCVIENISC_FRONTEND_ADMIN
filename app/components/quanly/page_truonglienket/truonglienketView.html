@@ -1,4 +1,5 @@
 ﻿<div ng-controller="truonglienketController">
+
     <div class="table-responsive table--no-card m-b-30">
         <table class="table table-borderless table-striped">
             <thead>
@@ -15,8 +16,8 @@
                     <td>{{truong.tentruong}}</td>
                     <td>{{truong.diachi}}</td>
                     <td class="text-right">
-                        <button class="btn btn-info"> Sửa </button>
-                        <button class="btn btn-danger"> Xóa </button>
+                        <button class="btn btn-info" ng-click="suatruonglienketpopup(truong)" data-toggle="modal" data-target="#suatruonglienketModal"> Sửa </button>
+                        <button class="btn btn-danger" ng-click="xoatruonglienket(truong)"> Xóa </button>
                     </td>
                 </tr>
             </tbody>
@@ -40,44 +41,106 @@
 
     <div>
         <div class="card">
+            <!-- <form action="" method="post" class="form-horizontal" name="truonglienketFormthem" novalidate ng-submit="truonglienketFormthem.$valid"> -->
             <div class="card-header">
                 <strong>TRƯỜNG LIÊN KẾT</strong>
             </div>
             <div class="card-body card-block">
-                <form action="" method="post" class="form-horizontal">
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="matruong" class=" form-control-label">Mã trường</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" id="matruong" name="matruong" placeholder="Nhập mã trường..." class="form-control">
-                        </div>
-                    </div>
 
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="tentruong" class=" form-control-label">Tên trường</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" id="tentruong" name="tentruong" placeholder="Nhập tên trường..." class="form-control">
-                        </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="matruong" class=" form-control-label">Mã trường</label>
                     </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="matruong" ng-model="truongThem.matruong" placeholder="Nhập mã trường..." class="form-control">
+                    </div>
+                </div>
 
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="tentruong" class=" form-control-label">Địa chỉ</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" id="tentruong" name="tentruong" placeholder="Nhập tên trường..." class="form-control">
-                        </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="tentruong" class=" form-control-label">Tên trường</label>
                     </div>
-                </form>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="tentruong" ng-model="truongThem.tentruong" placeholder="Nhập tên trường..." class="form-control">
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label for="diachi" class=" form-control-label">Địa chỉ</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="diachi" ng-model="truongThem.diachi" placeholder="Nhập địa chỉ..." class="form-control">
+                    </div>
+                </div>
+
             </div>
             <div class="card-footer">
-                <button type="submit" class="btn btn-success btn-sm">
+                <button type="submit" class="btn btn-success btn-sm" ng-click="themtruonglienket()">
                     <i class="fa fa-dot-circle-o"></i> Thêm
                 </button>
             </div>
+            <!-- </form> -->
         </div>
     </div>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="suatruonglienketModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Sửa trường liên kết</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <div class="card">
+                      <!-- <form action="" method="post" class="form-horizontal" name="truonglienketFormthem" novalidate ng-submit="truonglienketFormthem.$valid"> -->
+                      <div class="card-body card-block">
+
+                          <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="" class=" form-control-label">Mã trường</label>
+                              </div>
+                              <div class="col-12 col-md-9">
+                                  <input type="text" id="" ng-model="truongSua.matruong" class="form-control" disabled>
+                              </div>
+                          </div>
+
+                          <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="" class=" form-control-label">Tên trường</label>
+                              </div>
+                              <div class="col-12 col-md-9">
+                                  <input type="text" id="" ng-model="truongSua.tentruong" class="form-control">
+                              </div>
+                          </div>
+
+                          <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="" class=" form-control-label">Địa chỉ</label>
+                              </div>
+                              <div class="col-12 col-md-9">
+                                  <input type="text" id="" ng-model="truongSua.diachi" class="form-control">
+                              </div>
+                          </div>
+
+                      </div>
+                      <!-- </form> -->
+                  </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" ng-click="suatruonglienket()">Sửa</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </div>
