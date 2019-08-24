@@ -33,8 +33,8 @@ adminApp.config(function($routeProvider) {
     .when("/thongbao", {
       templateUrl: "app/components/quanly/page_thongbao/thongbaoView.html"
     })
-    .when("/tinhnang", {
-      templateUrl: "app/components/quanly/page_tinhnang/tinhnangView.html"
+    .when("/doanhnghiep", {
+      templateUrl: "app/components/quanly/page_doanhnghiep/doanhnghiepView.html"
     })
     .when("/trangchu", {
       templateUrl: "app/components/quanly/page_trangchu/trangchuView.html"
