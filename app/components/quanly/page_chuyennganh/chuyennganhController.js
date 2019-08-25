@@ -2,10 +2,9 @@ adminApp.controller("chuyennganhController", function($scope, $rootScope, $http)
 
   $scope.chuyennganhs = [];
 
-  $scope.monhocThem = {
-    mamh: "",
-    tenmh: "",
-    sogio: ""
+  $scope.chuyennganhThem = {
+    id: "",
+    tencn: ""
   };
 
   _refreshChuyennganh();
@@ -13,10 +12,10 @@ adminApp.controller("chuyennganhController", function($scope, $rootScope, $http)
   function _refreshChuyennganh() {
     $http({
       method: 'GET',
-      url: $rootScope.domainService + 'monhoc'
+      url: $rootScope.domainService + 'chuyennganh'
     }).then(
       function(res) {
-        $scope.monhocs = res.data;
+        $scope.chuyennganhs = res.data;
       },
       function(res) {
         console.log("Error: " + res.status + " : " + res.data);
@@ -24,11 +23,11 @@ adminApp.controller("chuyennganhController", function($scope, $rootScope, $http)
     );
   }
 
-  $scope.themmonhoc = function() {
+  $scope.themchuyennganh = function() {
     $http({
       method: 'POST',
-      url: $rootScope.domainService + 'themmonhoc',
-      data: angular.toJson($scope.truongThem),
+      url: $rootScope.domainService + 'taochuyennganh',
+      data: angular.toJson($scope.chuyennganhThem),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -36,16 +35,45 @@ adminApp.controller("chuyennganhController", function($scope, $rootScope, $http)
 
     _refreshChuyennganh();
 
-    $scope.monhocThem = {
-      mamh: "",
-      tenmh: "",
-      sogio: ""
+    $scope.chuyennganhThem = {
+      id: "",
+      tencn: ""
     };
 
   };
 
+  $scope.xoachuyennganh = function(chuyennganh) {
+    $http({
+      method: 'DELETE',
+      url: $rootScope.domainService + 'xoachuyennganh/' + chuyennganh.id
+    }).then(_success, _error);
+
+    _refreshChuyennganh();
+
+  };
+
+  $scope.suachuyennganh = function() {
+    $http({
+      method: 'PUT',
+      url: $rootScope.domainService + 'suachuyennganh/' + $scope.suaId,
+      data: angular.toJson($scope.chuyennganhSua),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(_success, _error);
+
+    _refreshChuyennganh();
+
+  };
+
+  $scope.suachuyennganhpopup = function(chuyennganh) {
+    $scope.suaId = angular.copy(chuyennganh.id);
+    $scope.chuyennganhSua = angular.copy(chuyennganh);
+
+  };
+
   _success = function() {
-    _refreshMonhoc();
+    _refreshChuyennganh();
   };
 
   _error = function(res) {

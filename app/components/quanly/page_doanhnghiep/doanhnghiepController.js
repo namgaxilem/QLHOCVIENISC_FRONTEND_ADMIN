@@ -3,7 +3,6 @@ adminApp.controller("doanhnghiepController", function($scope, $rootScope, $http)
   $scope.doanhnghieps = [];
 
   $scope.doanhnghiepThem = {
-    id: "",
     tendoanhnghiep: "",
     diachi: "",
     sdt: ""
