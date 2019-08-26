@@ -20,10 +20,10 @@
                     <td>{{hocvien.ho + " " + hocvien.tenlot + " " + hocvien.ten}}</td>
                     <td>{{hocvien.gioitinh}}</td>
                     <td class="text-right">{{hocvien.ngaysinh}}</td>
-                    <td class="text-right">0868212741</td>
-                    <td class="text-right">Khóa 9</td>
+                    <td class="text-right">{{hocvien.sdt}}</td>
+                    <td class="text-right">{{hocvien.khoahoc.tenkhoahoc}}</td>
                     <td class="text-right">
-                        <button class="btn btn-info" ng-click=""> Sửa </button>
+                        <button class="btn btn-info" ng-click="suahocvienpopup(hocvien)"> Sửa </button>
                         <button class="btn btn-danger" ng-click="xoahocvien(hocvien)"> Xóa </button>
                     </td>
                 </tr>
@@ -82,6 +82,209 @@
 
     <!-- The Modal -->
     <div class="modal fade" id="themhocvienModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Thêm học viên</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body card-block">
+                            <form action="" method="post" class="form-horizontal">
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ho" class=" form-control-label">Họ</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="ho" class="form-control" ng-model="hocvienThem.mahv">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="tenlot" class=" form-control-label">Tên lót</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="tenlot" class="form-control" ng-model="hocvienThem.mahv">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ten" class=" form-control-label">Tên</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="ten" class="form-control" ng-model="hocvienThem.mahv">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="gioitinh" class=" form-control-label">Giới tính</label>
+                                    </div>
+                                    <div class="col col-md-9">
+                                        <div class="form-check-inline form-check">
+                                            <label for="gioitinhNam" class="form-check-label ">
+                                                <input type="radio" id="gioitinhNam" value="Nam" class="form-check-input" ng-model="hocvienThem.mahv">
+                                                Nam
+                                            </label>
+                                            <label for="gioitinhNu" class="form-check-label m-l-20">
+                                                <input type="radio" id="gioitinhNu" value="Nữ" class="form-check-input" ng-model="hocvienThem.mahv">Nữ
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ngaysinh" class=" form-control-label">Ngày sinh</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="date" id="ngaysinh" class="form-control" ng-model="hocvienThem.ngaysinh">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="noisinh" class=" form-control-label">Nơi sinh</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="noisinh" class="form-control" ng-model="hocvienThem.noisinh">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="cmnd" class=" form-control-label">Chứng minh nhân dân</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="number" id="cmnd" class="form-control" ng-model="hocvienThem.cmnd">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="sdt" class=" form-control-label">Số điện thoại</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="tel" id="sdt" class="form-control" ng-model="hocvienThem.sdt">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="email" class=" form-control-label">Email</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="email" id="email" n class="form-control" ng-model="hocvienThem.email">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="diachi" class=" form-control-label">Địa chỉ</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="diachi" class="form-control" ng-model="hocvienThem.diachi">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="loaihocvien" class=" form-control-label">Loại học viên</label>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <select id="loaihocvien" class="form-control">
+                                            <option disabled selected> Loại học viên </option>
+                                            <option value="{{dmhv.id}}" ng-repeat="dmhv in danhmuchocvien">{{dmhv.tenloai}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="khoahoc" class=" form-control-label">Khoá học</label>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <select id="khoahoc" class="form-control">
+                                          <option disabled selected>Khóa học</option>
+                                          <option value="{{kh.makhoahoc}}" ng-repeat="kh in khoahoc">{{kh.tenkhoahoc}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="truonghoc" class=" form-control-label">Trường học</label>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <select id="truonghoc" class="form-control">
+                                          <option disabled selected>Trường học</option>
+                                          <option value="{{th.matruong}}" ng-repeat="th in truonghoc">{{th.tentruong}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="nguoihuongdan" class=" form-control-label">Người hướng dẫn</label>
+                                    </div>
+                                    <div class="col-6 col-md-3">
+                                        <select id="nguoihuongdan" class="form-control">
+                                          <option disabled selected>Người hướng dẫn</option>
+                                          <option value="{{nhd.manguoihdan}}" ng-repeat="nhd in nguoihuongdan">{{nhd.ho + " " + nhd.tenlot + " " + nhd.ten + " - " + nhd.truonghoc.tentruong}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="mssv" class=" form-control-label">Mã học viên</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="mssv" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="matkhau" class=" form-control-label">Mật khẩu</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="password" id="matkhau" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="thoigiancothedilam" class=" form-control-label">Thời gian có thể đi làm</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="datetime" id="thoigiancothedilam" class="form-control">
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" ng-click="suatruonglienket()">Thêm</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="suahocvienModal">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
 

@@ -44,58 +44,56 @@
 
     <div class="card">
         <div class="card-header">
-            <strong>KHÓA HỌC</strong>
+            <strong>THÊM KHÓA HỌC</strong>
         </div>
         <div class="card-body card-block">
             <!-- <form action="" method="post" class="form-horizontal"> -->
 
-                <div class="row form-group">
-                    <div class="col col-md-3">
-                        <label for="makhoahoc" class=" form-control-label">Tên khóa học</label>
-                    </div>
-                    <div class="col-12 col-md-9">
-                        <input type="text" id="makhoahoc" ng-model="khoahocThem.makhoahoc" class="form-control">
-                    </div>
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    <label for="makhoahoc" class=" form-control-label">Mã khóa học</label>
                 </div>
+                <div class="col-12 col-md-9">
+                    <input type="text" id="makhoahoc" ng-model="khoahocThem.makhoahoc" class="form-control">
+                </div>
+            </div>
 
-                <div class="row form-group">
-                    <div class="col col-md-3">
-                        <label for="tenkhoahoc" class=" form-control-label">Tên khóa học</label>
-                    </div>
-                    <div class="col-12 col-md-9">
-                        <input type="text" id="tenkhoahoc" ng-model="khoahocThem.tenkhoahoc" class="form-control">
-                    </div>
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    <label for="tenkhoahoc" class=" form-control-label">Tên khóa học</label>
                 </div>
+                <div class="col-12 col-md-9">
+                    <input type="text" id="tenkhoahoc" ng-model="khoahocThem.tenkhoahoc" class="form-control">
+                </div>
+            </div>
 
-                <div class="row form-group">
-                    <div class="col col-md-3">
-                        <label for="ngaybd" class=" form-control-label">Ngày bắt đầu</label>
-                    </div>
-                    <div class="col-12 col-md-9">
-                        <input type="text" id="ngaybd" ng-model="khoahocThem.ngaybd" class="form-control">
-                    </div>
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    <label for="ngaybd" class=" form-control-label">Ngày bắt đầu</label>
                 </div>
+                <div class="col-12 col-md-9">
+                    <input type="date" id="ngaybd" ng-model="khoahocThem.ngaybd" class="form-control">
+                </div>
+            </div>
 
-                <div class="row form-group">
-                    <div class="col col-md-3">
-                        <label for="ngaykt" class=" form-control-label">Ngày kết thúc</label>
-                    </div>
-                    <div class="col-12 col-md-9">
-                        <input type="text" id="ngaykt" ng-model="khoahocThem.ngaykt" class="form-control">
-                    </div>
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    <label for="ngaykt" class=" form-control-label">Ngày kết thúc</label>
                 </div>
+                <div class="col-12 col-md-9">
+                    <input type="date" id="ngaykt" ng-model="khoahocThem.ngaykt" class="form-control">
+                </div>
+            </div>
 
-                <div class="row form-group">
-                    <div class="col col-md-3">
-                        <label for="chuyennganh" class=" form-control-label">Chuyên ngành</label>
-                    </div>
-                    <div class="col-12 col-md-9">
-                      <select id="chuyennganh" class="form-control">
-                          <option disabled selected> Chuyên ngành </option>
-                          <option value="{{chuyennganh.id}}" ng-repeat="chuyennganh in chuyennganhs">{{chuyennganh.tencn}}</option>
-                      </select>
-                    </div>
+            <div class="row form-group">
+                <div class="col col-md-3">
+                    <label for="chuyennganh" class=" form-control-label">Chuyên ngành</label>
                 </div>
+                <div class="col-12 col-md-9">
+                    <select id="chuyennganh" class="form-control" ng-model="khoahocThem.chuyennganh" ng-options="cn.tencn for cn in chuyennganhs">
+                    </select>
+                </div>
+            </div>
 
             <!-- </form> -->
         </div>
@@ -146,7 +144,7 @@
                                     <label for="ngaybd" class=" form-control-label">Ngày bắt đầu</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="ngaybd" ng-model="khoahocSua.ngaybd" class="form-control">
+                                    <input type="date" id="ngaybd" ng-model="khoahocSua.ngaybd" class="form-control">
                                 </div>
                             </div>
 
@@ -155,7 +153,7 @@
                                     <label for="ngaykt" class=" form-control-label">Ngày kết thúc</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="ngaykt" ng-model="khoahocSua.ngaykt" class="form-control">
+                                    <input type="date" id="ngaykt" ng-model="khoahocSua.ngaykt" class="form-control">
                                 </div>
                             </div>
 
@@ -164,9 +162,7 @@
                                     <label for="chuyennganh" class=" form-control-label">Chuyên ngành</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                  <select id="chuyennganh" class="form-control">
-                                      <option disabled selected> Chuyên ngành </option>
-                                      <option value="{{chuyennganh.id}}" ng-repeat="chuyennganh in chuyennganhs">{{chuyennganh.tencn}}</option>
+                                  <select id="chuyennganh" class="form-control" ng-model="khoahocSua.chuyennganh.id" ng-options="cn.id as cn.tencn for cn in chuyennganhs">
                                   </select>
                                 </div>
                             </div>
@@ -178,7 +174,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" ng-click="suadoanhnghiep()">Sửa</button>
+                    <button type="button" class="btn btn-success" ng-click="suakhoahoc()">Sửa</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
                 </div>
 

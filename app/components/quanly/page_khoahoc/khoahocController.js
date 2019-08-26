@@ -5,17 +5,17 @@ adminApp.controller("khoahocController", function($scope, $rootScope, $http) {
   $scope.khoahocThem = {
     makhoahoc: "",
     tennkhoahoc: "",
-    ngaybd: "",
-    ngaykt: "",
-    chuyennganh: ""
+    ngaybd: new Date(),
+    ngaykt: new Date(),
+    chuyennganh: {}
   };
 
   $scope.khoahocSua = {
     makhoahoc: "",
     tennkhoahoc: "",
-    ngaybd: "",
-    ngaykt: "",
-    chuyennganh: ""
+    ngaybd: new Date(),
+    ngaykt: new Date(),
+    chuyennganh: {}
   };
 
   $scope.chuyennganhs = {
@@ -52,6 +52,15 @@ adminApp.controller("khoahocController", function($scope, $rootScope, $http) {
   }
 
   $scope.themkhoahoc = function() {
+    var year = $scope.khoahocThem.ngaybd.getFullYear();
+    var month = $scope.khoahocThem.ngaybd.getMonth() + 1;
+    var day = $scope.khoahocThem.ngaybd.getDate();
+    $scope.khoahocThem.ngaybd = year + '-' + month + '-' + day;
+    var year = $scope.khoahocThem.ngaykt.getFullYear();
+    var month = $scope.khoahocThem.ngaykt.getMonth() + 1;
+    var day = $scope.khoahocThem.ngaykt.getDate();
+    $scope.khoahocThem.ngaykt = year + '-' + month + '-' + day;
+
     $http({
       method: 'POST',
       url: $rootScope.domainService + 'taokhoahoc',
@@ -66,9 +75,9 @@ adminApp.controller("khoahocController", function($scope, $rootScope, $http) {
     $scope.khoahocThem = {
       makhoahoc: "",
       tennkhoahoc: "",
-      ngaybd: "",
-      ngaykt: "",
-      chuyennganh: ""
+      ngaybd: new Date(),
+      ngaykt: new Date(),
+      chuyennganh: {}
     };
 
   };
@@ -87,7 +96,7 @@ adminApp.controller("khoahocController", function($scope, $rootScope, $http) {
     $http({
       method: 'PUT',
       url: $rootScope.domainService + 'suakhoahoc/' + $scope.idSua,
-      data: angular.toJson($scope.doanhnghiepSua),
+      data: angular.toJson($scope.khoahocSua),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -100,6 +109,9 @@ adminApp.controller("khoahocController", function($scope, $rootScope, $http) {
   $scope.suakhoahocpopup = function(khoahoc) {
     $scope.idSua = angular.copy(khoahoc.makhoahoc);
     $scope.khoahocSua = angular.copy(khoahoc);
+    $scope.khoahocSua.ngaybd = new Date(khoahoc.ngaybd);
+    $scope.khoahocSua.ngaykt = new Date(khoahoc.ngaykt);
+
   };
 
   _success = function() {
