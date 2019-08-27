@@ -1,0 +1,143 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-success float-right mb-3 mr-2" data-toggle="modal" data-target="#Them" onclick="myFunction()" ng-click="refAdd()">
+    Thêm chương trình đào tạo
+</button>
+
+<!-- Modal -->
+<div class="modal fade bg-secondary" data-backdrop="false" id="Them" tabindex="-1" role="dialog" aria-labelledby="Them" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Them">ĐÀO TẠO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+
+                <div>
+                    <div class="card">
+
+                        <div class="card-body card-block">
+                            <form action="" method="post" class="form-horizontal">
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="chuyennganh" class=" form-control-label">Chuyên ngành</label>
+                                    </div>
+                                    <div class="col-9 col-md-9 text-dark">
+                                        <select name="chuyennganh" id="chuyennganh" class="form-control" ng-change="selectChuyenNganh(SelectChuyenNganh)" ng-model="SelectChuyenNganh">
+
+                                            <option ng-repeat="row in chuyennganh" value="{{row.id}}">{{row.tencn}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="monhoc" class=" form-control-label">Môn học</label>
+                                    </div>
+                                    <div class="col-9 col-md-9 text-dark">
+                                        <select name="monhoc" id="monhoc" class="form-control" ng-change="selectMonHoc(SelectMonHoc)" ng-model="SelectMonHoc">
+
+                                            <option ng-repeat="row in monhoc" value="{{row.mamh}}">{{row.tenmh}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" name="create" ng-click="createDaoTao()">Thêm chương trình đào tạo</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive table--no-card m-b-30">
+    <table class="table table-borderless table-striped">
+        <thead class="table-dark text-light">
+            <tr>
+                <th>Chuyên ngành</th>
+                <th>Môn học</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="row in daotaopage">
+                <td>
+                    <span ng-bind="row.tencn"></span>
+                </td>
+                <td ng-repeat="row2 in row.monhoc" class="row">
+                    <Button type="button" name="delete" data-toggle="modal" data-target="#Xoa" onclick="myFunction()" ng-click="setMaDelete(row, row2)" ng-bind="row2.tenmh"></Button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<nav aria-label="Page navigation" class="m-b-30">
+    <ul class="pagination justify-content-end">
+        <li class="page-item">
+            <button class="page-link" tabindex="-1" ng-click="preCount()">Previous</button>
+        </li>
+        <li class="page-item" ng-repeat="row in arrSLHocvien"><button class="page-link" ng-model="number" ng-click="numb(row)">{{row+1}}</button></li>
+        <li class="page-item">
+            <button class="page-link" ng-click="nextCount()">Next</button>
+        </li>
+    </ul>
+</nav>
+
+<!-- Modal -->
+<div class="modal fade bg-secondary" data-backdrop="false" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="Xoa" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Xoa">Cảnh báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc muốn xoá môn học <strong>{{TenMonhocDelete}}</strong> từ chuyên ngành <strong>{{TenChuyennganhDelete}}</strong> không?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Không</button>
+                <button type="button" class="btn btn-danger" name="delete" ng-click="deleteDaotao()">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $('#header-button').click(function(event) {
+        myFunction2();
+        //$(event.target).modal('hide');
+    });
+    $('#Them').click(function(event) {
+        $(event.target).modal('hide');
+    });
+    $('#CapNhat').click(function(event) {
+        $(event.target).modal('hide');
+    });
+    $('#Xoa').click(function(event) {
+        $(event.target).modal('hide');
+    });
+
+    function myFunction() {
+        document.getElementById("header-desktop").style.zIndex = "1";
+    }
+
+    function myFunction2() {
+        document.getElementById("header-desktop").style.zIndex = "2";
+    }
+</script>

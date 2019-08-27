@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-success float-right mb-3 mr-2" data-toggle="modal" data-target="#Them" onclick="myFunction()" ng-click="refAdd()">
-    Thêm chuyên ngành
+    Thêm trường học
 </button>
 
 <!-- Modal -->
@@ -8,7 +8,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="Them">CHUYÊN NGÀNH</h5>
+                <h5 class="modal-title" id="Them">TRƯỜNG HỌC</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -22,13 +22,29 @@
 
                         <div class="card-body card-block">
                             <form action="" method="post" class="form-horizontal">
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="matruong" class=" form-control-label">Mã trường</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="matruong" name="matruong" ng-model="matruong" placeholder="Nhập mã trường..." class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="tentruong" class=" form-control-label">Tên trường</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="tentruong" ng-model="tentruong" name="tentruong" placeholder="Nhập tên trường..." class="form-control">
+                                    </div>
+                                </div>
 
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label for="tenchuyennganh" class=" form-control-label">Tên chuyên ngành</label>
+                                        <label for="diachi" class=" form-control-label">Địa chỉ</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="tenchuyennganh" ng-model="tenchuyennganh" name="tenchuyennganh" placeholder="Nhập tên chuyên ngành..." class="form-control">
+                                        <input type="text" id="diachi" ng-model="diachi" name="diachi" placeholder="Nhập địa chỉ..." class="form-control">
                                     </div>
                                 </div>
                             </form>
@@ -41,7 +57,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-                <button type="button" class="btn btn-primary" name="create" ng-click="createChuyennganh()">Thêm chuyên ngành</button>
+                <button type="button" class="btn btn-primary" name="create" ng-click="createTruongHoc()">Thêm trường học</button>
             </div>
         </div>
     </div>
@@ -51,25 +67,25 @@
     <table class="table table-borderless table-striped">
         <thead class="table-dark text-light">
             <tr>
-                <th>Mã chuyên ngành</th>
-                <th>Tên chuyên ngành</th>
+                <th>Mã trường</th>
+                <th>Tên trường</th>
+                <th>Địa chỉ</th>
                 <th></th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="row in chuyennganhpage">
+            <tr ng-repeat="row in truonghocpage">
                 <td>
-                    <span ng-bind="row.id"></span>
+                    <span ng-bind="row.matruong"></span>
+                </td>
+                <td><span ng-bind="row.tentruong"></span></td>
+                <td><span ng-bind="row.diachi"></span></td>
+                <td>
+                    <button type="button" name="update" data-toggle="modal" data-target="#CapNhat" onclick="myFunction()" ng-click="getMaTruong(row)"> <span class="fa fa-edit"></span> Sửa </button>
                 </td>
                 <td>
-                    <span ng-bind="row.tencn"></span>
-                </td>
-                <td>
-                    <button type="button" name="update" data-toggle="modal" data-target="#CapNhat" onclick="myFunction()" ng-click="getMaChuyennganh(row)"> <span class="fa fa-edit"></span> Sửa </button>
-                </td>
-                <td>
-                    <button type="button" name="delete" data-toggle="modal" data-target="#Xoa" onclick="myFunction()" ng-click="setMaDelete(row.id)""><span class=" fa fa-trash"></span> Xoá</button>
+                    <button type="button" name="delete" data-toggle="modal" data-target="#Xoa" onclick="myFunction()" ng-click="setMaTruongDelete(row.matruong)""><span class=" fa fa-trash"></span> Xoá</button>
                 </td>
             </tr>
         </tbody>
@@ -95,7 +111,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="CapNhat">CHUYÊN NGÀNH</h5>
+                <h5 class="modal-title" id="CapNhat">TRƯỜNG HỌC</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -112,18 +128,19 @@
 
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label for="machuyennganh" class=" form-control-label">Mã chuyên ngành</label>
+                                        <label for="tentruong" class=" form-control-label">Tên trường</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="machuyennganh" name="machuyennganh" ng-model="machuyennganh" disabled placeholder="Nhập mã chuyên ngành..." class="form-control">
+                                        <input type="text" id="tentruong" ng-model="tentruong" name="tentruong" placeholder="Nhập tên trường..." class="form-control">
                                     </div>
                                 </div>
+
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label for="tenchuyennganh" class=" form-control-label">Tên chuyên ngành</label>
+                                        <label for="diachi" class=" form-control-label">Địa chỉ</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="tenchuyennganh" ng-model="tenchuyennganh" name="tenchuyennganh" placeholder="Nhập tên chuyên ngành..." class="form-control">
+                                        <input type="text" id="diachi" ng-model="diachi" name="diachi" placeholder="Nhập địa chỉ..." class="form-control">
                                     </div>
                                 </div>
 
@@ -137,7 +154,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-                <button type="button" class="btn btn-primary" name="create" ng-click="updateChuyennganh()">Cập nhật chuyên ngành</button>
+                <button type="button" class="btn btn-primary" name="create" ng-click="updateSchool()">Cập nhật trường học</button>
             </div>
         </div>
     </div>
@@ -163,7 +180,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Không</button>
-                <button type="button" class="btn btn-danger" name="delete" ng-click="deleteChuyennganh()">Đồng ý</button>
+                <button type="button" class="btn btn-danger" name="delete" ng-click="deleteTruonghoc()">Đồng ý</button>
             </div>
         </div>
     </div>

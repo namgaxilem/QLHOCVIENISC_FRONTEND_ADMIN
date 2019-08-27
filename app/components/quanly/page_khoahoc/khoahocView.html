@@ -1,185 +1,241 @@
-<div ng-controller="khoahocController">
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-success float-right mb-3 mr-2" data-toggle="modal" data-target="#Them" onclick="myFunction()" ng-click="refAdd()">
+    Thêm khoá học
+</button>
 
-    <div class="table-responsive table--no-card m-b-30">
-        <table class="table table-borderless table-striped">
-            <thead>
-                <tr>
-                    <th>Mã khóa học</th>
-                    <th>Tên khóa học</th>
-                    <th>Ngày bắt đầu</th>
-                    <th>Ngày kết thúc</th>
-                    <th>Chuyên ngành</th>
-                    <th>Thao tác</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="khoahoc in khoahocs">
-                    <td>{{khoahoc.makhoahoc}}</td>
-                    <td>{{khoahoc.tenkhoahoc}}</td>
-                    <td>{{khoahoc.ngaybd}}</td>
-                    <td>{{khoahoc.ngaykt}}</td>
-                    <td>{{khoahoc.chuyennganh.tencn}}</td>
-                    <td class="text-right">
-                        <button class="btn btn-info" ng-click="suakhoahocpopup(khoahoc)" data-toggle="modal" data-target="#suakhoahocModal"> Sửa </button>
-                        <button class="btn btn-danger" ng-click="xoakhoahoc(khoahoc)"> Xóa </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <nav aria-label="Page navigation" class="m-b-30">
-        <ul class="pagination justify-content-end">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Previous</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
-        </ul>
-    </nav>
-
-    <div class="card">
-        <div class="card-header">
-            <strong>THÊM KHÓA HỌC</strong>
-        </div>
-        <div class="card-body card-block">
-            <!-- <form action="" method="post" class="form-horizontal"> -->
-
-            <div class="row form-group">
-                <div class="col col-md-3">
-                    <label for="makhoahoc" class=" form-control-label">Mã khóa học</label>
-                </div>
-                <div class="col-12 col-md-9">
-                    <input type="text" id="makhoahoc" ng-model="khoahocThem.makhoahoc" class="form-control">
-                </div>
+<!-- Modal -->
+<div class="modal fade bg-secondary" data-backdrop="false" id="Them" tabindex="-1" role="dialog" aria-labelledby="Them" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Them">KHOÁ HỌC</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body">
 
-            <div class="row form-group">
-                <div class="col col-md-3">
-                    <label for="tenkhoahoc" class=" form-control-label">Tên khóa học</label>
-                </div>
-                <div class="col-12 col-md-9">
-                    <input type="text" id="tenkhoahoc" ng-model="khoahocThem.tenkhoahoc" class="form-control">
-                </div>
-            </div>
-
-            <div class="row form-group">
-                <div class="col col-md-3">
-                    <label for="ngaybd" class=" form-control-label">Ngày bắt đầu</label>
-                </div>
-                <div class="col-12 col-md-9">
-                    <input type="date" id="ngaybd" ng-model="khoahocThem.ngaybd" class="form-control">
-                </div>
-            </div>
-
-            <div class="row form-group">
-                <div class="col col-md-3">
-                    <label for="ngaykt" class=" form-control-label">Ngày kết thúc</label>
-                </div>
-                <div class="col-12 col-md-9">
-                    <input type="date" id="ngaykt" ng-model="khoahocThem.ngaykt" class="form-control">
-                </div>
-            </div>
-
-            <div class="row form-group">
-                <div class="col col-md-3">
-                    <label for="chuyennganh" class=" form-control-label">Chuyên ngành</label>
-                </div>
-                <div class="col-12 col-md-9">
-                    <select id="chuyennganh" class="form-control" ng-model="khoahocThem.chuyennganh" ng-options="cn.tencn for cn in chuyennganhs">
-                    </select>
-                </div>
-            </div>
-
-            <!-- </form> -->
-        </div>
-        <div class="card-footer">
-            <button type="submit" class="btn btn-success btn-sm" ng-click="themkhoahoc()">
-                <i class="fa fa-dot-circle-o"></i> Thêm khóa học
-            </button>
-        </div>
-    </div>
-
-    <!-- The Modal -->
-    <div class="modal fade" id="suakhoahocModal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Sửa khóa học</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
+                <div>
                     <div class="card">
+
                         <div class="card-body card-block">
-                            <!-- <form action="" method="post" class="form-horizontal"> -->
+                            <form action="" method="post" class="form-horizontal">
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="makhoahoc" class=" form-control-label">Mã khoá học</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="makhoahoc" name="makhoahoc" ng-model="makhoahoc" placeholder="Nhập mã khoá học..." class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="tenkhoahoc" class=" form-control-label">Tên khoá học</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="tenkhoahoc" ng-model="tenkhoahoc" name="tenkhoahoc" placeholder="Nhập tên khoá học..." class="form-control">
+                                    </div>
+                                </div>
 
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label for="makhoahoc" class=" form-control-label">Mã khóa học</label>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ngaybd" class=" form-control-label">Ngày bắt đầu</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="date" id="ngaybd" ng-model="ngaybd" name="ngaybd" placeholder="Nhập ngày bắt đầu..." class="form-control">
+                                    </div>
                                 </div>
-                                <div class="col-12 col-md-9">
-                                    <input type="text" id="makhoahoc" ng-model="khoahocSua.makhoahoc" class="form-control">
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ngaykt" class=" form-control-label">Ngày kết thúc</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="date" id="ngaykt" ng-model="ngaykt" name="ngaykt" placeholder="Nhập ngày kết thúc..." class="form-control">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label for="tenkhoahoc" class=" form-control-label">Tên khóa học</label>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <input type="text" id="tenkhoahoc" ng-model="khoahocSua.tenkhoahoc" class="form-control">
-                                </div>
-                            </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="chuyennganh" class=" form-control-label">Chuyên ngành</label>
+                                    </div>
+                                    <div class="col-9 col-md-9 text-dark">
+                                        <select name="chuyennganh" id="chuyennganh" class="form-control" ng-change="selectChuyenNganh(SelectChuyenNganh)" ng-model="SelectChuyenNganh">
 
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label for="ngaybd" class=" form-control-label">Ngày bắt đầu</label>
+                                            <option ng-repeat="row in chuyennganh" value="{{row.id}}">{{row.tencn}}</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="col-12 col-md-9">
-                                    <input type="date" id="ngaybd" ng-model="khoahocSua.ngaybd" class="form-control">
-                                </div>
-                            </div>
 
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label for="ngaykt" class=" form-control-label">Ngày kết thúc</label>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <input type="date" id="ngaykt" ng-model="khoahocSua.ngaykt" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label for="chuyennganh" class=" form-control-label">Chuyên ngành</label>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                  <select id="chuyennganh" class="form-control" ng-model="khoahocSua.chuyennganh.id" ng-options="cn.id as cn.tencn for cn in chuyennganhs">
-                                  </select>
-                                </div>
-                            </div>
-
-                            <!-- </form> -->
+                            </form>
                         </div>
                     </div>
                 </div>
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" ng-click="suakhoahoc()">Sửa</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
-                </div>
-
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" name="create" ng-click="createKhoaHoc()">Thêm khoá học</button>
             </div>
         </div>
     </div>
-
 </div>
+
+<div class="table-responsive table--no-card m-b-30">
+    <table class="table table-borderless table-striped">
+        <thead class="table-dark text-light">
+            <tr>
+                <th>Mã khoá học</th>
+                <th>Tên khoá học</th>
+                <th>Ngày bắt đầu</th>
+                <th>Ngày kết thúc</th>
+                <th>Chuyên ngành</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="row in khoahocpage">
+                <td>
+                    <span ng-bind="row.makhoahoc"></span>
+                </td>
+                <td><span ng-bind="row.tenkhoahoc"></span></td>
+                <td><span ng-bind="row.ngaybd"></span></td>
+                <td><span ng-bind="row.ngaykt"></span></td>
+                <td><span ng-bind="row.chuyennganh"></span></td>
+                <td>
+                    <button type="button" name="update" data-toggle="modal" data-target="#CapNhat" onclick="myFunction()" ng-click="getMaKhoaHoc(row)"> <span class="fa fa-edit"></span> Sửa </button>
+                </td>
+                <td>
+                    <button type="button" name="delete" data-toggle="modal" data-target="#Xoa" onclick="myFunction()" ng-click="setMaKhoaHocDelete(row.makhoahoc)""><span class=" fa fa-trash"></span> Xoá</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<nav aria-label="Page navigation" class="m-b-30">
+    <ul class="pagination justify-content-end">
+        <li class="page-item">
+            <button class="page-link" tabindex="-1" ng-click="preCount()">Previous</button>
+        </li>
+        <li class="page-item" ng-repeat="row in arrSLHocvien"><button class="page-link" ng-model="number" ng-click="numb(row)">{{row+1}}</button></li>
+        <li class="page-item">
+            <button class="page-link" ng-click="nextCount()">Next</button>
+        </li>
+    </ul>
+</nav>
+
+<!-- Modal -->
+<div class="modal fade bg-secondary" data-backdrop="false" id="CapNhat" tabindex="-1" role="dialog" aria-labelledby="CapNhat" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CapNhat">TRƯỜNG HỌC</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div>
+                    <div class="card">
+
+                        <div class="card-body card-block">
+                            <form action="" method="post" class="form-horizontal">
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="tenkhoahoc" class=" form-control-label">Tên khoá học</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="tenkhoahoc" ng-model="tenkhoahoc" name="tenkhoahoc" placeholder="Nhập tên khoá học..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ngaybd" class=" form-control-label">Ngày bắt đầu</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="date" id="ngaybd" ng-model="ngaybd" name="ngaybd" placeholder="Nhập ngày bắt đầu..." class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ngaykt" class=" form-control-label">Ngày kết thúc</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="date" id="ngaykt" ng-model="ngaykt" name="ngaykt" placeholder="Nhập ngày kết thúc..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="chuyennganh" class=" form-control-label">Chuyên ngành</label>
+                                    </div>
+                                    <div class="col-9 col-md-9 text-dark">
+                                        <select name="chuyennganh" id="chuyennganh" class="form-control" ng-change="selectChuyenNganh(SelectChuyenNganh)" ng-model="SelectChuyenNganh">
+
+                                            <option ng-repeat="row in chuyennganh" value="{{row.id}}">{{row.tencn}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" name="create" ng-click="updateKhoaHoc()">Cập nhật khoá học</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade bg-secondary" data-backdrop="false" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="Xoa" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Xoa">Cảnh báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h1>Bạn có chắc muốn xoá không?</h1>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Không</button>
+                <button type="button" class="btn btn-danger" name="delete" ng-click="deleteKhoaHoc()">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('#header-button').click(function(event) {
+        myFunction2();
+        //$(event.target).modal('hide');
+    });
+    $('#Them').click(function(event) {
+        $(event.target).modal('hide');
+    });
+    $('#CapNhat').click(function(event) {
+        $(event.target).modal('hide');
+    });
+    $('#Xoa').click(function(event) {
+        $(event.target).modal('hide');
+    });
+
+    function myFunction() {
+        document.getElementById("header-desktop").style.zIndex = "1";
+    }
+
+    function myFunction2() {
+        document.getElementById("header-desktop").style.zIndex = "2";
+    }
+</script>

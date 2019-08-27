@@ -1,4 +1,4 @@
-adminApp.controller('khoahocController', ['$scope', '$http', '$resource', function($scope, $http, $resource) {
+adminApp.controller('truonghocController', ['$scope', '$http', '$resource', function($scope, $http, $resource) {
 
   function fetchAllStudents() {
     $scope.hocvien = $resource('http://localhost:8080/hocvien').query(function(data) {
@@ -35,16 +35,11 @@ adminApp.controller('khoahocController', ['$scope', '$http', '$resource', functi
   };
   fetchAllCourse();
 
-  function fetchAllCourse() {
-    $scope.chuyennganh = $resource('http://localhost:8080/chuyennganh').query(function(data) {
-      return data;
-    });
-  };
-  fetchAllCourse();
-
   $scope.refresh = function() {
     fetchAllStudents();
   };
+
+
 
   $scope.seletedLoaitaikhoan = "";
   $scope.statusAccounttype = "";
@@ -67,6 +62,7 @@ adminApp.controller('khoahocController', ['$scope', '$http', '$resource', functi
 
   }
 
+
   $scope.seletedKhoahoc = "";
   $scope.statusCourse = "";
   $scope.selectKhoaHoc = function(SelectKhoaHoc) {
@@ -87,6 +83,8 @@ adminApp.controller('khoahocController', ['$scope', '$http', '$resource', functi
     }
 
   }
+
+
 
   $scope.seletedLoaiHocVien = "";
   $scope.statusStudentType = "";
@@ -109,26 +107,28 @@ adminApp.controller('khoahocController', ['$scope', '$http', '$resource', functi
 
   }
 
-  $scope.seletedChuyenNganh = "";
-  $scope.statusChuyenNganh = "";
-  $scope.selectChuyenNganh = function(SelectChuyenNganh) {
-    $scope.seletedChuyenNganh = SelectChuyenNganh;
-    for (var i = 0; i < $scope.chuyennganh.length; i++) {
-      if ($scope.seletedChuyenNganh == $scope.chuyennganh[i].id) {
-        $scope.resultChuyenNganh = $scope.chuyennganh[i];
-        return $scope.resultChuyenNganh;
-        $scope.statusChuyenNganh = 1;
+
+  $scope.seletedTruongHoc = "";
+  $scope.statusSchool = "";
+  $scope.selectTruongHoc = function(SelectTruongHoc) {
+    $scope.seletedTruongHoc = SelectTruongHoc;
+    for (var i = 0; i < $scope.truonghoc.length; i++) {
+      if ($scope.seletedTruongHoc == $scope.truonghoc[i].matruong) {
+        $scope.resultTruongHoc = $scope.truonghoc[i];
+        return $scope.resultTruongHoc;
+        $scope.statusSchool = 1;
       } else {
 
       }
     }
-    if ($scope.statusChuyenNganh == 1) {
+    if ($scope.statusSchool == 1) {
       alert("Tim thay");
     } else {
       alert("Khong tim thay");
     }
 
   }
+
 
   $scope.searchStudent = function() {
     $scope.status = "";
@@ -146,9 +146,9 @@ adminApp.controller('khoahocController', ['$scope', '$http', '$resource', functi
     }
   };
 
-  $scope.createKhoaHoc = function() {
+  $scope.createTruongHoc = function() {
     User = $resource(
-      "http://localhost:8080/khoahoc", {}, {
+      "http://localhost:8080/truonghoc", {}, {
         save: {
           method: 'POST',
           isArray: false
@@ -157,24 +157,20 @@ adminApp.controller('khoahocController', ['$scope', '$http', '$resource', functi
     );
 
     var user = {};
-    user.chuyennganh = $scope.resultChuyenNganh;
-    user.ngaybd = $scope.ngaybd;
-    user.ngaykt = $scope.ngaykt;
-    user.chuyennganh_ID = $scope.resultChuyenNganh.id;
-    user.tenkhoahoc = $scope.tenkhoahoc;
-    user.makhoahoc = $scope.makhoahoc;
-
+    user.tentruong = $scope.tentruong;
+    user.diachi = $scope.diachi;
+    user.matruong = $scope.matruong;
     $scope.Message = User.save(user);
 
     location.reload();
   };
 
-  $scope.setMaKhoaHocDelete = function(Student) {
-    $scope.MaKhoaHocDelete = Student;
+  $scope.setMaTruongDelete = function(Student) {
+    $scope.MaTruongDelete = Student;
   };
-  $scope.deleteKhoaHoc = function() {
+  $scope.deleteTruonghoc = function() {
     User = $resource(
-      "http://localhost:8080/khoahoc/:id", {}, {
+      "http://localhost:8080/truonghoc/:id", {}, {
         save: {
           method: 'DELETE',
           params: {
@@ -185,15 +181,14 @@ adminApp.controller('khoahocController', ['$scope', '$http', '$resource', functi
     );
 
     $scope.Message = User.delete({
-      id: $scope.MaKhoaHocDelete
+      id: $scope.MaTruongDelete
     });
-    location.reload();
+    //location.reload();
   };
   $scope.refAdd = function() {
-    $scope.makhoahoc = "";
-    $scope.tenkhoahoc = "";
-    $scope.ngaybd = "";
-    $scope.ngaykt = "";
+    $scope.matruong = "";
+    $scope.tentruong = "";
+    $scope.diachi = "";
   };
   $scope.changeAccountType = function() {
     for (var i = 0; i < $scope.hocvien.length; i++) {
@@ -244,18 +239,17 @@ adminApp.controller('khoahocController', ['$scope', '$http', '$resource', functi
       alert("Học viên không tồn tại!");
     }
   };
-  $scope.getMaKhoaHoc = function(student) {
-    $scope.tenkhoahoc = student.tenkhoahoc;
-    $scope.ngaybd = new Date(student.ngaybd);
-    $scope.ngaykt = new Date(student.ngaykt);
+  $scope.getMaTruong = function(student) {
+    $scope.tentruong = student.tentruong;
+    $scope.diachi = student.diachi;
 
-    $scope.uMaKhoaHoc = student.makhoahoc;
-    return $scope.uMaKhoaHoc;
+    $scope.uMaTruong = student.matruong;
+    return $scope.uMaTruong;
   }
-  $scope.updateKhoaHoc = function() {
+  $scope.updateSchool = function() {
     //console.log($scope.MaHV);
     User = $resource(
-      "http://localhost:8080/khoahoc/:id", {}, {
+      "http://localhost:8080/truonghoc/:id", {}, {
         save: {
           method: 'PUT',
           params: {
@@ -267,25 +261,24 @@ adminApp.controller('khoahocController', ['$scope', '$http', '$resource', functi
 
     var user = {};
 
-    user.tenkhoahoc = $scope.tenkhoahoc;
-    user.ngaybd = $scope.ngaybd;
-    user.ngaykt = $scope.ngaykt;
-    user.chuyennganh = $scope.resultChuyenNganh;
-    user.chuyennganh_ID = $scope.resultChuyenNganh.id;
-    user.makhoahoc = $scope.uMaKhoaHoc;
+    user.tentruong = $scope.tentruong;
+    user.diachi = $scope.diachi;
+    user.matruong = $scope.uMaTruong;
 
     $scope.Message = User.save({
-      id: $scope.uMaKhoaHoc
+      id: $scope.uMaTruong
     }, user);
     location.reload();
   };
+
+
 
   $scope.pageNo = 0;
   $scope.pageSize = 2;
   $scope.total = 0;
 
   function getCountHocvien() {
-    $http.get("http://localhost:8080/khoahoc").then(
+    $http.get("http://localhost:8080/truonghoc").then(
       function(response) {
 
         $scope.total = response.data.length / $scope.pageSize;
@@ -298,9 +291,9 @@ adminApp.controller('khoahocController', ['$scope', '$http', '$resource', functi
   getCountHocvien();
 
   function getHocvienPage() {
-    $http.get("http://localhost:8080/khoahoc2?pageNo=" + $scope.pageNo + "&pageSize=" + $scope.pageSize).then(
+    $http.get("http://localhost:8080/truonghoc2?pageNo=" + $scope.pageNo + "&pageSize=" + $scope.pageSize).then(
       function(response) {
-        $scope.khoahocpage = response.data;
+        $scope.truonghocpage = response.data;
       },
       function(err) {
         var error = err;
