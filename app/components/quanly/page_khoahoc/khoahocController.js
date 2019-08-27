@@ -33,6 +33,7 @@ adminApp.controller('khoahocController', ['$scope', '$http', '$resource', functi
       return data;
     });
   };
+
   fetchAllCourse();
 
   function fetchAllCourse() {
@@ -130,22 +131,6 @@ adminApp.controller('khoahocController', ['$scope', '$http', '$resource', functi
 
   }
 
-  $scope.searchStudent = function() {
-    $scope.status = "";
-    for (var i = 0; i < $scope.hocvien.length; i++) {
-      if ($scope.Seach.toString() == $scope.hocvien[i].mahv.toString()) {
-        $scope.status = 1;
-      } else {
-
-      }
-    }
-    if ($scope.status == 1) {
-      window.location = "#!result";
-    } else {
-      alert("Không tìm thấy học viên!");
-    }
-  };
-
   $scope.createKhoaHoc = function() {
     User = $resource(
       "http://localhost:8080/khoahoc", {}, {
@@ -195,59 +180,12 @@ adminApp.controller('khoahocController', ['$scope', '$http', '$resource', functi
     $scope.ngaybd = "";
     $scope.ngaykt = "";
   };
-  $scope.changeAccountType = function() {
-    for (var i = 0; i < $scope.hocvien.length; i++) {
-      if ($scope.Seach.toString() == $scope.hocvien[i].mahv.toString()) {
-        $scope.ResultSearch = $scope.hocvien[i];
-        $scope.status = 1;
-      } else {
 
-      }
-    }
-    if ($scope.status == 1) {
-      User = $resource(
-        "http://localhost:8080/hocvien/:id", {}, {
-          save: {
-            method: 'PUT',
-            params: {
-              id: '@id'
-            }
-          }
-        }
-      );
-
-      var user = {};
-
-      user.truonghoc = $scope.ResultSearch.truonghoc;
-      user.khoahoc = $scope.ResultSearch.khoahoc;
-      user.loaitaikhoan = $scope.resultLoaitk;
-      user.danhmuchocvien = $scope.ResultSearch.danhmuchocvien;
-      user.password = $scope.ResultSearch.password;
-      user.tgcothedilam = $scope.ResultSearch.tgcothedilam;
-      user.email = $scope.ResultSearch.email;
-      user.diachi = $scope.ResultSearch.diachi;
-      user.sdt = $scope.ResultSearch.sdt;
-      user.ho = $scope.ResultSearch.ho;
-      user.tenlot = $scope.ResultSearch.tenlot;
-      user.gioitinh = $scope.ResultSearch.gioitinh;
-      user.ngaysinh = $scope.ResultSearch.ngaysinh;
-      user.noisinh = $scope.ResultSearch.noisinh;
-      user.cmnd = $scope.ResultSearch.cmnd;
-      user.ten = $scope.ResultSearch.ten;
-      user.mahv = $scope.Seach.toString();
-
-      $scope.Message = User.save({
-        id: $scope.Seach.toString()
-      }, user);
-      location.reload();
-    } else {
-      alert("Học viên không tồn tại!");
-    }
-  };
   $scope.getMaKhoaHoc = function(student) {
     $scope.tenkhoahoc = student.tenkhoahoc;
     $scope.ngaybd = new Date(student.ngaybd);
     $scope.ngaykt = new Date(student.ngaykt);
+    $scope.chuyennganh_id = student.idchuyennganh;
 
     $scope.uMaKhoaHoc = student.makhoahoc;
     return $scope.uMaKhoaHoc;
