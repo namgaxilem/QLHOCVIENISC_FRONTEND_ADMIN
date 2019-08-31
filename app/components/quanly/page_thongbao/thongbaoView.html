@@ -1,79 +1,37 @@
-﻿<div class="table-responsive table--no-card m-b-30">
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-success float-right mb-3 mr-2" data-toggle="modal" data-target="#Them" onclick="myFunction()" ng-click="refAdd()">
+    Thêm thông báo
+</button>
+
+<div class="table-responsive table--no-card m-b-30">
     <table class="table table-borderless table-striped">
-        <thead>
+        <thead class="table-dark text-light">
             <tr>
-                <th>date</th>
-                <th>order ID</th>
-                <th>name</th>
-                <th class="text-right">price</th>
-                <th class="text-right">quantity</th>
-                <th class="text-right">total</th>
+                <th>STT</th>
+                <th>Tiêu đề</th>
+                <th>Nội dung</th>
+                <th>Ngày đăng</th>
+                <th>Khóa học</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>2018-09-29 05:57</td>
-                <td>100398</td>
-                <td>iPhone X 64Gb Grey</td>
-                <td class="text-right">$999.00</td>
-                <td class="text-right">1</td>
-                <td class="text-right">$999.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-28 01:22</td>
-                <td>100397</td>
-                <td>Samsung S8 Black</td>
-                <td class="text-right">$756.00</td>
-                <td class="text-right">1</td>
-                <td class="text-right">$756.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-27 02:12</td>
-                <td>100396</td>
-                <td>Game Console Controller</td>
-                <td class="text-right">$22.00</td>
-                <td class="text-right">2</td>
-                <td class="text-right">$44.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-26 23:06</td>
-                <td>100395</td>
-                <td>iPhone X 256Gb Black</td>
-                <td class="text-right">$1199.00</td>
-                <td class="text-right">1</td>
-                <td class="text-right">$1199.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-25 19:03</td>
-                <td>100393</td>
-                <td>USB 3.0 Cable</td>
-                <td class="text-right">$10.00</td>
-                <td class="text-right">3</td>
-                <td class="text-right">$30.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-29 05:57</td>
-                <td>100392</td>
-                <td>Smartwatch 4.0 LTE Wifi</td>
-                <td class="text-right">$199.00</td>
-                <td class="text-right">6</td>
-                <td class="text-right">$1494.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-24 19:10</td>
-                <td>100391</td>
-                <td>Camera C430W 4k</td>
-                <td class="text-right">$699.00</td>
-                <td class="text-right">1</td>
-                <td class="text-right">$699.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-22 00:43</td>
-                <td>100393</td>
-                <td>USB 3.0 Cable</td>
-                <td class="text-right">$10.00</td>
-                <td class="text-right">3</td>
-                <td class="text-right">$30.00</td>
+            <tr ng-repeat="row in thongbao">
+                <td data-toggle="modal" data-target="#Xem" ng-click="xemThongBao(row)">{{ thongbao.stt[$index] }}</td>
+                <td data-toggle="modal" data-target="#Xem" ng-click="xemThongBao(row)"><span ng-bind="row.tieude"></span></td>
+                <td data-toggle="modal" data-target="#Xem" ng-click="xemThongBao(row)"><span ng-bind="row.noidung"></span></td>
+                <td data-toggle="modal" data-target="#Xem" ng-click="xemThongBao(row)"><span ng-bind="row.ngaydang"></span></td>
+                <td data-toggle="modal" data-target="#Xem" ng-click="xemThongBao(row)"><span ng-bind="row.khoahoc.tenkhoahoc"></span></td>
+                <td>
+                    <button type="button" name="delete" data-toggle="modal" data-target="#Xoa" onclick="myFunction()" ng-click="setMaThongBaoDelete(row.id)">
+                      <span data-toggle="tooltip" title="Xóa thông báo" class=" fa fa-trash"></span>
+                        <script>
+                            $(document).ready(function() {
+                                $('[data-toggle="tooltip"]').tooltip();
+                            });
+                        </script>
+                    </button>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -81,95 +39,175 @@
 
 <nav aria-label="Page navigation" class="m-b-30">
     <ul class="pagination justify-content-end">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
         <li class="page-item">
-            <a class="page-link" href="#">Next</a>
+            <button class="page-link" tabindex="-1" ng-click="preCount()">Previous</button>
+        </li>
+        <li class="page-item" ng-repeat="row in arrSLThongBao"><button class="page-link" ng-model="number" ng-click="numb(row)">{{row+1}}</button></li>
+        <li class="page-item">
+            <button class="page-link" ng-click="nextCount()">Next</button>
         </li>
     </ul>
 </nav>
 
+<!-- Modal -->
+<div class="modal fade bg-secondary" data-backdrop="false" id="Them" tabindex="-1" role="dialog" aria-labelledby="Them" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Them">THÔNG BÁO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
 
-<div>
-    <div class="card">
-        <div class="card-header">
-            <strong>THÔNG BÁO</strong>
-        </div>
-        <div class="card-body card-block">
-            <form action="" method="post" class="form-horizontal">
-                <div class="row form-group">
-                    <div class="col col-md-3">
-                        <label for="tieude" class=" form-control-label">Tiêu đề</label>
-                    </div>
-                    <div class="col-12 col-md-9">
-                        <input type="text" id="tieude" name="tieude" placeholder="Nhập tiêu đề..." class="form-control">
+                <div class="card">
+
+                    <div class="card-body card-block">
+                        <form action="" method="post" class="form-horizontal">
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="tieude" class=" form-control-label">Tiêu đề</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="tieude" ng-model="thongbaoThem.tieude" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="noidung" class=" form-control-label">Nội dung</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <textarea id="noidung" ng-model="thongbaoThem.noidung" class="form-control" rows="8" cols="80"></textarea>
+                                    <!-- <input type="text" id="noidung" ng-model="noidung" class="form-control"> -->
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="khoahoc" class=" form-control-label">Khóa học</label>
+                                </div>
+                                <div class="col-9 col-md-9 text-dark">
+                                    <select id="khoahoc" class="form-control" ng-model="thongbaoThem.khoahoc.makhoahoc" ng-options="kh.makhoahoc as kh.tenkhoahoc for kh in khoahoc">
+                                        <!-- <option ng-repeat="row in chuyennganh" value="{{row.id}}">{{row.tencn}}</option> -->
+                                    </select>
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
                 </div>
 
-                <div class="row form-group">
-                    <div class="col col-md-3">
-                        <label for="noidung" class=" form-control-label">Nội dung</label>
-                    </div>
-                    <div class="col-12 col-md-9">
-                        <textarea id="noidung" name="noidung"></textarea>
-                    </div>
-                </div>
-
-                <!--Thông người đăng sẽ được lấy tự động khi người dùng đăng nhập nên không cần nhập mục này-->
-                <div class="row form-group">
-                    <div class="col col-md-3">
-                        <label for="nguoidang" class=" form-control-label">Người đăng</label>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <select name="nguoidang" id="nguoidang" class="form-control">
-                            <option value="0">Lựa chọn</option>
-                            <option value="1">Nguyễn Văn A</option>
-                            <option value="2">Nguyễn Văn B</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!--Thông ngày đăng sẽ được lấy tự động dựa vào ngày đăng hiện tại nên không cần nhập mục này-->
-                <div class="row form-group">
-                    <div class="col col-md-3">
-                        <label for="ngaydang" class=" form-control-label">Ngày đăng</label>
-                    </div>
-                    <div class="col-12 col-md-9">
-                        <input type="date" id="ngaydang" name="ngaydang" placeholder="Nhập ngày đăng..." class="form-control">
-                    </div>
-                </div>
-
-                <div class="row form-group">
-                    <div class="col col-md-3">
-                        <label for="khoahoc" class=" form-control-label">Khoá học</label>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <select name="khoahoc" id="khoahoc" class="form-control">
-                            <option value="0">Lựa chọn</option>
-                            <option value="1">Intake 09</option>
-                            <option value="2">Intake 10</option>
-                            <option value="2">Intake 11</option>
-                        </select>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="card-footer">
-            <button type="submit" class="btn btn-success btn-sm">
-                <i class="fa fa-dot-circle-o"></i> Thêm thông báo
-            </button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" name="create" ng-click="createThongBao()">Thêm thông báo</button>
+            </div>
         </div>
     </div>
 </div>
 
-<script>
-  if(1 == 1) {
-      console.log("ckeditor");
-    CKEDITOR.replace('noidung');
+<!-- Modal -->
+<div class="modal fade bg-secondary" data-backdrop="false" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="Xoa" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Xoa">Cảnh báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h1>Bạn có chắc muốn xoá không?</h1>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Không</button>
+                <button type="button" class="btn btn-danger" name="delete" ng-click="deleteThongBao()">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-  }
+<!-- Modal -->
+<div class="modal fade bg-secondary" data-backdrop="false" id="Xem" tabindex="-1" role="dialog" aria-labelledby="Xem" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Them"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="card">
+
+                    <div class="card-body card-block">
+                        <form action="" method="post" class="form-horizontal">
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="tieude" class=" form-control-label">Tiêu đề</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <div> {{thongbaoXem.tieude}} </div>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="noidung" class=" form-control-label">Nội dung</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <div> {{thongbaoXem.noidung}} </div>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="noidung" class=" form-control-label">Ngày đăng</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <div> {{thongbaoXem.ngaydang}} </div>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="khoahoc" class=" form-control-label">Khóa học</label>
+                                </div>
+                                <div class="col-9 col-md-9 text-dark">
+                                    <div> {{thongbaoXem.khoahoc.tenkhoahoc}} </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('#header-button').click(function(event) {
+        myFunction2();
+        //$(event.target).modal('hide');
+    });
+    $('#Them').click(function(event) {
+        $(event.target).modal('hide');
+    });
+    $('#CapNhat').click(function(event) {
+        $(event.target).modal('hide');
+    });
+    $('#Xoa').click(function(event) {
+        $(event.target).modal('hide');
+    });
+
+    function myFunction() {
+        document.getElementById("header-desktop").style.zIndex = "1";
+    }
+
+    function myFunction2() {
+        document.getElementById("header-desktop").style.zIndex = "2";
+    }
 </script>
