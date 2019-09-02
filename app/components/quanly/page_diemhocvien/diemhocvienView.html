@@ -1,95 +1,132 @@
-﻿<div class="table-responsive table--no-card m-b-30">
-    <table class="table table-borderless table-striped">
-        <thead>
-            <tr>
-                <th>date</th>
-                <th>order ID</th>
-                <th>name</th>
-                <th class="text-right">price</th>
-                <th class="text-right">quantity</th>
-                <th class="text-right">total</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>2018-09-29 05:57</td>
-                <td>100398</td>
-                <td>iPhone X 64Gb Grey</td>
-                <td class="text-right">$999.00</td>
-                <td class="text-right">1</td>
-                <td class="text-right">$999.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-28 01:22</td>
-                <td>100397</td>
-                <td>Samsung S8 Black</td>
-                <td class="text-right">$756.00</td>
-                <td class="text-right">1</td>
-                <td class="text-right">$756.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-27 02:12</td>
-                <td>100396</td>
-                <td>Game Console Controller</td>
-                <td class="text-right">$22.00</td>
-                <td class="text-right">2</td>
-                <td class="text-right">$44.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-26 23:06</td>
-                <td>100395</td>
-                <td>iPhone X 256Gb Black</td>
-                <td class="text-right">$1199.00</td>
-                <td class="text-right">1</td>
-                <td class="text-right">$1199.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-25 19:03</td>
-                <td>100393</td>
-                <td>USB 3.0 Cable</td>
-                <td class="text-right">$10.00</td>
-                <td class="text-right">3</td>
-                <td class="text-right">$30.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-29 05:57</td>
-                <td>100392</td>
-                <td>Smartwatch 4.0 LTE Wifi</td>
-                <td class="text-right">$199.00</td>
-                <td class="text-right">6</td>
-                <td class="text-right">$1494.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-24 19:10</td>
-                <td>100391</td>
-                <td>Camera C430W 4k</td>
-                <td class="text-right">$699.00</td>
-                <td class="text-right">1</td>
-                <td class="text-right">$699.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-22 00:43</td>
-                <td>100393</td>
-                <td>USB 3.0 Cable</td>
-                <td class="text-right">$10.00</td>
-                <td class="text-right">3</td>
-                <td class="text-right">$30.00</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="row mb-2">
+    <div class="col-12">
+        <label for="khoahoc" class=" form-control-label">Chọn khóa học</label>
+        <select id="khoahoc" class=" form-control" ng-model="makh" ng-options="kh.makhoahoc as kh.tenkhoahoc for kh in khoahoc">
+        </select>
+    </div>
+    <div class="col-12">
+        <label for="monhoc" class=" form-control-label">Chọn môn học</label>
+        <select id="monhoc" class=" form-control" ng-model="mamh" ng-options="kh.mamh as kh.tenmh for kh in monhoc">
+        </select>
+    </div>
 </div>
 
-<nav aria-label="Page navigation" class="m-b-30">
-    <ul class="pagination justify-content-end">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-        </li>
-    </ul>
-</nav>
+<!-- <button type="button" class="btn btn-success float-right mb-3 mr-2" data-toggle="modal" data-target="#Them" onclick="myFunction()">
+    Thêm điểm
+</button> -->
 
+<div ng-if="showdiem">
+    <div class="table-responsive table--no-card m-b-30">
+        <table class="table table-borderless table-striped">
+            <thead class="table-dark text-light">
+                <tr>
+                    <th>STT</th>
+                    <th>Học viên</th>
+                    <th>Điểm giữa kì</th>
+                    <th>Điểm học phần</th>
+                    <th>Kết quả</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in diemmonhocFilter">
+                    <td><span>{{ $index + 1 }} </span></td>
+                    <td><span ng-bind="row.tenhv"></span></td>
+                    <td><span ng-bind="row.diemgk"></span></td>
+                    <td><span ng-bind="row.diemhp"></span></td>
+                    <td><span ng-bind="row.ketqua"></span></td>
+                    <td>
+                        <button type="button" data-toggle="modal" data-target="#Sua" onclick="myFunction()" ng-click="suapopupDiemMonHoc(row)">
+                            <span data-toggle="tooltip" title="Sửa điểm" class="fa fa-edit"></span>
+                            <script>
+                                $(document).ready(function() {
+                                    $('[data-toggle="tooltip"]').tooltip();
+                                });
+                            </script>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade bg-secondary" data-backdrop="false" id="Sua" tabindex="-1" role="dialog" aria-labelledby="Xem" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sửa điểm</h5>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+              <p> Khóa học: {{ diemmonhocSua.tenkh }} </p>
+                <p> Môn học: {{ diemmonhocSua.tenmh }}</p>
+                <p> Học viên: {{ diemmonhocSua.tenhv }} </p>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="card">
+
+                    <div class="card-body card-block">
+                        <form action="" method="post" class="form-horizontal">
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="diemgk" class=" form-control-label">Điểm giữa kì</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="diemhp" ng-model="diemmonhocSua.diemgk" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="diemhp" class=" form-control-label">Điểm học phần</label>
+                                </div>
+                                <div class="col-9 col-md-9 text-dark">
+                                    <input type="text" id="diemhp" ng-model="diemmonhocSua.diemhp" class="form-control">
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" ng-click="updateDiemMonHoc()">Sửa điểm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('#header-button').click(function(event) {
+        myFunction2();
+        //$(event.target).modal('hide');
+    });
+    $('#Them').click(function(event) {
+        $(event.target).modal('hide');
+    });
+    $('#CapNhat').click(function(event) {
+        $(event.target).modal('hide');
+    });
+    $('#Xoa').click(function(event) {
+        $(event.target).modal('hide');
+    });
+
+    function myFunction() {
+        document.getElementById("header-desktop").style.zIndex = "1";
+    }
+
+    function myFunction2() {
+        document.getElementById("header-desktop").style.zIndex = "2";
+    }
+</script>

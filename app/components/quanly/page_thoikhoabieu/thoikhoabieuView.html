@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-success float-right mb-3 mr-2" data-toggle="modal" data-target="#Them" onclick="myFunction()" ng-click="refAdd()">
+<button type="button" class="btn btn-success float-right mb-3 mr-2" data-toggle="modal" data-target="#Them" onclick="myFunction()">
     Thêm thời khóa biểu
 </button>
 
@@ -8,22 +8,26 @@
         <thead class="table-dark text-light">
             <tr>
                 <th>STT</th>
-                <th>Tiêu đề</th>
-                <th>Nội dung</th>
-                <th>Ngày đăng</th>
+                <th>Giờ học</th>
+                <th>Ngày học</th>
+                <th>Môn học</th>
                 <th>Khóa học</th>
+                <th>Giảng viên</th>
+                <th>Phòng học</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="row in thongbao">
-                <td data-toggle="modal" data-target="#Xem" ng-click="xemThongBao(row)">{{ thongbao.stt[$index] }}</td>
-                <td data-toggle="modal" data-target="#Xem" ng-click="xemThongBao(row)"><span ng-bind="row.tieude"></span></td>
-                <td data-toggle="modal" data-target="#Xem" ng-click="xemThongBao(row)"><span ng-bind="row.noidung"></span></td>
-                <td data-toggle="modal" data-target="#Xem" ng-click="xemThongBao(row)"><span ng-bind="row.ngaydang"></span></td>
-                <td data-toggle="modal" data-target="#Xem" ng-click="xemThongBao(row)"><span ng-bind="row.khoahoc.tenkhoahoc"></span></td>
+            <tr ng-repeat="row in thoikhoabieu">
+                <td data-toggle="modal" data-target="#Sua" ng-click="suaThoiKhoaBieu(row)"><span data-toggle="tooltip" title="Bấm vào để sửa">{{ thoikhoabieu.stt[$index] }} </span></td>
+                <td data-toggle="modal" data-target="#Sua" ng-click="suaThoiKhoaBieu(row)">{{ row.giobd }} {{ ' - ' }} {{ row.giokt }}</td>
+                <td data-toggle="modal" data-target="#Sua" ng-click="suaThoiKhoaBieu(row)"><span ng-bind="row.ngayhoc | date:'dd-MM-yyyy'" data-toggle="tooltip" title="Bấm vào để sửa"></span></td>
+                <td data-toggle="modal" data-target="#Sua" ng-click="suaThoiKhoaBieu(row)"><span ng-bind="row.tenmh" data-toggle="tooltip" title="Bấm vào để sửa"></span></td>
+                <td data-toggle="modal" data-target="#Sua" ng-click="suaThoiKhoaBieu(row)"><span ng-bind="row.tenkhoahoc" data-toggle="tooltip" title="Bấm vào để sửa"></span></td>
+                <td data-toggle="modal" data-target="#Sua" ng-click="suaThoiKhoaBieu(row)"><span data-toggle="tooltip" title="Bấm vào để sửa"> {{ row.tencbgv }} </span></td>
+                <td data-toggle="modal" data-target="#Sua" ng-click="suaThoiKhoaBieu(row)"><span ng-bind="row.tenphg" data-toggle="tooltip" title="Bấm vào để sửa"></span></td>
                 <td>
-                    <button type="button" name="delete" data-toggle="modal" data-target="#Xoa" onclick="myFunction()" ng-click="setMaThongBaoDelete(row.id)">
+                    <button type="button" name="delete" data-toggle="modal" data-target="#Xoa" onclick="myFunction()" ng-click="setMaThoiKhoaBieuDelete(row.id)">
                       <span data-toggle="tooltip" title="Xóa thông báo" class=" fa fa-trash"></span>
                         <script>
                             $(document).ready(function() {
@@ -42,7 +46,7 @@
         <li class="page-item">
             <button class="page-link" tabindex="-1" ng-click="preCount()">Previous</button>
         </li>
-        <li class="page-item" ng-repeat="row in arrSLThongBao"><button class="page-link" ng-model="number" ng-click="numb(row)">{{row+1}}</button></li>
+        <li class="page-item" ng-repeat="row in arrSLThoiKhoaBieu"><button class="page-link" ng-model="number" ng-click="numb(row)">{{row+1}}</button></li>
         <li class="page-item">
             <button class="page-link" ng-click="nextCount()">Next</button>
         </li>
@@ -54,7 +58,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="Them">THÔNG BÁO</h5>
+                <h5 class="modal-title" id="Them">THÊM THỜI KHÓA BIỂU</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -64,32 +68,129 @@
                 <div class="card">
 
                     <div class="card-body card-block">
-                        <form action="" method="post" class="form-horizontal">
+                        <form name="themthoikhoabieuForm" class="form-horizontal" novalidate>
+
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="tieude" class=" form-control-label">Tiêu đề</label>
+                                    <label for="giobd" class=" form-control-label">Giờ bắt đầu</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <input type="text" id="tieude" ng-model="thongbaoThem.tieude" class="form-control">
+                                    <input type="time" id="giobd" name="giobd" ng-model="thoikhoabieuThem.giobd" class="form-control" required>
                                 </div>
                             </div>
+
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    <label for="noidung" class=" form-control-label">Nội dung</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    <textarea id="noidung" ng-model="thongbaoThem.noidung" class="form-control" rows="8" cols="80"></textarea>
-                                    <!-- <input type="text" id="noidung" ng-model="noidung" class="form-control"> -->
+                                    <span style="color:red" ng-show="themthoikhoabieuForm.giobd.$touched && themthongbaoForm.giobd.$invalid">Chọn giờ bắt đầu!</span>
                                 </div>
                             </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="noidung" class=" form-control-label">Giờ kết thúc</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="time" id="giokt" name="giokt" ng-model="thoikhoabieuThem.giokt" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <span style="color:red" ng-show="themthoikhoabieuForm.giokt.$touched && themthongbaoForm.giokt.$invalid">Chọn giờ kết thúc!</span>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="ngayhoc" class=" form-control-label">Ngày học</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="date" id="ngayhoc" name="ngayhoc" ng-model="thoikhoabieuThem.ngayhoc" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <span style="color:red" ng-show="themthoikhoabieuForm.ngayhoc.$touched && themthongbaoForm.ngayhoc.$invalid">Chọn giờ ngày học!</span>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="monhoc" class=" form-control-label">Môn học</label>
+                                </div>
+                                <div class="col-9 col-md-9 text-dark">
+                                    <select id="monhoc" name="monhoc" class="form-control" ng-model="thoikhoabieuThem.mamh" ng-options="mh.mamh as mh.tenmh for mh in monhoc" required>
+                                        <!-- <option ng-repeat="row in chuyennganh" value="{{row.id}}">{{row.tencn}}</option> -->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <span style="color:red" ng-show="themthoikhoabieuForm.monhoc.$touched && themthongbaoForm.monhoc.$invalid">Chọn môn học!</span>
+                                </div>
+                            </div>
+
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label for="khoahoc" class=" form-control-label">Khóa học</label>
                                 </div>
                                 <div class="col-9 col-md-9 text-dark">
-                                    <select id="khoahoc" class="form-control" ng-model="thongbaoThem.khoahoc.makhoahoc" ng-options="kh.makhoahoc as kh.tenkhoahoc for kh in khoahoc">
-                                        <!-- <option ng-repeat="row in chuyennganh" value="{{row.id}}">{{row.tencn}}</option> -->
+                                    <select id="khoahoc" name="khoahoc" class="form-control" ng-model="thoikhoabieuThem.makhoahoc" ng-options="kh.makhoahoc as kh.tenkhoahoc for kh in khoahoc" required>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <span style="color:red" ng-show="themthoikhoabieuForm.khoahoc.$touched && themthongbaoForm.khoahoc.$invalid">Chọn khóa học!</span>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="giangvien" class=" form-control-label">Giảng viên</label>
+                                </div>
+                                <div class="col-9 col-md-9 text-dark">
+                                    <select id="giangvien" name="giangvien" class="form-control" ng-model="thoikhoabieuThem.macbgv" ng-options="gv.macbgv as (gv.ho + ' ' + gv.tenlot + ' ' + gv.ten) for gv in giangvien" required>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <span style="color:red" ng-show="themthoikhoabieuForm.giangvien.$touched && themthongbaoForm.giangvien.$invalid">Chọn giảng viên!</span>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="phonghoc" class=" form-control-label">Phòng học</label>
+                                </div>
+                                <div class="col-9 col-md-9 text-dark">
+                                    <select id="phonghoc" name="phonghoc" class="form-control" ng-model="thoikhoabieuThem.maphg" ng-options="p.maphg as p.tenphg for p in phonghoc">
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <span style="color:red" ng-show="themthoikhoabieuForm.phonghoc.$touched && themthongbaoForm.phonghoc.$invalid">Chọn phòng học!</span>
                                 </div>
                             </div>
 
@@ -100,7 +201,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-                <button type="button" class="btn btn-primary" name="create" ng-click="createThongBao()">Thêm thông báo</button>
+                <button type="button" class="btn btn-primary" ng-click="createThoiKhoaBieu()">Thêm thời khóa biểu</button>
             </div>
         </div>
     </div>
@@ -121,72 +222,101 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Không</button>
-                <button type="button" class="btn btn-danger" name="delete" ng-click="deleteThongBao()">Đồng ý</button>
+                <button type="button" class="btn btn-danger" name="delete" ng-click="deleteThoiKhoaBieu()">Đồng ý</button>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade bg-secondary" data-backdrop="false" id="Xem" tabindex="-1" role="dialog" aria-labelledby="Xem" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="Them"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
+<div class="modal fade bg-secondary" data-backdrop="false" id="Sua" tabindex="-1" role="dialog" aria-labelledby="Xem" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="Them">SỬA THỜI KHÓA BIỂU</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
 
-                <div class="card">
+              <div class="card">
 
-                    <div class="card-body card-block">
-                        <form action="" method="post" class="form-horizontal">
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label for="tieude" class=" form-control-label">Tiêu đề</label>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <div> {{thongbaoXem.tieude}} </div>
-                                </div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label for="noidung" class=" form-control-label">Nội dung</label>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <div> {{thongbaoXem.noidung}} </div>
-                                </div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label for="noidung" class=" form-control-label">Ngày đăng</label>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    <div> {{thongbaoXem.ngaydang}} </div>
-                                </div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-md-3">
-                                    <label for="khoahoc" class=" form-control-label">Khóa học</label>
-                                </div>
-                                <div class="col-9 col-md-9 text-dark">
-                                    <div> {{thongbaoXem.khoahoc.tenkhoahoc}} </div>
-                                </div>
-                            </div>
+                  <div class="card-body card-block">
+                      <form action="" method="post" class="form-horizontal">
+                          <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="giobd" class=" form-control-label">Giờ bắt đầu</label>
+                              </div>
+                              <div class="col-12 col-md-9">
+                                  <input type="time" id="giobd" min="08:00" max="17:00" ng-model="thoikhoabieuSua.giobd" class="form-control">
+                              </div>
+                          </div>
+                          <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="noidung" class=" form-control-label">Giờ kết thúc</label>
+                              </div>
+                              <div class="col-12 col-md-9">
+                                  <input type="time" id="giokt" min="08:00:00" max="17:00:00" ng-model="thoikhoabieuSua.giokt" class="form-control">
+                              </div>
+                          </div>
+                          <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="ngayhoc" class=" form-control-label">Ngày học</label>
+                              </div>
+                              <div class="col-12 col-md-9">
+                                  <input type="date" id="ngayhoc" ng-model="thoikhoabieuSua.ngayhoc" value="{{ thoikhoabieuSua.ngayhoc }}" class="form-control">
+                              </div>
+                          </div>
+                          <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="monhoc" class=" form-control-label">Môn học</label>
+                              </div>
+                              <div class="col-9 col-md-9 text-dark">
+                                  <select id="monhoc" class="form-control" ng-model="thoikhoabieuSua.mamh" ng-options="mh.mamh as mh.tenmh for mh in monhoc">
+                                      <!-- <option ng-repeat="row in chuyennganh" value="{{row.id}}">{{row.tencn}}</option> -->
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="khoahoc" class=" form-control-label">Khóa học</label>
+                              </div>
+                              <div class="col-9 col-md-9 text-dark">
+                                  <select id="khoahoc" class="form-control" ng-model="thoikhoabieuSua.makhoahoc" ng-options="kh.makhoahoc as kh.tenkhoahoc for kh in khoahoc">
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="giangvien" class=" form-control-label">Giảng viên</label>
+                              </div>
+                              <div class="col-9 col-md-9 text-dark">
+                                  <select id="giangvien" class="form-control" ng-model="thoikhoabieuSua.macbgv" ng-options="gv.macbgv as (gv.ho + ' ' + gv.tenlot + ' ' + gv.ten) for gv in giangvien">
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="row form-group">
+                              <div class="col col-md-3">
+                                  <label for="phonghoc" class=" form-control-label">Phòng học</label>
+                              </div>
+                              <div class="col-9 col-md-9 text-dark">
+                                  <select id="phonghoc" class="form-control" ng-model="thoikhoabieuSua.maphg" ng-options="p.maphg as p.tenphg for p in phonghoc">
+                                  </select>
+                              </div>
+                          </div>
 
-                        </form>
-                    </div>
-                </div>
+                      </form>
+                  </div>
+              </div>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-                <button type="button" class="btn btn-primary" name="create" ng-click="createThongBao()">Thêm thông báo</button>
-            </div>
-        </div>
-    </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+              <button type="button" class="btn btn-primary" ng-click="updateThoiKhoaBieu()">Sửa thời khóa biểu</button>
+          </div>
+      </div>
+  </div>
 </div>
 
 <script type="text/javascript">

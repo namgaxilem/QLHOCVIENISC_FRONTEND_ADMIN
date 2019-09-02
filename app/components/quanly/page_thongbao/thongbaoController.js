@@ -72,7 +72,7 @@ adminApp.controller('thongbaoController', ['$scope', '$http', '$resource', funct
 
     $scope.Message = ThongBao.save($scope.thongbaoThem);
 
-    // location.reload();
+    location.reload();
   };
 
   $scope.setMaThongBaoDelete = function(ThongBao) {
@@ -93,7 +93,7 @@ adminApp.controller('thongbaoController', ['$scope', '$http', '$resource', funct
     $scope.Message = User.delete({
       id: $scope.MaThongBaoDelete
     });
-    //location.reload();
+    location.reload();
   };
   $scope.refAdd = function() {
     $scope.makhoahoc = "";
@@ -182,3 +182,12 @@ adminApp.controller('thongbaoController', ['$scope', '$http', '$resource', funct
   };
 
 }]);
+
+//Format time
+adminApp.filter('formatTime', function($filter) {
+  return function(time, format) {
+    var parts = time.split(':');
+    var date = new Date(0, 0, 0, parts[0], parts[1], parts[2]);
+    return $filter('date')(date, format || 'hh:mm');
+  };
+});
