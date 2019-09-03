@@ -1,4 +1,20 @@
 
+<div class="row">
+  <!-- Loc theo so luong hoc vien -->
+  <div class="pt-2">
+    <strong>Giảng Viên</strong>
+  </div>
+  <div class="ml-2 mr-2">
+    <select id="pageSize" class="form-control control-color" ng-model="pageSize" ng-change="changePageSize(pageSize)">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="25">25</option>
+      <option value="50">50</option>
+    </select>
+  </div>
+<!-- Ket thuc loc theo so luong hoc vien -->
+
+</div>
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-success float-right mb-3 mr-2" data-toggle="modal" data-target="#ThemCBGV" onclick="myFunction()" ng-click="refAdd()">
   Thêm Cán Bộ Giảng Viên
@@ -184,8 +200,10 @@
   <table class="table table-borderless table-striped">
     <thead class="table-dark text-light">
       <tr>
-        <th>Mã CBGV</th>
-        <th>Họ tên</th>
+        <th>STT</th>
+        <th ng-click="changeSortPage('MACBGV')" ng-class="sortClass('MACBGV')">Mã CBGV</th>
+        <th ng-click="changeSortPage('HO')" ng-class="sortClass('HO')">Họ</th>
+        <th ng-click="changeSortPage('TEN')" ng-class="sortClass('TEN')">Tên</th>
         <th>Giới tính</th>
         <th>Điện thoại</th>
         <th>Email</th>
@@ -194,14 +212,19 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="item in canbogiangvienList">
+      <tr style="font-size: 13px" ng-repeat="item in giangvienpage">
+        <td>
+          <span ng-bind="temp2 + $index"></span>
+        </td>
         <td>
           <span ng-bind="item.macbgv"></span>
         </td>
         <td>
             <span ng-bind="item.ho"></span>
-            <span ng-bind="item.tenlot"></span>
-            <span ng-bind="item.ten"></span>
+        </td>
+        <td>
+          <span ng-bind="item.tenlot"></span>
+          <span ng-bind="item.ten"></span>
         </td>
         <td><span ng-bind="item.gioitinh"></span></td>
         <td><span ng-bind="item.sdt"></span></td>
@@ -217,12 +240,16 @@
   </table>
 </div>
 
+<div>
+  Hiển thị: {{soluonghienthi}}/{{soluonggiangvien}} giảng viên
+</div>
+
 <nav aria-label="Page navigation" class="m-b-30">
   <ul class="pagination justify-content-end">
       <li class="page-item">
           <button class="page-link" tabindex="-1" ng-click="preCount()">Previous</button>
       </li>
-      <li class="page-item" ng-repeat="row in arrSLHocvien"><button class="page-link" ng-model="number" ng-click="numb(row)">{{row+1}}</button></li>
+      <li class="page-item" ng-repeat="row in arrSLGiangVien"><button class="page-link" ng-model="number" ng-click="numb(row)">{{row+1}}</button></li>
       <li class="page-item">
           <button class="page-link" ng-click="nextCount()">Next</button>
       </li>
