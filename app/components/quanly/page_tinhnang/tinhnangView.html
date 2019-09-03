@@ -1,145 +1,244 @@
-﻿
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-success float-right mb-3 mr-2" data-toggle="modal" data-target="#ThemCBGV" onclick="myFunction()" ng-click="refAdd()">
+  Thêm Tính Năng
+</button>
+
+<!-- Modal -->
+<div class="modal fade bg-secondary" data-backdrop="false" id="ThemCBGV" tabindex="-1" role="dialog" aria-labelledby="ThemCBGV" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ThemHV">TÍNH NĂNG</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+
+        <div>
+          <div class="card">
+
+            <div class="card-body card-block">
+              <form action="" method="post" class="form-horizontal">
+                <div class="row form-group">
+                  <div class="col col-md-3">
+                    <label for="add_id" class=" form-control-label">Mã tính năng</label>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <input type="text" id="add_id" name="add_id" ng-model="model.id" placeholder="Nhập mã tính năng..." class="form-control">
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col col-md-3">
+                    <label for="add_menu" class=" form-control-label">Tên Menu</label>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <input type="text" id="add_menu" ng-model="model.tenmenu" name="add_menu" placeholder="Nhập tên Menu..." class="form-control">
+                  </div>
+                </div>
+
+                <div class="row form-group">
+                  <div class="col col-md-3">
+                    <label for="addlink" class=" form-control-label">Link</label>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <input type="text" id="add_link" ng-model="model.link" name="add_link" placeholder="Nhập link..." class="form-control">
+                  </div>
+                </div>
+
+                <div class="row form-group">
+                  <div class="col col-md-3">
+                    <label for="add_loaitaikhoan" class=" form-control-label">Loại tài khoản</label>
+                  </div>
+                  <div class="col-9 col-md-9">
+                    <select name="add_loaitaikhoan" id="add_loaitaikhoan" class="form-control" ng-model="model.type"">
+
+                      <option ng-repeat="row in loaitaikhoanList" value="{{row.id}}" selected="selected">{{row.tenloai}}</option>
+                    </select>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+        <button type="button" class="btn btn-primary" name="create" data-dismiss="modal" ng-click="createTN()">Thêm tính năng</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="table-responsive table--no-card m-b-30">
-    <table class="table table-borderless table-striped">
-        <thead>
-            <tr>
-                <th>date</th>
-                <th>order ID</th>
-                <th>name</th>
-                <th class="text-right">price</th>
-                <th class="text-right">quantity</th>
-                <th class="text-right">total</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>2018-09-29 05:57</td>
-                <td>100398</td>
-                <td>iPhone X 64Gb Grey</td>
-                <td class="text-right">$999.00</td>
-                <td class="text-right">1</td>
-                <td class="text-right">$999.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-28 01:22</td>
-                <td>100397</td>
-                <td>Samsung S8 Black</td>
-                <td class="text-right">$756.00</td>
-                <td class="text-right">1</td>
-                <td class="text-right">$756.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-27 02:12</td>
-                <td>100396</td>
-                <td>Game Console Controller</td>
-                <td class="text-right">$22.00</td>
-                <td class="text-right">2</td>
-                <td class="text-right">$44.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-26 23:06</td>
-                <td>100395</td>
-                <td>iPhone X 256Gb Black</td>
-                <td class="text-right">$1199.00</td>
-                <td class="text-right">1</td>
-                <td class="text-right">$1199.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-25 19:03</td>
-                <td>100393</td>
-                <td>USB 3.0 Cable</td>
-                <td class="text-right">$10.00</td>
-                <td class="text-right">3</td>
-                <td class="text-right">$30.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-29 05:57</td>
-                <td>100392</td>
-                <td>Smartwatch 4.0 LTE Wifi</td>
-                <td class="text-right">$199.00</td>
-                <td class="text-right">6</td>
-                <td class="text-right">$1494.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-24 19:10</td>
-                <td>100391</td>
-                <td>Camera C430W 4k</td>
-                <td class="text-right">$699.00</td>
-                <td class="text-right">1</td>
-                <td class="text-right">$699.00</td>
-            </tr>
-            <tr>
-                <td>2018-09-22 00:43</td>
-                <td>100393</td>
-                <td>USB 3.0 Cable</td>
-                <td class="text-right">$10.00</td>
-                <td class="text-right">3</td>
-                <td class="text-right">$30.00</td>
-            </tr>
-        </tbody>
-    </table>
+  <table class="table table-borderless table-striped">
+    <thead class="table-dark text-light">
+      <tr>
+        <th>Mã Tính Năng</th>
+        <th>Tên Menu</th>
+        <th>Link</th>
+        <th>Loại Tài Khoản</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in tinhnangList">
+        <td>
+          <span ng-bind="item.id"></span>
+        </td>
+        <td>
+            <span ng-bind="item.tenmenu"></span>
+        </td>
+        <td><span ng-bind="item.link"></span></td>
+        <td><span ng-bind="item.loaitaikhoan.tenloai"></span></td>
+        <td>
+          <button type="button" name="update" data-toggle="modal" data-target="#CapNhatTinhNang"  ng-click="loadDataForEdit(item.id)"> <span class="fa fa-edit"></span> Sửa </button>
+        </td>
+        <td>
+          <button type="button" name="delete" data-toggle="modal" data-target="#XoaCBGV"  ng-click="setTinhNangDelete(item.id)""><span class="fa fa-trash"></span> Xoá</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <nav aria-label="Page navigation" class="m-b-30">
-    <ul class="pagination justify-content-end">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-        </li>
-    </ul>
+  <ul class="pagination justify-content-end">
+      <li class="page-item">
+          <button class="page-link" tabindex="-1" ng-click="preCount()">Previous</button>
+      </li>
+      <li class="page-item" ng-repeat="row in arrSLHocvien"><button class="page-link" ng-model="number" ng-click="numb(row)">{{row+1}}</button></li>
+      <li class="page-item">
+          <button class="page-link" ng-click="nextCount()">Next</button>
+      </li>
+  </ul>
 </nav>
 
 
-<div>
-    <div class="card">
-        <div class="card-header">
-            <strong>TÍNH NĂNG</strong>
-        </div>
-        <div class="card-body card-block">
-            <form action="" method="post" class="form-horizontal">
+
+<!-- Modal -->
+<div class="modal fade bg-secondary" data-backdrop="false" id="CapNhatTinhNang" tabindex="-1" role="dialog" aria-labelledby="CapNhatTinhNang" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="CapNhatTinhNang">TÍNH NĂNG</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+
+        <div>
+          <div class="card">
+
+            <div class="card-body card-block">
+              <form action="" method="post" class="form-horizontal">
                 <div class="row form-group">
-                    <div class="col col-md-3">
-                        <label for="tentinhnang" class=" form-control-label">Tên tính năng</label>
-                    </div>
-                    <div class="col-12 col-md-9">
-                        <input type="text" id="tentinhnang" name="tentinhnang" placeholder="Nhập tên tính năng..." class="form-control">
-                    </div>
+                  <div class="col col-md-3">
+                    <label for="add_id" class=" form-control-label">Mã tính năng</label>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <input type="text" id="add_id" name="add_id" ng-model="editModel.id" placeholder="Nhập mã tính năng..." class="form-control">
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col col-md-3">
+                    <label for="add_menu" class=" form-control-label">Tên Menu</label>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <input type="text" id="add_menu" ng-model="editModel.tenmenu" name="add_menu" placeholder="Nhập tên Menu..." class="form-control">
+                  </div>
                 </div>
 
                 <div class="row form-group">
-                    <div class="col col-md-3">
-                        <label for="link" class=" form-control-label">Link</label>
-                    </div>
-                    <div class="col-12 col-md-9">
-                        <input type="text" id="link" name="link" placeholder="Nhập link..." class="form-control">
-                    </div>
+                  <div class="col col-md-3">
+                    <label for="addlink" class=" form-control-label">Link</label>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <input type="text" id="add_link" ng-model="editModel.link" name="add_link" placeholder="Nhập link..." class="form-control">
+                  </div>
                 </div>
 
                 <div class="row form-group">
-                    <div class="col col-md-3">
-                        <label for="loaitaikhoan" class=" form-control-label">Loại tài khoản</label>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <select name="loaitaikhoan" id="loaitaikhoan" class="form-control">
-                            <option value="0">Lựa chọn</option>
-                            <option value="1">Học viên</option>
-                            <option value="2">Giảng viên</option>
-                        </select>
-                    </div>
+                  <div class="col col-md-3">
+                    <label for="add_loaitaikhoan" class=" form-control-label">Loại tài khoản</label>
+                  </div>
+                  <div class="col-9 col-md-9">
+                    <select name="add_loaitaikhoan" id="add_loaitaikhoan" class="form-control"  ng-model="editModel.type"">
+                      <option ng-repeat="row in loaitaikhoanList" value="{{row.id}}" selected="selected">{{row.tenloai}}</option>
+                    </select>
+                  </div>
                 </div>
-            </form>
+
+              </form>
+            </div>
+          </div>
         </div>
-        <div class="card-footer">
-            <button type="submit" class="btn btn-success btn-sm">
-                <i class="fa fa-dot-circle-o"></i> Thêm tính năng
-            </button>
-        </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+        <button type="button" class="btn btn-primary" name="create" data-dismiss="modal" ng-click="editTN(editModel.id)">Lưu</button>
+      </div>
     </div>
+  </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade bg-secondary" data-backdrop="false" id="XoaCBGV" tabindex="-1" role="dialog" aria-labelledby="XoaCBGV" aria-hidden="true">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="XoaCBGV">Cảnh báo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h1>Bạn có chắc muốn xoá tính năng {{maTinhNangDelete}} không?</h1>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Không</button>
+        <button type="button" class="btn btn-danger" name="delete" data-dismiss="modal" ng-click="deleteTinhNang(maTinhNangDelete)">Đồng ý</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $('#header-button').click(function(event) {
+    myFunction2();
+    //$(event.target).modal('hide');
+  });
+  $('#ThemCBGV').click(function(event) {
+    $(event.target).modal('hide');
+  });
+  $('#CapNhatTinhNang').click(function(event) {
+    $(event.target).modal('hide');
+  });
+  $('#XoaCBGV').click(function(event) {
+    $(event.target).modal('hide');
+  });
+
+  function myFunction() {
+      document.getElementById("header-desktop").style.zIndex = "1";
+}
+
+function myFunction2() {
+  document.getElementById("header-desktop").style.zIndex = "2";
+}
+</script>

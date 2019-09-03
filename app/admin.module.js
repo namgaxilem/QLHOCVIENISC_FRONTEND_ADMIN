@@ -1,5 +1,5 @@
 var adminApp = angular.module("adminApp", ["ngRoute", "ngResource"]);
-
+adminApp.constant('apiBaseUrl', 'http://localhost:8080');
 adminApp.run(function($rootScope) {
   // $rootScope.domainService = "http://localhost:8080/";
 });
