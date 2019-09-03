@@ -1,0 +1,25 @@
+a{
+    text-decoration: none;
+}
+
+
+.arrow-down:after,.arrow-up:after{
+  content: ' ';
+  position: relative;
+  left: 2px;
+  border: 8px solid transparent;
+}
+
+.arrow-down:after{
+  top: 10px;
+  border-top-color: white;
+}
+
+.arrow-up:after{
+  bottom: 15px;
+  border-bottom-color: white;
+}
+
+.arrow-down,.arrow-up{
+  padding-right: 10px;
+}

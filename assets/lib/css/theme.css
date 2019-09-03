@@ -1171,20 +1171,20 @@ section {
 }
 
 /* ----- Header ----- */
-.header-desktop {
+#header-desktop {
     background: #f5f5f5;
     -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
     box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     left: 300px;
     height: 75px;
-    z-index: 3;
+    z-index: 2;
 }
 
-.header-desktop .section__content {
+#header-desktop .section__content {
     overflow: visible;
     position: absolute;
     top: 50%;
@@ -1198,7 +1198,7 @@ section {
 }
 
 @media (max-width: 991px) {
-    .header-desktop {
+    #header-desktop {
         position: relative;
         top: 0;
         left: 0;
@@ -1206,15 +1206,15 @@ section {
     }
 }
 
-.header-desktop .mess-dropdown {
+#header-desktop .mess-dropdown {
     top: 51px;
 }
 
-.header-desktop .email-dropdown {
+#header-desktop .email-dropdown {
     top: 51px;
 }
 
-.header-desktop .notifi-dropdown {
+#header-desktop .notifi-dropdown {
     top: 51px;
 }
 

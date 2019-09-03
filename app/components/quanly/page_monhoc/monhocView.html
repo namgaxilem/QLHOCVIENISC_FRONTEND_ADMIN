@@ -1,8 +1,24 @@
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-success float-right mb-3 mr-2" data-toggle="modal" data-target="#Them" onclick="myFunction()" ng-click="refAdd()">
-  Thêm môn học
+<button type="button" class="btn btn-success rounded-circle float-right mb-3 mr-2" data-toggle="modal" data-target="#Them" onclick="myFunction()" ng-click="refAdd()">
+  <span class="fa fa-plus"></span>
 </button>
+
+<!-- Loc theo so luong mon hoc -->
+<div class="row mb-3">
+  <div class="pt-2">
+    <strong>Số lượng môn học</strong>
+  </div>
+  <div class="ml-2 mr-2">
+    <select id="pageSize" class="form-control control-color" ng-model="pageSize" ng-change="changePageSize(pageSize)">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="25">25</option>
+      <option value="50">50</option>
+    </select>
+  </div>
+</div>
+<!-- Ket thuc loc theo so luong mon hoc -->
 
 <!-- Modal -->
 <div class="modal fade bg-secondary" data-backdrop="false" id="Them" tabindex="-1" role="dialog" aria-labelledby="Them" aria-hidden="true">
@@ -48,6 +64,15 @@
                     <input type="number" id="sogio" ng-model="sogio" name="sogio" placeholder="Nhập tổng số giờ học..." class="form-control">
                   </div>
                 </div>
+
+                <div class="row form-group">
+                  <div class="col col-md-3">
+                    <label for="sotc" class=" form-control-label">Số tín chỉ</label>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <input type="number" id="sotc" ng-model="sotc" name="sotc" placeholder="Nhập số tín chỉ..." class="form-control">
+                  </div>
+                </div>
               </form>
             </div>
           </div>
@@ -68,9 +93,11 @@
   <table class="table table-borderless table-striped">
     <thead class="table-dark text-light">
       <tr>
+        <th style="width:1%">STT</th>
         <th>Mã môn học</th>
         <th>Tên môn học</th>
         <th>Số giờ</th>
+        <th>Số tín chỉ</th>
         <th></th>
         <th></th>
       </tr>
@@ -78,21 +105,34 @@
     <tbody>
       <tr ng-repeat="row in monhocpage">
         <td>
+          <span ng-bind="temp2 + $index"></span>
+        </td>
+        <td>
           <span ng-bind="row.mamh"></span>
         </td>
-        <td><span ng-bind="row.tenmh"></span></td>
-          <td><span ng-bind="row.sogio"></span></td>
         <td>
-          <button type="button" name="update" data-toggle="modal" data-target="#CapNhat" onclick="myFunction()" ng-click="getMaMH(row)"> <span class="fa fa-edit"></span> Sửa </button>
+          <span ng-bind="row.tenmh"></span>
         </td>
         <td>
-          <button type="button" name="delete" data-toggle="modal" data-target="#Xoa" onclick="myFunction()" ng-click="setMaMHDelete(row.mamh)""><span class="fa fa-trash"></span> Xoá</button>
+          <span ng-bind="row.sogio"></span>
+        </td>
+        <td>
+          <span ng-bind="row.sotc"></span>
+        </td>
+        <td>
+          <button type="button" name="update" data-toggle="modal" data-target="#CapNhat" onclick="myFunction()" ng-click="getMaMH(row)"> <span class="fa fa-edit"></span></button>
+        </td>
+        <td>
+          <button type="button" name="delete" data-toggle="modal" data-target="#Xoa" onclick="myFunction()" ng-click="setMaMHDelete(row.mamh)""><span class="fa fa-trash"></span></button>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
 
+<div>
+    Hiển thị: {{soluonghienthi}}/{{soluonghocvien}} trường học
+  </div>
 <nav aria-label="Page navigation" class="m-b-30">
   <ul class="pagination justify-content-end">
       <li class="page-item">
@@ -142,6 +182,15 @@
                   </div>
                   <div class="col-12 col-md-9">
                     <input type="number" id="sogio" ng-model="sogio" name="sogio" placeholder="Nhập tổng số giờ học..." class="form-control">
+                  </div>
+                </div>
+
+                <div class="row form-group">
+                  <div class="col col-md-3">
+                    <label for="sotc" class=" form-control-label">Số tín chỉ</label>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <input type="number" id="sotc" ng-model="sotc" name="sotc" placeholder="Nhập số tín chỉ..." class="form-control">
                   </div>
                 </div>
 

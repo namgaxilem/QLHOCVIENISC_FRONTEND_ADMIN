@@ -1,4 +1,5 @@
-adminApp.controller('monhocController', ['$scope', '$http', '$resource', function($scope, $http, $resource) {
+adminApp.controller('monhocController', ['$scope','$http', '$resource', function($scope, $http, $resource) {
+
 
   function fetchAllStudents() {
     $scope.hocvien = $resource('http://localhost:8080/hocvien').query(function(data) {
@@ -41,107 +42,131 @@ adminApp.controller('monhocController', ['$scope', '$http', '$resource', functio
 
 
 
-  $scope.seletedLoaitaikhoan = "";
-  $scope.statusAccounttype = "";
-  $scope.selectLoaiTaiKhoan = function(SelectLoaiTaiKhoan) {
-    $scope.seletedLoaitaikhoan = SelectLoaiTaiKhoan;
-    for (var i = 0; i < $scope.loaitaikhoan.length; i++) {
-      if ($scope.seletedLoaitaikhoan == $scope.loaitaikhoan[i].id) {
-        $scope.resultLoaitk = $scope.loaitaikhoan[i];
+  $scope.seletedLoaitaikhoan="";
+  $scope.statusAccounttype="";
+  $scope.selectLoaiTaiKhoan = function(SelectLoaiTaiKhoan)
+  {
+     $scope.seletedLoaitaikhoan = SelectLoaiTaiKhoan;
+     for (var i = 0; i < $scope.loaitaikhoan.length; i++) {
+       if($scope.seletedLoaitaikhoan==$scope.loaitaikhoan[i].id)
+      {
+        $scope.resultLoaitk=$scope.loaitaikhoan[i];
         return $scope.resultLoaitk;
-        $scope.statusAccounttype = 1;
-      } else {
+        $scope.statusAccounttype=1;
+      }
+      else {
 
       }
-    }
-    if ($scope.statusAccounttype == 1) {
-      alert("Tim thay");
-    } else {
-      alert("Khong tim thay");
-    }
+     }
+     if($scope.statusAccounttype==1)
+     {
+       alert("Tim thay");
+     }
+     else {
+       alert("Khong tim thay");
+     }
 
   }
 
 
-  $scope.seletedKhoahoc = "";
-  $scope.statusCourse = "";
-  $scope.selectKhoaHoc = function(SelectKhoaHoc) {
-    $scope.seletedKhoahoc = SelectKhoaHoc;
-    for (var i = 0; i < $scope.loaitaikhoan.length; i++) {
-      if ($scope.seletedKhoahoc == $scope.khoahoc[i].makhoahoc) {
-        $scope.resultKhoaHoc = $scope.khoahoc[i];
+  $scope.seletedKhoahoc="";
+  $scope.statusCourse="";
+  $scope.selectKhoaHoc = function(SelectKhoaHoc)
+  {
+     $scope.seletedKhoahoc = SelectKhoaHoc;
+     for (var i = 0; i < $scope.loaitaikhoan.length; i++) {
+       if($scope.seletedKhoahoc==$scope.khoahoc[i].makhoahoc)
+      {
+        $scope.resultKhoaHoc=$scope.khoahoc[i];
         return $scope.resultKhoaHoc;
-        $scope.statusCourse = 1;
-      } else {
+        $scope.statusCourse=1;
+      }
+      else {
 
       }
-    }
-    if ($scope.statusCourse == 1) {
-      alert("Tim thay");
-    } else {
-      alert("Khong tim thay");
-    }
+     }
+     if($scope.statusCourse==1)
+     {
+       alert("Tim thay");
+     }
+     else {
+       alert("Khong tim thay");
+     }
 
   }
 
 
 
-  $scope.seletedLoaiHocVien = "";
-  $scope.statusStudentType = "";
-  $scope.selectLoaiHocVien = function(SelectLoaiHocVien) {
-    $scope.seletedLoaiHocVien = SelectLoaiHocVien;
-    for (var i = 0; i < $scope.loaihocvien.length; i++) {
-      if ($scope.seletedLoaiHocVien == $scope.loaihocvien[i].id) {
-        $scope.resultLoaiHocVien = $scope.loaihocvien[i];
+  $scope.seletedLoaiHocVien="";
+  $scope.statusStudentType="";
+  $scope.selectLoaiHocVien = function(SelectLoaiHocVien)
+  {
+     $scope.seletedLoaiHocVien = SelectLoaiHocVien;
+     for (var i = 0; i < $scope.loaihocvien.length; i++) {
+       if($scope.seletedLoaiHocVien==$scope.loaihocvien[i].id)
+      {
+        $scope.resultLoaiHocVien=$scope.loaihocvien[i];
         return $scope.resultLoaiHocVien;
-        $scope.statusStudentType = 1;
-      } else {
+        $scope.statusStudentType=1;
+      }
+      else {
 
       }
-    }
-    if ($scope.statusStudentType == 1) {
-      alert("Tim thay");
-    } else {
-      alert("Khong tim thay");
-    }
+     }
+     if($scope.statusStudentType==1)
+     {
+       alert("Tim thay");
+     }
+     else {
+       alert("Khong tim thay");
+     }
 
   }
 
 
-  $scope.seletedTruongHoc = "";
-  $scope.statusSchool = "";
-  $scope.selectTruongHoc = function(SelectTruongHoc) {
-    $scope.seletedTruongHoc = SelectTruongHoc;
-    for (var i = 0; i < $scope.truonghoc.length; i++) {
-      if ($scope.seletedTruongHoc == $scope.truonghoc[i].matruong) {
-        $scope.resultTruongHoc = $scope.truonghoc[i];
+  $scope.seletedTruongHoc="";
+  $scope.statusSchool="";
+  $scope.selectTruongHoc = function(SelectTruongHoc)
+  {
+     $scope.seletedTruongHoc = SelectTruongHoc;
+     for (var i = 0; i < $scope.truonghoc.length; i++) {
+       if($scope.seletedTruongHoc==$scope.truonghoc[i].matruong)
+      {
+        $scope.resultTruongHoc=$scope.truonghoc[i];
         return $scope.resultTruongHoc;
-        $scope.statusSchool = 1;
-      } else {
+        $scope.statusSchool=1;
+      }
+      else {
 
       }
-    }
-    if ($scope.statusSchool == 1) {
-      alert("Tim thay");
-    } else {
-      alert("Khong tim thay");
-    }
+     }
+     if($scope.statusSchool==1)
+     {
+       alert("Tim thay");
+     }
+     else {
+       alert("Khong tim thay");
+     }
 
   }
 
 
   $scope.searchStudent = function() {
-    $scope.status = "";
+    $scope.status="";
     for (var i = 0; i < $scope.hocvien.length; i++) {
-      if ($scope.Seach.toString() == $scope.hocvien[i].mahv.toString()) {
-        $scope.status = 1;
-      } else {
+      if($scope.Seach.toString()==$scope.hocvien[i].mahv.toString())
+      {
+        $scope.status=1;
+      }
+      else {
 
       }
     }
-    if ($scope.status == 1) {
-      window.location = "#!result";
-    } else {
+    if($scope.status==1)
+    {
+      window.location="#!result";
+    }
+    else {
       alert("Không tìm thấy học viên!");
     }
   };
@@ -157,17 +182,19 @@ adminApp.controller('monhocController', ['$scope', '$http', '$resource', functio
     );
 
     var user = {};
-    user.tenmh = $scope.tenmh;
+    user.tenmh=$scope.tenmh;
     user.sogio = $scope.sogio;
+    user.sotc = $scope.sotc;
     user.mamh = $scope.mamh;
+
     $scope.Message = User.save(user);
 
     location.reload();
   };
 
-  $scope.setMaMHDelete = function(Student) {
-    $scope.MaMHDelete = Student;
-  };
+$scope.setMaMHDelete= function(Student) {
+  $scope.MaMHDelete=Student;
+};
   $scope.deleteMonHoc = function() {
     User = $resource(
       "http://localhost:8080/monhoc/:id", {}, {
@@ -185,67 +212,73 @@ adminApp.controller('monhocController', ['$scope', '$http', '$resource', functio
     });
     location.reload();
   };
-  $scope.refAdd = function() {
-    $scope.mamh = "";
-    $scope.tenmh = "";
-    $scope.sogio = "";
-  };
-  $scope.changeAccountType = function() {
-    for (var i = 0; i < $scope.hocvien.length; i++) {
-      if ($scope.Seach.toString() == $scope.hocvien[i].mahv.toString()) {
-        $scope.ResultSearch = $scope.hocvien[i];
-        $scope.status = 1;
-      } else {
-
-      }
+$scope.refAdd = function() {
+  $scope.mamh="";
+  $scope.tenmh="";
+  $scope.sogio="";
+  $scope.sotc="";
+};
+$scope.changeAccountType = function() {
+  for (var i = 0; i < $scope.hocvien.length; i++) {
+    if($scope.Seach.toString()==$scope.hocvien[i].mahv.toString())
+    {
+      $scope.ResultSearch=$scope.hocvien[i];
+      $scope.status=1;
     }
-    if ($scope.status == 1) {
-      User = $resource(
-        "http://localhost:8080/monhoc/:id", {}, {
-          save: {
-            method: 'PUT',
-            params: {
-              id: '@id'
-            }
+    else {
+
+    }
+  }
+  if($scope.status==1)
+  {
+    User = $resource(
+      "http://localhost:8080/monhoc/:id", {}, {
+        save: {
+          method: 'PUT',
+          params: {
+            id: '@id'
           }
         }
-      );
+      }
+    );
 
-      var user = {};
+    var user = {};
 
-      user.truonghoc = $scope.ResultSearch.truonghoc;
-      user.khoahoc = $scope.ResultSearch.khoahoc;
-      user.loaitaikhoan = $scope.resultLoaitk;
-      user.danhmuchocvien = $scope.ResultSearch.danhmuchocvien;
-      user.password = $scope.ResultSearch.password;
-      user.tgcothedilam = $scope.ResultSearch.tgcothedilam;
-      user.email = $scope.ResultSearch.email;
-      user.diachi = $scope.ResultSearch.diachi;
-      user.sdt = $scope.ResultSearch.sdt;
-      user.ho = $scope.ResultSearch.ho;
-      user.tenlot = $scope.ResultSearch.tenlot;
-      user.gioitinh = $scope.ResultSearch.gioitinh;
-      user.ngaysinh = $scope.ResultSearch.ngaysinh;
-      user.noisinh = $scope.ResultSearch.noisinh;
-      user.cmnd = $scope.ResultSearch.cmnd;
-      user.ten = $scope.ResultSearch.ten;
-      user.mahv = $scope.Seach.toString();
+    user.truonghoc=$scope.ResultSearch.truonghoc;
+    user.khoahoc=$scope.ResultSearch.khoahoc;
+    user.loaitaikhoan=$scope.resultLoaitk;
+    user.danhmuchocvien=$scope.ResultSearch.danhmuchocvien;
+    user.password = $scope.ResultSearch.password;
+    user.tgcothedilam= $scope.ResultSearch.tgcothedilam;
+    user.email = $scope.ResultSearch.email;
+    user.diachi=$scope.ResultSearch.diachi;
+    user.sdt = $scope.ResultSearch.sdt;
+    user.ho = $scope.ResultSearch.ho;
+    user.tenlot = $scope.ResultSearch.tenlot;
+    user.gioitinh=$scope.ResultSearch.gioitinh;
+    user.ngaysinh=$scope.ResultSearch.ngaysinh;
+    user.noisinh=$scope.ResultSearch.noisinh;
+    user.cmnd=$scope.ResultSearch.cmnd;
+    user.ten = $scope.ResultSearch.ten;
+    user.mahv = $scope.Seach.toString();
 
-      $scope.Message = User.save({
-        id: $scope.Seach.toString()
-      }, user);
-      location.reload();
-    } else {
-      alert("Học viên không tồn tại!");
-    }
-  };
-  $scope.getMaMH = function(student) {
-    $scope.tenmh = student.tenmh;
-    $scope.sogio = student.sogio;
-
-    $scope.uMaMH = student.mamh;
-    return $scope.uMaMH;
+    $scope.Message = User.save({
+      id: $scope.Seach.toString()
+    }, user);
+    location.reload();
   }
+  else {
+    alert("Học viên không tồn tại!");
+  }
+};
+$scope.getMaMH = function(student) {
+  $scope.tenmh=student.tenmh;
+  $scope.sogio=student.sogio;
+  $scope.sotc=student.sotc;
+
+  $scope.uMaMH=student.mamh;
+  return $scope.uMaMH;
+}
   $scope.updateMonHoc = function() {
     User = $resource(
       "http://localhost:8080/monhoc/:id", {}, {
@@ -260,8 +293,9 @@ adminApp.controller('monhocController', ['$scope', '$http', '$resource', functio
 
     var user = {};
 
-    user.tenmh = $scope.tenmh;
+    user.tenmh=$scope.tenmh;
     user.sogio = $scope.sogio;
+    user.sotc = $scope.sotc;
     user.mamh = $scope.uMaMH;
 
     $scope.Message = User.save({
@@ -272,75 +306,106 @@ adminApp.controller('monhocController', ['$scope', '$http', '$resource', functio
 
 
 
-  $scope.pageNo = 0;
-  $scope.pageSize = 2;
-  $scope.total = 0;
-
-  function getCountMonhoc() {
-    $http.get("http://localhost:8080/monhoc").then(
-      function(response) {
-
-        $scope.total = response.data.length / $scope.pageSize;
-        getSLHocvien();
-      },
-      function(err) {
-        var error = err;
-      });
-  }
-  getCountMonhoc();
-
-  function getMonhocPage() {
-    $http.get("http://localhost:8080/monhoc2?pageNo=" + $scope.pageNo + "&pageSize=" + $scope.pageSize).then(
-      function(response) {
-        $scope.monhocpage = response.data;
-      },
-      function(err) {
-        var error = err;
-      });
-  }
-  getMonhocPage();
-
-  $scope.numb = function(So) {
-    $scope.pageNo = So;
-    getMonhocPage();
-  };
-
-  $scope.arrSLHocvien = [];
-
-  function getSLHocvien() {
-    for (var i = 0; i < $scope.total; i++) {
-      $scope.arrSLHocvien[i] = i;
-
-    }
-  }
-  getSLHocvien();
-
-  $scope.nextCount = function() {
-    getCountMonhoc();
-    if ($scope.pageNo < $scope.total) {
-      $scope.pageNo++;
-      if ($scope.pageNo >= $scope.total) {
-        $scope.pageNo--;
+      $scope.pageNo=0;
+      $scope.pageSize=2;
+      $scope.total=0;
+      function getCountMonhoc() {
+          $http.get("http://localhost:8080/monhoc").then(
+                         function (response) {
+                            $scope.soluonghocvien = response.data.length;
+                             $scope.total=response.data.length/$scope.pageSize;
+                             getSLHocvien();
+                         },
+                         function (err) {
+                             var error = err;
+                         });
       }
-      getMonhocPage();
-    } else {
-      $scope.pageNo = $scope.total;
-      getMonhocPage();
-    }
-  };
+      getCountMonhoc();
 
-  $scope.preCount = function() {
-    getCountMonhoc();
-    if ($scope.pageNo > 0) {
-      $scope.pageNo--;
-      getMonhocPage();
-      if ($scope.pageNo < 0) {
+      $scope.pageSize = '5';
+      $scope.changePageSize = function(PageSize) {
         $scope.pageNo = 0;
+        $scope.temp2 = 1;
+        $scope.arrSLHocvien = [];
+        $scope.pageSize = PageSize;
+        getCountMonhoc();
+        getMonhocPage();
+      };
+      function getSTT() {
+        $scope.temp2 = 1;
       }
-    } else {
-      $scope.pageNo = 0;
+      getSTT();
+
+      function getMonhocPage() {
+          $http.get("http://localhost:8080/monhoc2?pageNo=" + $scope.pageNo + "&pageSize=" + $scope.pageSize).then(
+                         function (response) {
+                           $scope.soluonghienthi = response.data.length;
+                             $scope.monhocpage = response.data;
+                         },
+                         function (err) {
+                             var error = err;
+                         });
+      }
       getMonhocPage();
-    }
-  };
+
+      $scope.numb = function(So) {
+        $scope.temp = So + 1;
+        $scope.temp2 = ($scope.temp * $scope.pageSize) - ($scope.pageSize - 1);
+        $scope.pageNo=So;
+        getMonhocPage();
+      };
+
+      $scope.arrSLHocvien = [];
+      function getSLHocvien() {
+          for (var i = 0; i < $scope.total; i++) {
+              $scope.arrSLHocvien[i]=i;
+
+          }
+      }
+      getSLHocvien();
+
+      $scope.nextCount = function() {
+        getCountMonhoc();
+        if($scope.pageNo<$scope.total)
+        {
+          $scope.pageNo++;
+          if($scope.pageNo>=$scope.total)
+          {
+            $scope.pageNo--;
+          }
+          else {
+            $scope.temp = $scope.pageNo + 1;
+            $scope.temp2 = ($scope.temp * $scope.pageSize) - ($scope.pageSize - 1);
+            getMonhocPage();
+          }
+        }
+        else {
+          $scope.pageNo=$scope.total;
+          $scope.temp = $scope.pageNo + 1;
+          $scope.temp2 = ($scope.temp * $scope.pageSize) - ($scope.pageSize - 1);
+          getMonhocPage();
+        }
+      };
+
+      $scope.preCount = function() {
+        getCountMonhoc();
+        if($scope.pageNo>0)
+        {
+          $scope.pageNo--;
+          $scope.temp = $scope.pageNo + 1;
+          $scope.temp2 = ($scope.temp * $scope.pageSize) - ($scope.pageSize - 1);
+          getMonhocPage();
+          if($scope.pageNo<0)
+          {
+            $scope.pageNo=0;
+          }
+        }
+        else {
+          $scope.pageNo=0;
+          $scope.temp = $scope.pageNo + 1;
+          $scope.temp2 = ($scope.temp * $scope.pageSize) - ($scope.pageSize - 1);
+          getMonhocPage();
+        }
+      };
 
 }]);

@@ -1,4 +1,5 @@
-adminApp.controller('hocvienController', ['$scope', '$http', '$resource', function($scope, $http, $resource) {
+adminApp.controller('hocvienController', ['$scope', '$http', '$resource', '$rootScope', 'docService', function($scope, $http, $resource, $rootScope, docService) {
+
 
   function fetchAllStudents() {
     $scope.hocvien = $resource('http://localhost:8080/hocvien').query(function(data) {
@@ -35,9 +36,6 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', functi
   };
   fetchAllCourse();
 
-  $scope.refresh = function() {
-    fetchAllStudents();
-  };
 
   $scope.seletedLoaitaikhoan = "";
   $scope.statusAccounttype = "";
@@ -60,14 +58,15 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', functi
 
   }
 
+
   $scope.seletedKhoahoc = "";
   $scope.statusCourse = "";
   $scope.selectKhoaHoc = function(SelectKhoaHoc) {
     $scope.seletedKhoahoc = SelectKhoaHoc;
     for (var i = 0; i < $scope.khoahoc.length; i++) {
       if ($scope.seletedKhoahoc == $scope.khoahoc[i].makhoahoc) {
-        $scope.resultKhoaHoc = $scope.khoahoc[i];
-        return $scope.resultKhoaHoc;
+        $scope.SelectKhoaHoc = $scope.khoahoc[i].makhoahoc;
+        return $scope.SelectKhoaHoc;
         $scope.statusCourse = 1;
       } else {
 
@@ -81,14 +80,16 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', functi
 
   }
 
+
+
   $scope.seletedLoaiHocVien = "";
   $scope.statusStudentType = "";
   $scope.selectLoaiHocVien = function(SelectLoaiHocVien) {
     $scope.seletedLoaiHocVien = SelectLoaiHocVien;
     for (var i = 0; i < $scope.loaihocvien.length; i++) {
       if ($scope.seletedLoaiHocVien == $scope.loaihocvien[i].id) {
-        $scope.resultLoaiHocVien = $scope.loaihocvien[i];
-        return $scope.resultLoaiHocVien;
+        $scope.SelectLoaiHocVien = $scope.loaihocvien[i].id;
+        return $scope.SelectLoaiHocVien;
         $scope.statusStudentType = 1;
       } else {
 
@@ -102,14 +103,15 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', functi
 
   }
 
+
   $scope.seletedTruongHoc = "";
   $scope.statusSchool = "";
   $scope.selectTruongHoc = function(SelectTruongHoc) {
     $scope.seletedTruongHoc = SelectTruongHoc;
     for (var i = 0; i < $scope.truonghoc.length; i++) {
       if ($scope.seletedTruongHoc == $scope.truonghoc[i].matruong) {
-        $scope.resultTruongHoc = $scope.truonghoc[i];
-        return $scope.resultTruongHoc;
+        $scope.SelectTruongHoc = $scope.truonghoc[i].matruong;
+        return $scope.SelectTruongHoc;
         $scope.statusSchool = 1;
       } else {
 
@@ -122,6 +124,7 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', functi
     }
 
   }
+
 
   $scope.searchStudent = function() {
     $scope.status = "";
@@ -139,6 +142,35 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', functi
     }
   };
 
+  //Upload file
+  $scope.file = '';
+
+  $scope.upload = function() {
+    var file = $scope.file;
+    var type = file.type;
+    if (type.slice(0, 5) == "image") {
+      docService.saveDoc(file)
+        .then(
+          function(response) {
+            $scope.anhdaidien = file.name;
+            return $scope.anhdaidien;
+          },
+          function(errResponse) {
+            alert("Upload fail!");
+          }
+        );
+    } else {
+      alert("Vui lòng chọn đúng định dạng hình ảnh!");
+    }
+  };
+  //End upload file
+
+  $scope.anhdaidien = "avatar.png";
+  $scope.diachi = "trống";
+  $scope.tenlot = "trống";
+  $scope.noisinh = "trống";
+  $scope.tgcothedilam = new Date('2019-01-01');
+
   $scope.createStudent = function() {
     User = $resource(
       "http://localhost:8080/hocvien", {}, {
@@ -150,30 +182,42 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', functi
     );
 
     var user = {};
-    user.truonghoc = $scope.resultTruongHoc;
-    user.khoahoc = $scope.resultKhoaHoc;
-    user.loaitaikhoan = $scope.resultLoaitk;
-    user.danhmuchocvien = $scope.resultLoaiHocVien;
-    user.password = $scope.password;
-    user.tgcothedilam = $scope.tgcothedilam;
-    user.email = $scope.email;
-    user.diachi = $scope.diachi;
-    user.matruong = $scope.resultTruongHoc.matruong;
-    user.sdt = $scope.sdt;
-    user.ho = $scope.ho;
-    user.tenlot = $scope.tenlot;
-    user.makhoahoc = $scope.resultKhoaHoc.makhoahoc;
-    user.gioitinh = $scope.gioitinh;
-    user.ngaysinh = $scope.ngaysinh;
-    user.noisinh = $scope.noisinh;
-    user.cmnd = $scope.cmnd;
-    user.ten = $scope.ten;
-    user.mahv = $scope.mahv;
-    user.type = $scope.resultLoaiHocVien.id;
-    user.accounttype = $scope.resultLoaitk.id;
-    $scope.Message = User.save(user);
+    if ($scope.password != "" && $scope.email != "" && $scope.SelectTruongHoc != "" && $scope.sdt != "" && $scope.ho != "" && $scope.SelectKhoaHoc != "" && $scope.ngaysinh != "" && $scope.cmnd != "" && $scope.ten != "" && $scope.mahv != "" && $scope.SelectLoaiHocVien != "") {
+      if ($scope.anhdaidien == "avatar.png") {
+        if ($scope.gioitinh == "Nam") {
+          $scope.anhdaidien = "avatar.png";
+        } else {
+          $scope.anhdaidien = "female.jpg";
+        }
+      } else {
 
-    location.reload();
+      }
+      user.password = $scope.password;
+      user.tgcothedilam = $scope.tgcothedilam;
+      user.email = $scope.email;
+      user.diachi = $scope.diachi;
+      user.matruong = $scope.SelectTruongHoc;
+      user.sdt = $scope.sdt;
+      user.ho = $scope.ho;
+      user.tenlot = $scope.tenlot;
+      user.makhoahoc = $scope.SelectKhoaHoc;
+      user.gioitinh = $scope.gioitinh;
+      user.ngaysinh = $scope.ngaysinh;
+      user.noisinh = $scope.noisinh;
+      user.cmnd = $scope.cmnd;
+      user.ten = $scope.ten;
+      user.anhdaidien = $scope.anhdaidien;
+      user.mahv = $scope.mahv;
+      user.type = $scope.SelectLoaiHocVien;
+      user.accounttype = 0;
+
+      $scope.Message = User.save(user);
+
+      location.reload();
+    } else {
+      alert("Vui lòng nhập đủ các trường bắt buộc!");
+    }
+
   };
 
   $scope.setMaHVDelete = function(Student) {
@@ -210,65 +254,11 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', functi
     $scope.cmnd = "";
     $scope.ten = "";
     $scope.mahv = "";
+    $scope.SelectKhoaHoc = "";
+    $scope.SelectTruongHoc = "";
+    $scope.SelectLoaiHocVien = "";
   };
-  $scope.changeAccountType = function() {
-    for (var i = 0; i < $scope.hocvien.length; i++) {
-      if ($scope.Seach.toString() == $scope.hocvien[i].mahv.toString()) {
-        $scope.ResultSearch = $scope.hocvien[i];
-        $scope.status = 1;
-      } else {
 
-      }
-    }
-    if ($scope.status == 1) {
-      User = $resource(
-        "http://localhost:8080/hocvien/:id", {}, {
-          save: {
-            method: 'PUT',
-            params: {
-              id: '@id'
-            }
-          }
-        }
-      );
-
-      var user = {};
-      $scope.selectTruongHoc($scope.ResultSearch.matruong);
-      $scope.selectKhoaHoc($scope.ResultSearch.makhoahoc);
-      $scope.selectLoaiHocVien($scope.ResultSearch.type);
-
-      user.truonghoc = $scope.resultTruongHoc;
-      user.khoahoc = $scope.resultKhoaHoc;
-      user.loaitaikhoan = $scope.resultLoaitk;
-      user.danhmuchocvien = $scope.resultLoaiHocVien;
-
-      user.matruong = $scope.resultTruongHoc.matruong;
-      user.makhoahoc = $scope.resultKhoaHoc.makhoahoc;
-      user.accounttype = $scope.resultLoaitk.id;
-      user.type = $scope.ResultSearch.type;
-
-      user.password = $scope.ResultSearch.password;
-      user.tgcothedilam = $scope.ResultSearch.tgcothedilam;
-      user.email = $scope.ResultSearch.email;
-      user.diachi = $scope.ResultSearch.diachi;
-      user.sdt = $scope.ResultSearch.sdt;
-      user.ho = $scope.ResultSearch.ho;
-      user.tenlot = $scope.ResultSearch.tenlot;
-      user.gioitinh = $scope.ResultSearch.gioitinh;
-      user.ngaysinh = $scope.ResultSearch.ngaysinh;
-      user.noisinh = $scope.ResultSearch.noisinh;
-      user.cmnd = $scope.ResultSearch.cmnd;
-      user.ten = $scope.ResultSearch.ten;
-      user.mahv = $scope.Seach.toString();
-
-      $scope.Message = User.save({
-        id: $scope.Seach.toString()
-      }, user);
-      location.reload();
-    } else {
-      alert("Học viên không tồn tại!");
-    }
-  };
   $scope.getMaHV = function(student) {
     $scope.password = student.password;
     $scope.tgcothedilam = student.tgcothedilam;
@@ -283,12 +273,17 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', functi
     $scope.noisinh = student.noisinh;
     $scope.cmnd = student.cmnd;
     $scope.ten = student.ten;
+    $scope.SelectKhoaHoc = student.makhoahoc;
+    $scope.SelectTruongHoc = student.matruong;
+    $scope.SelectLoaiTaiKhoan = student.accounttype;
+    $scope.SelectLoaiHocVien = student.type;
+    $scope.mahv = student.mahv;
+    $scope.anhdaidien = student.anhdaidien;
 
     $scope.uMaHV = student.mahv;
     return $scope.uMaHV;
   }
   $scope.updateStudent = function() {
-    //console.log($scope.MaHV);
     User = $resource(
       "http://localhost:8080/hocvien/:id", {}, {
         save: {
@@ -301,43 +296,59 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', functi
     );
 
     var user = {};
+    if ($scope.password != "" && $scope.email != "" && $scope.SelectTruongHoc != "" && $scope.sdt != "" && $scope.ho != "" && $scope.SelectKhoaHoc != "" && $scope.ngaysinh != "" && $scope.cmnd != "" && $scope.ten != "" && $scope.mahv != "" && $scope.SelectLoaiHocVien != "") {
+      if ($scope.anhdaidien == "avatar.png" || $scope.anhdaidien == "female.jpg") {
+        if ($scope.gioitinh == "Nam") {
+          $scope.anhdaidien = "avatar.png";
+        }
+        else
+        {
+          $scope.anhdaidien = "female.jpg";
+        }
+      }
+      else
+      {
 
-    user.truonghoc = $scope.resultTruongHoc;
-    user.khoahoc = $scope.resultKhoaHoc;
-    user.loaitaikhoan = $scope.resultLoaitk;
-    user.danhmuchocvien = $scope.resultLoaiHocVien;
-    user.password = $scope.password;
-    user.tgcothedilam = $scope.tgcothedilam;
-    user.email = $scope.email;
-    user.diachi = $scope.diachi;
-    user.matruong = $scope.resultTruongHoc.matruong;
-    user.sdt = $scope.sdt;
-    user.ho = $scope.ho;
-    user.tenlot = $scope.tenlot;
-    user.makhoahoc = $scope.resultKhoaHoc.makhoahoc;
-    user.gioitinh = $scope.gioitinh;
-    user.ngaysinh = $scope.ngaysinh;
-    user.noisinh = $scope.noisinh;
-    user.cmnd = $scope.cmnd;
-    user.ten = $scope.ten;
-    user.type = $scope.resultLoaiHocVien.id;
-    user.accounttype = $scope.resultLoaitk.id;
-    user.mahv = $scope.uMaHV;
+      }
+      user.anhdaidien = $scope.anhdaidien;
+      user.password = $scope.password;
+      user.tgcothedilam = $scope.tgcothedilam;
+      user.email = $scope.email;
+      user.diachi = $scope.diachi;
+      user.matruong = $scope.SelectTruongHoc;
+      user.sdt = $scope.sdt;
+      user.ho = $scope.ho;
+      user.tenlot = $scope.tenlot;
+      user.makhoahoc = $scope.SelectKhoaHoc;
+      user.gioitinh = $scope.gioitinh;
+      user.ngaysinh = $scope.ngaysinh;
+      user.noisinh = $scope.noisinh;
+      user.cmnd = $scope.cmnd;
+      user.ten = $scope.ten;
+      user.type = $scope.SelectLoaiHocVien;
+      user.accounttype = 0;
 
-    $scope.Message = User.save({
-      id: $scope.uMaHV
-    }, user);
-    location.reload();
+      user.mahv = $scope.uMaHV;
+
+      $scope.Message = User.save({
+        id: $scope.uMaHV
+      }, user);
+      location.reload();
+    } else {
+      alert("Vui lòng nhập đủ các trường bắt buộc!");
+    }
   };
 
+
+
   $scope.pageNo = 0;
-  $scope.pageSize = 5;
+  $scope.pageSize = 10;
   $scope.total = 0;
 
   function getCountHocvien() {
     $http.get("http://localhost:8080/hocvien").then(
       function(response) {
-
+        $scope.soluonghocvien = response.data.length;
         $scope.total = response.data.length / $scope.pageSize;
         getSLHocvien();
       },
@@ -345,12 +356,46 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', functi
         var error = err;
       });
   }
-
   getCountHocvien();
 
+  $scope.changePageSize = function(PageSize) {
+    $scope.pageNo = 0;
+    $scope.temp2 = 1;
+    $scope.arrSLHocvien = [];
+    $scope.pageSize = PageSize;
+    getCountHocvien();
+    getHocvienPage();
+  };
+  $scope.SelectKhoaHoc2 = "ISC09";
+  $scope.typeSort = 1;
+  $scope.pageSize = '10';
+  $scope.sortBy = "MAHV";
+  $scope.maKH = "ISC09";
+
+  $scope.changeCourse = function() {
+    $scope.typeSort = 1;
+    $scope.arrSLHocvien = [];
+    $scope.pageNo = 0;
+    $scope.temp = $scope.pageNo + 1;
+    $scope.temp2 = ($scope.temp * $scope.pageSize) - ($scope.pageSize - 1);
+    $scope.maKH = $scope.SelectKhoaHoc;
+    getHocvienPage();
+  };
+
+  $scope.changeSortPage = function(SortPage) {
+    if ($scope.typeSort == 1) {
+      $scope.typeSort = 2;
+    } else if ($scope.typeSort == 2) {
+      $scope.typeSort = 1;
+    }
+    $scope.sortBy = SortPage;
+    getHocvienPage();
+  };
+
   function getHocvienPage() {
-    $http.get("http://localhost:8080/hocvien2?pageNo=" + $scope.pageNo + "&pageSize=" + $scope.pageSize).then(
+    $http.get("http://localhost:8080/hocvien2?pageNo=" + $scope.pageNo + "&pageSize=" + $scope.pageSize + "&typeSort=" + $scope.typeSort + "&maKH=" + $scope.maKH + "&sortBy=" + $scope.sortBy).then(
       function(response) {
+        $scope.soluonghienthi = response.data.length;
         $scope.hocvienpage = response.data;
       },
       function(err) {
@@ -359,7 +404,14 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', functi
   }
   getHocvienPage();
 
+  function getSTT() {
+    $scope.temp2 = 1;
+  }
+  getSTT();
+
   $scope.numb = function(So) {
+    $scope.temp = So + 1;
+    $scope.temp2 = ($scope.temp * $scope.pageSize) - ($scope.pageSize - 1);
     $scope.pageNo = So;
     getHocvienPage();
   };
@@ -376,15 +428,19 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', functi
 
   $scope.nextCount = function() {
     getCountHocvien();
-    //alert($scope.pageNo);
     if ($scope.pageNo < $scope.total) {
       $scope.pageNo++;
       if ($scope.pageNo >= $scope.total) {
         $scope.pageNo--;
+      } else {
+        $scope.temp = $scope.pageNo + 1;
+        $scope.temp2 = ($scope.temp * $scope.pageSize) - ($scope.pageSize - 1);
+        getHocvienPage();
       }
-      getHocvienPage();
     } else {
       $scope.pageNo = $scope.total;
+      $scope.temp = $scope.pageNo + 1;
+      $scope.temp2 = ($scope.temp * $scope.pageSize) - ($scope.pageSize - 1);
       getHocvienPage();
     }
   };
@@ -393,14 +449,68 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', functi
     getCountHocvien();
     if ($scope.pageNo > 0) {
       $scope.pageNo--;
+      $scope.temp = $scope.pageNo + 1;
+      $scope.temp2 = ($scope.temp * $scope.pageSize) - ($scope.pageSize - 1);
       getHocvienPage();
       if ($scope.pageNo < 0) {
         $scope.pageNo = 0;
       }
     } else {
       $scope.pageNo = 0;
+      $scope.temp = $scope.pageNo + 1;
+      $scope.temp2 = ($scope.temp * $scope.pageSize) - ($scope.pageSize - 1);
       getHocvienPage();
     }
   };
 
+  // remove and change class
+  $scope.sortClass = function(Sort) {
+    if ($scope.sortBy == Sort) {
+      if ($scope.typeSort == 2) {
+        return 'arrow-down';
+      } else {
+        return 'arrow-up';
+      }
+    }
+
+  }
+
+}]);
+
+
+
+
+adminApp.constant('urls', {
+  DOC_URL: 'http://localhost:8080/doc/'
+});
+adminApp.directive('cOnChange', function() {
+  'use strict';
+
+  return {
+    restrict: "A",
+    scope: {
+      cOnChange: '&'
+    },
+    link: function(scope, element) {
+      element.on('change', function() {
+        scope.cOnChange();
+      });
+    }
+  };
+});
+
+adminApp.directive('fileModel', ['$parse', function($parse) {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+      var model = $parse(attrs.fileModel);
+      var modelSetter = model.assign;
+
+      element.bind('change', function() {
+        scope.$apply(function() {
+          modelSetter(scope, element[0].files[0]);
+        });
+      });
+    }
+  };
 }]);
