@@ -8,16 +8,22 @@ adminApp.controller('giangvienController', ['$scope','$http', '$resource', 'apiB
 
   $scope.model = {};
   $scope.createCBGV = function() {
-
-  $http.post(apiBaseUrl + '/add_canbogiangvien', $scope.model).then(function(res){
-    console.log('success ', res);
-    //location.reload();
-    $scope.model = null;
-    //$scope.loadData();
-    location.reload();
-  }, function(err) {
-
-  });
+  if ($scope.password != '' && $scope.email != '' && $scope.sdt != '' && $scope.ho != '' && $scope.ngaysinh != '' && $scope.cmnd != '' && $scope.ten != '' && $scope.macbgv != '' && $scope.diachi != '')
+  {
+    $http.post(apiBaseUrl + '/add_canbogiangvien', $scope.model).then(function(res){
+      console.log('success ', res);
+      //location.reload();
+      $scope.model = null;
+      //$scope.loadData();
+      location.reload();
+    }, function(err) {
+      alert("Vui lòng nhập đủ các trường bắt buộc!");
+    });
+  }
+  else
+  {
+      alert("Vui lòng nhập đủ các trường bắt buộc!");
+  }
 }
 
 $scope.editModel = {};

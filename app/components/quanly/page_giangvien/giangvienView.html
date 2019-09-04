@@ -38,44 +38,55 @@
           <div class="card">
 
             <div class="card-body card-block">
-              <form action="" method="post" class="form-horizontal">
+              <form action="" method="post" name="FormAdd" class="form-horizontal" novalidate>
+                <i class="text-danger">*Bắt buộc</i><br><br>
                 <div class="row form-group">
                   <div class="col col-md-3">
-                    <label for="add_ho" class=" form-control-label">Họ</label>
+                    <label for="ho" class=" form-control-label">Họ <strong class="text-danger">*</strong></label>
                   </div>
                   <div class="col-12 col-md-9">
-                    <input type="text" id="add_ho" name="add_ho" ng-model="model.ho" placeholder="Nhập họ..." class="form-control">
+                    <input type="text" id="ho" name="ho" ng-model="model.ho" required placeholder="Nhập họ..." class="form-control">
+                    <div ng-show="FormAdd.ho.$touched" class="text-danger">
+                      <span ng-show="FormAdd.ho.$error.required">
+                        Vui lòng nhập họ cán bộ giảng viên
+                      </span>
+                    </div>
                   </div>
                 </div>
                 <div class="row form-group">
                   <div class="col col-md-3">
-                    <label for="add_tenlot" class=" form-control-label">Tên lót</label>
+                    <label for="tenlot" class=" form-control-label">Tên lót</label>
                   </div>
                   <div class="col-12 col-md-9">
-                    <input type="text" id="add_tenlot" ng-model="model.tenlot" name="add_tenlot" placeholder="Nhập tên lót..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="add_ten" class=" form-control-label">Tên</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="text" id="add_ten" ng-model="model.ten" name="add_ten" placeholder="Nhập tên..." class="form-control">
+                    <input type="text" id="tenlot" ng-model="model.tenlot" name="tenlot" placeholder="Nhập tên lót..." class="form-control">
                   </div>
                 </div>
 
                 <div class="row form-group">
                   <div class="col col-md-3">
-                    <label for="add_gioitinh" class=" form-control-label">Giới tính</label>
+                    <label for="ten" class=" form-control-label">Tên <strong class="text-danger">*</strong></label>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <input type="text" id="ten" ng-model="model.ten" required name="ten" placeholder="Nhập tên..." class="form-control">
+                    <div ng-show="FormAdd.ten.$touched" class="text-danger">
+                      <span ng-show="FormAdd.ten.$error.required">
+                        Vui lòng nhập tên cán bộ giảng viên
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row form-group">
+                  <div class="col col-md-3">
+                    <label for="gioitinh" class=" form-control-label">Giới tính <strong class="text-danger">*</strong></label>
                   </div>
                   <div class="col col-md-9">
                     <div class="form-check-inline form-check">
                       <label for="gioitinh1" class="form-check-label ">
-                        <input type="radio" id="add_gioitinh1" ng-model="model.gioitinh" name="add_gioitinh" value="Nam" class="form-check-input">Nam
+                        <input type="radio" id="gioitinh1" ng-model="model.gioitinh" name="gioitinh" value="Nam" class="form-check-input">Nam
                       </label>
                       <label for="gioitinh2" class="form-check-label m-l-20">
-                        <input type="radio" id="add_gioitinh2" ng-model="model.gioitinh" name="add_gioitinh" value="Nữ" class="form-check-input">Nữ
+                        <input type="radio" id="gioitinh2" ng-model="model.gioitinh" name="gioitinh" value="Nữ" class="form-check-input">Nữ
                       </label>
                     </div>
                   </div>
@@ -83,100 +94,138 @@
 
                 <div class="row form-group">
                   <div class="col col-md-3">
-                    <label for="add_ngaysinh" class="form-control-label">Ngày sinh</label>
+                    <label for="ngaysinh" class="form-control-label">Ngày sinh <strong class="text-danger">*</strong></label>
                   </div>
                   <div class="col-12 col-md-9">
-                    <input type="date" id="add_ngaysinh" ng-model="model.ngaysinh" name="add_ngaysinh" placeholder="Nhập ngày sinh..." class="form-control">
+                    <input type="date" id="ngaysinh" ng-model="model.ngaysinh" required name="ngaysinh" placeholder="Nhập ngày sinh..." class="form-control">
+                    <div ng-show="FormAdd.ngaysinh.$touched" class="text-danger">
+                      <span ng-show="FormAdd.ngaysinh.$error.required">
+                        Vui lòng nhập ngày sinh
+                      </span>
+                    </div>
                   </div>
                 </div>
 
                 <div class="row form-group">
                   <div class="col col-md-3">
-                    <label for="add_noisinh" class=" form-control-label">Nơi sinh</label>
+                    <label for="noisinh" class=" form-control-label">Nơi sinh </label>
                   </div>
                   <div class="col-12 col-md-9">
-                    <input type="text" id="add_noisinh" ng-model="model.noisinh" name="add_noisinh" placeholder="Nhập nơi sinh..." class="form-control">
+                    <input type="text" id="noisinh" ng-model="model.noisinh" name="noisinh" placeholder="Nhập nơi sinh..." class="form-control">
                   </div>
                 </div>
 
                 <div class="row form-group">
                   <div class="col col-md-3">
-                    <label for="add_cmnd" class=" form-control-label">Chứng minh nhân dân</label>
+                    <label for="cmnd" class=" form-control-label">Chứng minh nhân dân <strong class="text-danger">*</strong></label>
                   </div>
                   <div class="col-12 col-md-9">
-                    <input type="number" id="add_cmnd" ng-model="model.cmnd" name="add_cmnd" placeholder="Nhập số chứng minh nhân dân..." class="form-control">
+                    <input type="number" id="cmnd" ng-model="model.cmnd" required name="cmnd" placeholder="Nhập số chứng minh nhân dân..." class="form-control">
+                    <div ng-show="FormAdd.cmnd.$touched" class="text-danger">
+                      <span ng-show="FormAdd.cmnd.$error.required">
+                        Vui lòng nhập số chứng minh nhân dân
+                      </span>
+                    </div>
                   </div>
                 </div>
 
                 <div class="row form-group">
                   <div class="col col-md-3">
-                    <label for="add_sdt" class=" form-control-label">Số điện thoại</label>
+                    <label for="sdt" class=" form-control-label">Số điện thoại <strong class="text-danger">*</strong></label>
                   </div>
                   <div class="col-12 col-md-9">
-                    <input type="tel" id="add_sdt" ng-model="model.sdt" name="add_sdt" placeholder="Nhập số điện thoại..." class="form-control">
+                    <input type="tel" id="sdt" ng-model="model.sdt" required name="sdt" placeholder="Nhập số điện thoại..." class="form-control">
+                    <div ng-show="FormAdd.sdt.$touched" class="text-danger">
+                      <span ng-show="FormAdd.sdt.$error.required">
+                        Vui lòng nhập số điện thoại
+                      </span>
+                    </div>
                   </div>
                 </div>
 
                 <div class="row form-group">
                   <div class="col col-md-3">
-                    <label for="add_email" class=" form-control-label">Email</label>
+                    <label for="email" class=" form-control-label">Email <strong class="text-danger">*</strong></label>
                   </div>
                   <div class="col-12 col-md-9">
-                    <input type="add_email" id="add_email" ng-model="model.email" name="add_email" placeholder="quynguyen97cntt@gmail.com" class="form-control">
+                    <input type="email" id="email" ng-model="model.email" required ng-pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" name="email" placeholder="quynguyen97cntt@gmail.com" class="form-control">
+                    <div ng-show="FormAdd.email.$touched" class="text-danger">
+                      <span ng-show="FormAdd.email.$error.required">
+                        Vui lòng nhập email
+                      </span>
+                      <span ng-show="FormAdd.email.$error.email">
+                        Email không hợp lệ
+                      </span>
+                    </div>
                   </div>
                 </div>
 
                 <div class="row form-group">
                   <div class="col col-md-3">
-                    <label for="add_diachi" class=" form-control-label">Địa chỉ</label>
+                    <label for="diachi" class=" form-control-label">Địa chỉ <strong class="text-danger">*</strong></label>
                   </div>
                   <div class="col-12 col-md-9">
-                    <input type="text" id="add_diachi" ng-model="model.diachi" name="add_diachi" placeholder="Nhập địa chỉ..." class="form-control">
+                    <input type="text" id="diachi" ng-model="model.diachi" required name="diachi" placeholder="Nhập địa chỉ..." class="form-control">
+                    <div ng-show="FormAdd.cmnd.$touched" class="text-danger">
+                      <span ng-show="FormAdd.diachi.$error.required">
+                        Vui lòng nhập địa chỉ
+                      </span>
+                    </div>
                   </div>
                 </div>
 
                 <div class="row form-group">
                   <div class="col col-md-3">
-                    <label for="add_mahv" class=" form-control-label">Mã cán bộ giảng viên</label>
+                    <label for="macbgv" class=" form-control-label">Mã cán bộ giảng viên <strong class="text-danger">*</strong></label>
                   </div>
                   <div class="col-12 col-md-9">
-                    <input type="text" id="add_macbgv" ng-model="model.macbgv" name="add_macbgv" placeholder="Nhập mã cán bộ giảng viên..." class="form-control">
+                    <input type="text" id="macbgv" ng-model="model.macbgv" required name="macbgv" placeholder="Nhập mã cán bộ giảng viên..." class="form-control">
+                    <div ng-show="FormAdd.macbgv.$touched" class="text-danger">
+                      <span ng-show="FormAdd.macbgv.$error.required">
+                        Vui lòng nhập mã cán bộ giảng viên
+                      </span>
+                    </div>
                   </div>
                 </div>
 
                 <div class="row form-group">
                   <div class="col col-md-3">
-                    <label for="add_luong" class=" form-control-label">Lương</label>
+                    <label for="luong" class=" form-control-label">Lương</label>
                   </div>
                   <div class="col-12 col-md-9">
-                    <input type="text" id="add_luong" ng-model="model.luong" name="add_luong" placeholder="Nhập lương..." class="form-control">
+                    <input type="text" id="luong" ng-model="model.luong" name="luong" placeholder="Nhập lương..." class="form-control">
                   </div>
                 </div>
 
                 <div class="row form-group">
                   <div class="col col-md-3">
-                    <label for="add_hsluong" class=" form-control-label">Hệ số lương</label>
+                    <label for="hsluong" class=" form-control-label">Hệ số lương</label>
                   </div>
                   <div class="col-12 col-md-9">
-                    <input type="text" id="add_hsluong" ng-model="model.hsluong" name="add_hsluong" placeholder="Nhập hệ số lương..." class="form-control">
+                    <input type="text" id="hsluong" ng-model="model.hsluong" name="hsluong" placeholder="Nhập hệ số lương..." class="form-control">
                   </div>
                 </div>
 
                 <div class="row form-group">
                   <div class="col col-md-3">
-                    <label for="add_password" class=" form-control-label">Mật khẩu</label>
+                    <label for="password" class=" form-control-label">Mật khẩu <strong class="text-danger">*</strong></label>
                   </div>
                   <div class="col-12 col-md-9">
-                    <input type="add_password" ng-model="model.password" id="add_password" name="password" placeholder="Nhập mật khẩu..." class="form-control">
+                    <input type="password" ng-model="model.password" required id="password" name="password" placeholder="Nhập mật khẩu..." class="form-control">
+                    <div ng-show="FormAdd.password.$touched" class="text-danger">
+                      <span ng-show="FormAdd.password.$error.required">
+                        Vui lòng nhập mật khẩu
+                      </span>
+                    </div>
                   </div>
                 </div>
 
                 <div class="row form-group">
                   <div class="col col-md-3">
-                    <label for="add_ngayvaolam" class=" form-control-label">Ngày vào làm</label>
+                    <label for="ngayvaolam" class=" form-control-label">Ngày vào làm</label>
                   </div>
                   <div class="col-12 col-md-9">
-                    <input type="date" id="add_ngayvaolam" ng-model="model.ngayvaolam" name="add_ngayvaolam" placeholder="Nhập ngày vào làm..." class="form-control">
+                    <input type="date" id="ngayvaolam" ng-model="model.ngayvaolam" name="ngayvaolam" placeholder="Nhập ngày vào làm..." class="form-control">
                   </div>
                 </div>
 
