@@ -6,19 +6,63 @@ adminApp.controller('giangvienController', ['$scope','$http', '$resource', 'apiB
     });
   }
 
+  $scope.loadDataSearch = function(macbgv) {
+    var url = apiBaseUrl + '/canbogiangvien/' + macbgv;
+    $http.get(url, macbgv).then(function(res){
+      console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+      console.log('success ', res);
+      //$scope.giangvienpage = res.data;
+      //$scope.searchCBGV($scope.searchModel.macbgv);
+      //$scope.loadData();
+      //location.reload();
+    }, function(err) {
+
+    });
+  }
+
+$scope.searchCBGV = function(macbgv){
+  var url = apiBaseUrl + '/canbogiangvien/' + $scope.searchModel.macbgv;
+  $http.get(url, $scope.editModel).then(function(res){
+    
+    console.log('success ', res);
+    $scope.resultCBGV = res.data;
+
+    console.log($scope.resultCBGV);
+    //$scope.searchCBGV($scope.searchModel.macbgv);
+    //$scope.loadData();
+    //location.reload();
+    //$scope.loadDataSearch($scope.searchModel.macbgv);
+    //getGiangVienPage();
+    //alert(res.data);
+  }, function(err) {
+    alert("Không tìm thấy học viên!");
+  });
+}
+
   $scope.model = {};
   $scope.createCBGV = function() {
   if ($scope.password != '' && $scope.email != '' && $scope.sdt != '' && $scope.ho != '' && $scope.ngaysinh != '' && $scope.cmnd != '' && $scope.ten != '' && $scope.macbgv != '' && $scope.diachi != '')
   {
-    $http.post(apiBaseUrl + '/add_canbogiangvien', $scope.model).then(function(res){
-      console.log('success ', res);
-      //location.reload();
-      $scope.model = null;
-      //$scope.loadData();
-      location.reload();
-    }, function(err) {
-      alert("Vui lòng nhập đủ các trường bắt buộc!");
-    });
+    $scope.loadData();
+    for (var i = 0; i < $scope.canbogiangvienList.length; i++)
+    {
+      if ($scope.macbgv != $scope.canbogiangvienList[i].macbgv)
+      {
+        $http.post(apiBaseUrl + '/add_canbogiangvien', $scope.model).then(function(res){
+          console.log('success ', res);
+          //location.reload();
+          $scope.model = null;
+          //$scope.loadData();
+          location.reload();
+        }, function(err) {
+          alert("Vui lòng nhập đủ các trường bắt buộc!");
+        });
+      }
+      else
+      {
+        alert("Mã CBGV bị trùng!");
+      }
+    }
   }
   else
   {
