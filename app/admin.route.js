@@ -87,25 +87,25 @@ adminApp.config(['$stateProvider', '$urlRouterProvider',
         url: '/khoahoc',
         parent: 'common',
         templateUrl: 'app/components/quanly/page_khoahoc/khoahocView.html',
-        controller: 'hocvienController'
+        controller: 'khoahocController'
       })
       .state('truonghoc', {
         url: '/truonghoc',
         parent: 'common',
         templateUrl: 'app/components/quanly/page_truonghoc/truonghocView.html',
-        controller: 'hocvienController'
+        controller: 'truonghocController'
       })
       .state('monhoc', {
         url: '/monhoc',
         parent: 'common',
         templateUrl: 'app/components/quanly/page_monhoc/monhocView.html',
-        controller: 'hocvienController'
+        controller: 'monhocController'
       })
       .state('daotao', {
         url: '/daotao',
         parent: 'common',
         templateUrl: 'app/components/quanly/page_daotao/daotaoView.html',
-        controller: 'hocvienController'
+        controller: 'daotaoController'
       })
       .state('chuyennganh', {
         url: '/chuyennganh',
