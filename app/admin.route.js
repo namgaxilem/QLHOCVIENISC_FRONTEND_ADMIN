@@ -75,7 +75,8 @@ adminApp.config(['$stateProvider', '$urlRouterProvider',
     $stateProvider
       .state('common', {
         templateUrl: 'app/components/quanly/quanly.html',
-        abstract: true
+        abstract: true,
+        controller: 'dangnhapController'
       })
       .state('hocvien', {
         url: '/hocvien',
@@ -126,7 +127,7 @@ adminApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'thongbaoController'
       })
       .state('diemhocvien', {
-        url: '/monhoc',
+        url: '/diemhocvien',
         parent: 'common',
         templateUrl: 'app/components/quanly/page_diemhocvien/diemhocvienView.html',
         controller: 'diemhocvienController'
