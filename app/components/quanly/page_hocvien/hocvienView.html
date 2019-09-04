@@ -1,830 +1,830 @@
 <!-- Tim kiem -->
 <div class="row">
-<form class="form-header mb-3" action="" method="POST">
-  <input class="au-input au-input--xl" type="text" name="search" placeholder="Nhập mã học viên..." />
-  <button class="au-btn--submit" type="submit">
-    <i class="zmdi zmdi-search"></i>
-  </button>
-</form>
+    <form class="form-header mb-3" action="" method="POST">
+        <input class="au-input au-input--xl" type="text" name="search" placeholder="Nhập mã học viên..." />
+        <button class="au-btn--submit" type="submit">
+            <i class="zmdi zmdi-search"></i>
+        </button>
+    </form>
 </div>
 <!-- Ket thuc tim kiem -->
 
 <div class="row">
-  <!-- Loc theo so luong hoc vien -->
-  <div class="pt-2">
-    <strong>Học viên</strong>
-  </div>
-  <div class="ml-2 mr-2">
-    <select id="pageSize" class="form-control control-color" ng-model="pageSize" ng-change="changePageSize(pageSize)">
-      <option value="5">5</option>
-      <option value="10">10</option>
-      <option value="25">25</option>
-      <option value="50">50</option>
-    </select>
-  </div>
-<!-- Ket thuc loc theo so luong hoc vien -->
+    <!-- Loc theo so luong hoc vien -->
+    <div class="pt-2">
+        <strong>Học viên</strong>
+    </div>
+    <div class="ml-2 mr-2">
+        <select id="pageSize" class="form-control control-color" ng-model="pageSize" ng-change="changePageSize(pageSize)">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+        </select>
+    </div>
+    <!-- Ket thuc loc theo so luong hoc vien -->
 
-<!-- Loc theo khoa hoc -->
-  <div class="pt-2">
-    <strong>Khoá học</strong>
-  </div>
-  <div class="ml-2 mr-2">
-    <select required name="khoahoc" id="khoahoc" class="form-control" ng-change="selectKhoaHoc(SelectKhoaHoc2)" ng-model="SelectKhoaHoc2">
-      <option ng-repeat="row in khoahoc" value="{{row.makhoahoc}}">{{row.tenkhoahoc}}</option>
-    </select>
-  </div>
-  <div>
-    <button type="button" class="btn btn-primary float-right mb-3 mr-2" onclick="myFunction()" ng-click="changeCourse()">
-      Xem
-    </button>
-  </div>
-  <!-- Ket thuc loc theo khoa hoc -->
+    <!-- Loc theo khoa hoc -->
+    <div class="pt-2">
+        <strong>Khoá học</strong>
+    </div>
+    <div class="ml-2 mr-2">
+        <select required name="khoahoc" id="khoahoc" class="form-control" ng-change="selectKhoaHoc(SelectKhoaHoc2)" ng-model="SelectKhoaHoc2">
+            <option ng-repeat="row in khoahoc" value="{{row.makhoahoc}}">{{row.tenkhoahoc}}</option>
+        </select>
+    </div>
+    <div>
+        <button type="button" class="btn btn-primary float-right mb-3 mr-2" onclick="myFunction()" ng-click="changeCourse()">
+            Xem
+        </button>
+    </div>
+    <!-- Ket thuc loc theo khoa hoc -->
 </div>
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-success rounded-circle float-right mb-3 mr-2" data-toggle="modal" data-target="#ThemHV" onclick="myFunction()" ng-click="refAdd()">
-  <span class="fa fa-plus"></span>
+    <span class="fa fa-plus"></span>
 </button>
 
 <!-- Modal -->
 <div class="modal fade bg-secondary" data-backdrop="false" id="ThemHV" tabindex="-1" role="dialog" aria-labelledby="ThemHV" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="ThemHV">HỌC VIÊN</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-
-
-        <div>
-          <div class="card">
-
-            <div class="card-body card-block">
-              <form action="" method="post" name="FormAdd" class="form-horizontal" novalidate>
-                <i class="text-danger">*Bắt buộc</i><br><br>
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="ho" class=" form-control-label">Họ <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="text" id="ho" name="ho" ng-model="ho" required placeholder="Nhập họ..." class="form-control">
-                    <div ng-show="FormAdd.ho.$touched" class="text-danger">
-                      <span ng-show="FormAdd.ho.$error.required">
-                        Vui lòng nhập họ học viên
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="tenlot" class=" form-control-label">Tên lót</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="text" id="tenlot" ng-model="tenlot" name="tenlot" placeholder="Nhập tên lót..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="ten" class=" form-control-label">Tên <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="text" id="ten" ng-model="ten" required name="ten" placeholder="Nhập tên..." class="form-control">
-                    <div ng-show="FormAdd.ten.$touched" class="text-danger">
-                      <span ng-show="FormAdd.ten.$error.required">
-                        Vui lòng nhập tên học viên
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="ngaysinh" class="form-control-label">Ngày sinh <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="date" id="ngaysinh" ng-model="ngaysinh" required name="ngaysinh" placeholder="Nhập ngày sinh..." class="form-control">
-                    <div ng-show="FormAdd.ngaysinh.$touched" class="text-danger">
-                      <span ng-show="FormAdd.ngaysinh.$error.required">
-                        Vui lòng nhập ngày sinh học viên
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="gioitinh" class=" form-control-label">Giới tính <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col col-md-9">
-                    <div class="form-check-inline form-check">
-                      <label for="gioitinh1" class="form-check-label ">
-                        <input type="radio" id="gioitinh1" ng-model="gioitinh" name="gioitinh" value="Nam" class="form-check-input">Nam
-                      </label>
-                      <label for="gioitinh2" class="form-check-label m-l-20">
-                        <input type="radio" id="gioitinh2" ng-model="gioitinh" name="gioitinh" value="Nữ" class="form-check-input">Nữ
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="sdt" class=" form-control-label">Số điện thoại <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="number" id="sdt" ng-model="sdt" name="sdt" required placeholder="Nhập số điện thoại..." class="form-control">
-                    <div ng-show="FormAdd.sdt.$touched" class="text-danger">
-                      <span ng-show="FormAdd.sdt.$error.required">
-                        Vui lòng nhập số điện thoại
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="email" class=" form-control-label">Email <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="email" id="email" ng-model="email" required ng-pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" name="email" placeholder="Nhập địa chỉ email..." class="form-control">
-                    <div ng-show="FormAdd.email.$touched" class="text-danger">
-                      <span ng-show="FormAdd.email.$error.required">
-                        Vui lòng nhập email
-                      </span>
-                      <span ng-show="FormAdd.email.$error.email">
-                        Email không hợp lệ
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="avatar" class=" form-control-label">Hình đại diện</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input id="avatar" name="avatar" class="form-control" type="file" accept="image/*" data-c-on-change="upload()" class="custom-file-input" file-model="file">
-                  </div>
-                </div>
-
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="diachi" class=" form-control-label">Địa chỉ</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="text" id="diachi" ng-model="diachi" name="diachi" placeholder="Nhập địa chỉ..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="noisinh" class=" form-control-label">Nơi sinh</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="text" id="noisinh" ng-model="noisinh" name="noisinh" placeholder="Nhập nơi sinh..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="cmnd" class=" form-control-label">Chứng minh nhân dân <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="number" id="cmnd" ng-model="cmnd" required name="cmnd" placeholder="Nhập số chứng minh nhân dân..." class="form-control">
-                    <div ng-show="FormAdd.cmnd.$touched" class="text-danger">
-                      <span ng-show="FormAdd.cmnd.$error.required">
-                        Vui lòng nhập số chứng minh nhân dân
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="truonghoc" class=" form-control-label">Trường học <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-9 col-md-9 text-dark">
-                    <select required name="truonghoc" id="truonghoc" class="form-control" ng-change="selectTruongHoc(SelectTruongHoc)" ng-model="SelectTruongHoc">
-
-                      <option ng-repeat="row in truonghoc" value="{{row.matruong}}">{{row.tentruong}}</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="mahv" class=" form-control-label">Mã học viên <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="text" id="mahv" ng-model="mahv" required name="mahv" placeholder="Nhập mã học viên..." class="form-control">
-                    <div ng-show="FormAdd.mahv.$touched" class="text-danger">
-                      <span ng-show="FormAdd.mahv.$error.required">
-                        Vui lòng nhập mã học viên
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="password" class=" form-control-label">Mật khẩu <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="password" ng-model="password" required id="password" name="password" placeholder="Nhập mật khẩu..." class="form-control">
-                    <div ng-show="FormAdd.password.$touched" class="text-danger">
-                      <span ng-show="FormAdd.password.$error.required">
-                        Vui lòng nhập mật khẩu
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="khoahoc" class=" form-control-label">Khoá học <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-9 col-md-9">
-                    <select required name="khoahoc" id="khoahoc" class="form-control" ng-change="selectKhoaHoc(SelectKhoaHoc)" ng-model="SelectKhoaHoc">
-                      <option ng-repeat="row in khoahoc" value="{{row.makhoahoc}}">{{row.tenkhoahoc}}</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="loaihocvien" class=" form-control-label">Loại học viên <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-9 col-md-9">
-                    <select required name="loaihocvien" id="loaihocvien" class="form-control" ng-change="selectLoaiHocVien(SelectLoaiHocVien)" ng-model="SelectLoaiHocVien">
-
-                      <option ng-repeat="row in loaihocvien" value="{{row.id}}">{{row.tenloai}}</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="tgcothedilam" class=" form-control-label">Thời gian dự kiến đi làm</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="date" id="tgcothedilam" ng-model="tgcothedilam" name="tgcothedilam" placeholder="Nhập thời gian dự kiến đi làm..." class="form-control">
-                  </div>
-                </div>
-              </form>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">HỌC VIÊN</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-          </div>
+            <div class="modal-body">
+
+
+
+                <div>
+                    <div class="card">
+
+                        <div class="card-body card-block">
+                            <form action="" method="post" name="FormAdd" class="form-horizontal" novalidate>
+                                <i class="text-danger">*Bắt buộc</i><br><br>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ThemHVho" class=" form-control-label">Họ <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="ThemHVho" name="ho" ng-model="ho" required placeholder="Nhập họ..." class="form-control">
+                                        <div ng-show="FormAdd.ho.$touched" class="text-danger">
+                                            <span ng-show="FormAdd.ho.$error.required">
+                                                Vui lòng nhập họ học viên
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ThemHVtenlot" class=" form-control-label">Tên lót</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="ThemHVtenlot" ng-model="tenlot" name="tenlot" placeholder="Nhập tên lót..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ThemHVten" class=" form-control-label">Tên <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="ThemHVten" ng-model="ten" required name="ten" placeholder="Nhập tên..." class="form-control">
+                                        <div ng-show="FormAdd.ten.$touched" class="text-danger">
+                                            <span ng-show="FormAdd.ten.$error.required">
+                                                Vui lòng nhập tên học viên
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ThemHVngaysinh" class="form-control-label">Ngày sinh <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="date" id="ThemHVngaysinh" ng-model="ngaysinh" required name="ngaysinh" placeholder="Nhập ngày sinh..." class="form-control">
+                                        <div ng-show="FormAdd.ngaysinh.$touched" class="text-danger">
+                                            <span ng-show="FormAdd.ngaysinh.$error.required">
+                                                Vui lòng nhập ngày sinh học viên
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ThemHVgioitinh" class=" form-control-label">Giới tính <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col col-md-9">
+                                        <div class="form-check-inline form-check">
+                                            <label for="ThemHVgioitinh1" class="form-check-label ">
+                                                <input type="radio" id="ThemHVgioitinh1" ng-model="gioitinh" name="gioitinh" value="Nam" class="form-check-input">Nam
+                                            </label>
+                                            <label for="ThemHVgioitinh2" class="form-check-label m-l-20">
+                                                <input type="radio" id="ThemHVgioitinh2" ng-model="gioitinh" name="gioitinh" value="Nữ" class="form-check-input">Nữ
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ThemHVsdt" class=" form-control-label">Số điện thoại <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="number" id="ThemHVsdt" ng-model="sdt" name="sdt" required placeholder="Nhập số điện thoại..." class="form-control">
+                                        <div ng-show="FormAdd.sdt.$touched" class="text-danger">
+                                            <span ng-show="FormAdd.sdt.$error.required">
+                                                Vui lòng nhập số điện thoại
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ThemHVemail" class=" form-control-label">Email <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="email" id="ThemHVemail" ng-model="email" required ng-pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" name="email" placeholder="Nhập địa chỉ email..." class="form-control">
+                                        <div ng-show="FormAdd.email.$touched" class="text-danger">
+                                            <span ng-show="FormAdd.email.$error.required">
+                                                Vui lòng nhập email
+                                            </span>
+                                            <span ng-show="FormAdd.email.$error.email">
+                                                Email không hợp lệ
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ThemHVavatar" class=" form-control-label">Hình đại diện</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input id="ThemHVavatar" name="avatar" class="form-control" type="file" accept="image/*" c-on-change="upload()" class="custom-file-input" file-model="file">
+                                    </div>
+                                </div>
+
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ThemHVdiachi" class=" form-control-label">Địa chỉ</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="ThemHVdiachi" ng-model="diachi" name="diachi" placeholder="Nhập địa chỉ..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ThemHVnoisinh" class=" form-control-label">Nơi sinh</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="ThemHVnoisinh" ng-model="noisinh" name="noisinh" placeholder="Nhập nơi sinh..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ThemHVcmnd" class=" form-control-label">Chứng minh nhân dân <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="number" id="ThemHVcmnd" ng-model="cmnd" required name="cmnd" placeholder="Nhập số chứng minh nhân dân..." class="form-control">
+                                        <div ng-show="FormAdd.cmnd.$touched" class="text-danger">
+                                            <span ng-show="FormAdd.cmnd.$error.required">
+                                                Vui lòng nhập số chứng minh nhân dân
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ThemHVtruonghoc" class=" form-control-label">Trường học <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-9 col-md-9 text-dark">
+                                        <select required name="truonghoc" id="ThemHVtruonghoc" class="form-control" ng-change="selectTruongHoc(SelectTruongHoc)" ng-model="SelectTruongHoc">
+
+                                            <option ng-repeat="row in truonghoc" value="{{row.matruong}}">{{row.tentruong}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ThemHVmahv" class=" form-control-label">Mã học viên <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="ThemHVmahv" ng-model="mahv" required name="mahv" placeholder="Nhập mã học viên..." class="form-control">
+                                        <div ng-show="FormAdd.mahv.$touched" class="text-danger">
+                                            <span ng-show="FormAdd.mahv.$error.required">
+                                                Vui lòng nhập mã học viên
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ThemHVpassword" class=" form-control-label">Mật khẩu <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="password" ng-model="password" required id="ThemHVpassword" name="password" placeholder="Nhập mật khẩu..." class="form-control">
+                                        <div ng-show="FormAdd.password.$touched" class="text-danger">
+                                            <span ng-show="FormAdd.password.$error.required">
+                                                Vui lòng nhập mật khẩu
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ThemHVkhoahoc" class=" form-control-label">Khoá học <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-9 col-md-9">
+                                        <select required name="khoahoc" id="ThemHVkhoahoc" class="form-control" ng-change="selectKhoaHoc(SelectKhoaHoc)" ng-model="SelectKhoaHoc">
+                                            <option ng-repeat="row in khoahoc" value="{{row.makhoahoc}}">{{row.tenkhoahoc}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ThemHVloaihocvien" class=" form-control-label">Loại học viên <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-9 col-md-9">
+                                        <select required name="loaihocvien" id="ThemHVloaihocvien" class="form-control" ng-change="selectLoaiHocVien(SelectLoaiHocVien)" ng-model="SelectLoaiHocVien">
+
+                                            <option ng-repeat="row in loaihocvien" value="{{row.id}}">{{row.tenloai}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ThemHVtgcothedilam" class=" form-control-label">Thời gian dự kiến đi làm</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="date" id="ThemHVtgcothedilam" ng-model="tgcothedilam" name="tgcothedilam" placeholder="Nhập thời gian dự kiến đi làm..." class="form-control">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" name="create" ng-click="createStudent()">Thêm học viên</button>
+            </div>
         </div>
-
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-        <button type="button" class="btn btn-primary" name="create" ng-click="createStudent()">Thêm học viên</button>
-      </div>
     </div>
-  </div>
 </div>
 
 <div class="table-responsive table--no-card m-b-30">
-  <table class="table table-borderless table-striped">
-    <thead class="table-dark text-light">
-      <tr>
-        <th style="width:1%">STT</th>
-        <th ng-click="changeSortPage('MAHV')" ng-class="sortClass('MAHV')">Mã học viên</th>
-        <th ng-click="changeSortPage('HO')" ng-class="sortClass('HO')">Họ</th>
-        <th ng-click="changeSortPage('TEN')" ng-class="sortClass('TEN')">Tên</th>
-        <th>Giới tính</th>
-        <th>Điện thoại</th>
-        <th>Email</th>
-        <th></th>
+    <table class="table table-borderless table-striped">
+        <thead class="table-dark text-light">
+            <tr>
+                <th style="width:1%">STT</th>
+                <th ng-click="changeSortPage('MAHV')" ng-class="sortClass('MAHV')">Mã học viên</th>
+                <th ng-click="changeSortPage('HO')" ng-class="sortClass('HO')">Họ</th>
+                <th ng-click="changeSortPage('TEN')" ng-class="sortClass('TEN')">Tên</th>
+                <th>Giới tính</th>
+                <th>Điện thoại</th>
+                <th>Email</th>
+                <th></th>
 
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="font-size: 13px" ng-repeat="row in hocvienpage">
-        <td>
-          <span ng-bind="temp2 + $index"></span>
-        </td>
-        <td>
-          <span ng-bind="row.mahv"></span>
-        </td>
-        <td>
-          <span ng-bind="row.ho"></span>
-        </td>
-        <td>
-          <span ng-bind="row.tenlot"></span>
-          <span ng-bind="row.ten"></span>
-        </td>
-        <td><span ng-bind="row.gioitinh"></span></td>
-        <td><span ng-bind="row.sdt"></span></td>
-        <td><span ng-bind="row.email"></span></td>
-        <td>
-          <button type="button" name="update" data-toggle="modal" data-target="#ShowInfor2" onclick="myFunction()" ng-click="getMaHV(row)"> <span class="fa fa-info-circle"></span></button>
-          <button class="ml-3 mr-3" type="button" name="update" data-toggle="modal" data-target="#CapNhatHV" onclick="myFunction()" ng-click="getMaHV(row)"> <span class="fa fa-edit"></span></button>
-          <button type="button" name="delete" data-toggle="modal" data-target="#XoaHV" onclick="myFunction()" ng-click="setMaHVDelete(row.mahv)""><span class=" fa fa-trash"></span></button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="font-size: 13px" ng-repeat="row in hocvienpage">
+                <td>
+                    <span ng-bind="temp2 + $index"></span>
+                </td>
+                <td>
+                    <span ng-bind="row.mahv"></span>
+                </td>
+                <td>
+                    <span ng-bind="row.ho"></span>
+                </td>
+                <td>
+                    <span ng-bind="row.tenlot"></span>
+                    <span ng-bind="row.ten"></span>
+                </td>
+                <td><span ng-bind="row.gioitinh"></span></td>
+                <td><span ng-bind="row.sdt"></span></td>
+                <td><span ng-bind="row.email"></span></td>
+                <td>
+                    <button type="button" name="update" data-toggle="modal" data-target="#ShowInfor2" onclick="myFunction()" ng-click="getMaHV(row)"> <span class="fa fa-info-circle"></span></button>
+                    <button class="ml-3 mr-3" type="button" name="update" data-toggle="modal" data-target="#CapNhatHV" onclick="myFunction()" ng-click="getMaHV(row)"> <span class="fa fa-edit"></span></button>
+                    <button type="button" name="delete" data-toggle="modal" data-target="#XoaHV" onclick="myFunction()" ng-click="setMaHVDelete(row.mahv)""><span class=" fa fa-trash"></span></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 
 <div>
-  Hiển thị: {{soluonghienthi}}/{{soluonghocvien}} học viên
+    Hiển thị: {{soluonghienthi}}/{{soluonghocvien}} học viên
 </div>
 <nav aria-label="Page navigation" class="m-b-30">
-  <ul class="pagination justify-content-end">
-    <li class="page-item">
-      <button class="page-link" tabindex="-1" ng-click="preCount()">Previous</button>
-    </li>
-    <li class="page-item" ng-repeat="row in arrSLHocvien"><button class="page-link" ng-model="number" ng-click="numb(row)">{{row+1}}</button></li>
-    <li class="page-item">
-      <button class="page-link" ng-click="nextCount()">Next</button>
-    </li>
-  </ul>
+    <ul class="pagination justify-content-end">
+        <li class="page-item">
+            <button class="page-link" tabindex="-1" ng-click="preCount()">Previous</button>
+        </li>
+        <li class="page-item" ng-repeat="row in arrSLHocvien"><button class="page-link" ng-model="number" ng-click="numb(row)">{{row+1}}</button></li>
+        <li class="page-item">
+            <button class="page-link" ng-click="nextCount()">Next</button>
+        </li>
+    </ul>
 </nav>
 
 
 
 <!-- Modal -->
 <div class="modal fade bg-secondary" data-backdrop="false" id="CapNhatHV" tabindex="-1" role="dialog" aria-labelledby="CapNhatHV" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="CapNhatHV">HỌC VIÊN</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-
-
-        <div>
-          <div class="card">
-
-            <div class="card-body card-block">
-              <form action="" method="post" class="form-horizontal">
-                <i class="text-danger">*Bắt buộc</i><br><br>
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="ho" class=" form-control-label">Họ <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="text" id="ho" name="ho" ng-model="ho" required placeholder="Nhập họ..." class="form-control">
-                    <div ng-show="FormAdd.ho.$touched" class="text-danger">
-                      <span ng-show="FormAdd.ho.$error.required">
-                        Vui lòng nhập họ học viên
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="tenlot" class=" form-control-label">Tên lót</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="text" id="tenlot" ng-model="tenlot" name="tenlot" placeholder="Nhập tên lót..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="ten" class=" form-control-label">Tên <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="text" id="ten" ng-model="ten" required name="ten" placeholder="Nhập tên..." class="form-control">
-                    <div ng-show="FormAdd.ten.$touched" class="text-danger">
-                      <span ng-show="FormAdd.ten.$error.required">
-                        Vui lòng nhập tên học viên
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="ngaysinh" class="form-control-label">Ngày sinh <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="date" id="ngaysinh" ng-model="ngaysinh" required name="ngaysinh" placeholder="Nhập ngày sinh..." class="form-control">
-                    <div ng-show="FormAdd.ngaysinh.$touched" class="text-danger">
-                      <span ng-show="FormAdd.ngaysinh.$error.required">
-                        Vui lòng nhập ngày sinh học viên
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="gioitinh" class=" form-control-label">Giới tính <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col col-md-9">
-                    <div class="form-check-inline form-check">
-                      <label for="gioitinh1" class="form-check-label ">
-                        <input type="radio" id="gioitinh1" ng-model="gioitinh" name="gioitinh" value="Nam" class="form-check-input">Nam
-                      </label>
-                      <label for="gioitinh2" class="form-check-label m-l-20">
-                        <input type="radio" id="gioitinh2" ng-model="gioitinh" name="gioitinh" value="Nữ" class="form-check-input">Nữ
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="sdt" class=" form-control-label">Số điện thoại <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="number" id="sdt" ng-model="sdt" name="sdt" required placeholder="Nhập số điện thoại..." class="form-control">
-                    <div ng-show="FormAdd.sdt.$touched" class="text-danger">
-                      <span ng-show="FormAdd.sdt.$error.required">
-                        Vui lòng nhập số điện thoại
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="email" class=" form-control-label">Email <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="email" id="email" ng-model="email" required ng-pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" name="email" placeholder="Nhập địa chỉ email..." class="form-control">
-                    <div ng-show="FormAdd.email.$touched" class="text-danger">
-                      <span ng-show="FormAdd.email.$error.required">
-                        Vui lòng nhập email
-                      </span>
-                      <span ng-show="FormAdd.email.$error.email">
-                        Email không hợp lệ
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="avatar" class=" form-control-label">Hình đại diện</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input id="avatar" name="avatar" class="form-control" type="file" accept="image/*" data-c-on-change="upload()" class="custom-file-input" file-model="file">
-                  </div>
-                </div>
-
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="diachi" class=" form-control-label">Địa chỉ</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="text" id="diachi" ng-model="diachi" name="diachi" placeholder="Nhập địa chỉ..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="noisinh" class=" form-control-label">Nơi sinh</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="text" id="noisinh" ng-model="noisinh" name="noisinh" placeholder="Nhập nơi sinh..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="cmnd" class=" form-control-label">Chứng minh nhân dân <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="number" id="cmnd" ng-model="cmnd" required name="cmnd" placeholder="Nhập số chứng minh nhân dân..." class="form-control">
-                    <div ng-show="FormAdd.cmnd.$touched" class="text-danger">
-                      <span ng-show="FormAdd.cmnd.$error.required">
-                        Vui lòng nhập số chứng minh nhân dân
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="truonghoc" class=" form-control-label">Trường học <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-9 col-md-9 text-dark">
-                    <select required name="truonghoc" id="truonghoc" class="form-control" ng-change="selectTruongHoc(SelectTruongHoc)" ng-model="SelectTruongHoc">
-
-                      <option ng-repeat="row in truonghoc" value="{{row.matruong}}">{{row.tentruong}}</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="mahv" class=" form-control-label">Mã học viên <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="text" id="mahv" ng-model="mahv" required name="mahv" placeholder="Nhập mã học viên..." class="form-control">
-                    <div ng-show="FormAdd.mahv.$touched" class="text-danger">
-                      <span ng-show="FormAdd.mahv.$error.required">
-                        Vui lòng nhập mã học viên
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="password" class=" form-control-label">Mật khẩu <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="password" ng-model="password" required id="password" name="password" placeholder="Nhập mật khẩu..." class="form-control">
-                    <div ng-show="FormAdd.password.$touched" class="text-danger">
-                      <span ng-show="FormAdd.password.$error.required">
-                        Vui lòng nhập mật khẩu
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="khoahoc" class=" form-control-label">Khoá học <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-9 col-md-9">
-                    <select required name="khoahoc" id="khoahoc" class="form-control" ng-change="selectKhoaHoc(SelectKhoaHoc)" ng-model="SelectKhoaHoc">
-                      <option ng-repeat="row in khoahoc" value="{{row.makhoahoc}}">{{row.tenkhoahoc}}</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="loaihocvien" class=" form-control-label">Loại học viên <strong class="text-danger">*</strong></label>
-                  </div>
-                  <div class="col-9 col-md-9">
-                    <select required name="loaihocvien" id="loaihocvien" class="form-control" ng-change="selectLoaiHocVien(SelectLoaiHocVien)" ng-model="SelectLoaiHocVien">
-
-                      <option ng-repeat="row in loaihocvien" value="{{row.id}}">{{row.tenloai}}</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="tgcothedilam" class=" form-control-label">Thời gian dự kiến đi làm</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="date" id="tgcothedilam" ng-model="tgcothedilam" name="tgcothedilam" placeholder="Nhập thời gian dự kiến đi làm..." class="form-control">
-                  </div>
-                </div>
-              </form>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">HỌC VIÊN</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-          </div>
+            <div class="modal-body">
+
+
+
+                <div>
+                    <div class="card">
+
+                        <div class="card-body card-block">
+                            <form action="" method="post" class="form-horizontal">
+                                <i class="text-danger">*Bắt buộc</i><br><br>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="CapNhatHVho" class=" form-control-label">Họ <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="CapNhatHVho" name="ho" ng-model="ho" required placeholder="Nhập họ..." class="form-control">
+                                        <div ng-show="FormAdd.ho.$touched" class="text-danger">
+                                            <span ng-show="FormAdd.ho.$error.required">
+                                                Vui lòng nhập họ học viên
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="CapNhatHVtenlot" class=" form-control-label">Tên lót</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="CapNhatHVtenlot" ng-model="tenlot" name="tenlot" placeholder="Nhập tên lót..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="CapNhatHVten" class=" form-control-label">Tên <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="CapNhatHVten" ng-model="ten" required name="ten" placeholder="Nhập tên..." class="form-control">
+                                        <div ng-show="FormAdd.ten.$touched" class="text-danger">
+                                            <span ng-show="FormAdd.ten.$error.required">
+                                                Vui lòng nhập tên học viên
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="CapNhatHVngaysinh" class="form-control-label">Ngày sinh <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="date" id="CapNhatHVngaysinh" ng-model="ngaysinh" required name="ngaysinh" placeholder="Nhập ngày sinh..." class="form-control">
+                                        <div ng-show="FormAdd.ngaysinh.$touched" class="text-danger">
+                                            <span ng-show="FormAdd.ngaysinh.$error.required">
+                                                Vui lòng nhập ngày sinh học viên
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="CapNhatHVgioitinh" class=" form-control-label">Giới tính <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col col-md-9">
+                                        <div class="form-check-inline form-check">
+                                            <label for="gioitinh1" class="form-check-label ">
+                                                <input type="radio" id="CapNhatHVgioitinh1" ng-model="gioitinh" name="gioitinh" value="Nam" class="form-check-input">Nam
+                                            </label>
+                                            <label for="gioitinh2" class="form-check-label m-l-20">
+                                                <input type="radio" id="CapNhatHVgioitinh2" ng-model="gioitinh" name="gioitinh" value="Nữ" class="form-check-input">Nữ
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="CapNhatHVsdt" class=" form-control-label">Số điện thoại <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="number" id="CapNhatHVsdt" ng-model="sdt" name="sdt" required placeholder="Nhập số điện thoại..." class="form-control">
+                                        <div ng-show="FormAdd.sdt.$touched" class="text-danger">
+                                            <span ng-show="FormAdd.sdt.$error.required">
+                                                Vui lòng nhập số điện thoại
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="CapNhatHVemail" class=" form-control-label">Email <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="email" id="CapNhatHVemail" ng-model="email" required ng-pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" name="email" placeholder="Nhập địa chỉ email..." class="form-control">
+                                        <div ng-show="FormAdd.email.$touched" class="text-danger">
+                                            <span ng-show="FormAdd.email.$error.required">
+                                                Vui lòng nhập email
+                                            </span>
+                                            <span ng-show="FormAdd.email.$error.email">
+                                                Email không hợp lệ
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="CapNhatHVavatar" class=" form-control-label">Hình đại diện</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input id="CapNhatHVavatar" name="avatar" class="form-control" type="file" accept="image/*" data-c-on-change="upload()" class="custom-file-input" file-model="file">
+                                    </div>
+                                </div>
+
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="CapNhatHVdiachi" class=" form-control-label">Địa chỉ</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="CapNhatHVdiachi" ng-model="diachi" name="diachi" placeholder="Nhập địa chỉ..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="CapNhatHVnoisinh" class=" form-control-label">Nơi sinh</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="CapNhatHVnoisinh" ng-model="noisinh" name="noisinh" placeholder="Nhập nơi sinh..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="CapNhatHVcmnd" class=" form-control-label">Chứng minh nhân dân <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="number" id="CapNhatHVcmnd" ng-model="cmnd" required name="cmnd" placeholder="Nhập số chứng minh nhân dân..." class="form-control">
+                                        <div ng-show="FormAdd.cmnd.$touched" class="text-danger">
+                                            <span ng-show="FormAdd.cmnd.$error.required">
+                                                Vui lòng nhập số chứng minh nhân dân
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="CapNhatHVtruonghoc" class=" form-control-label">Trường học <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-9 col-md-9 text-dark">
+                                        <select required name="truonghoc" id="CapNhatHVtruonghoc" class="form-control" ng-change="selectTruongHoc(SelectTruongHoc)" ng-model="SelectTruongHoc">
+
+                                            <option ng-repeat="row in truonghoc" value="{{row.matruong}}">{{row.tentruong}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="CapNhatHVmahv" class=" form-control-label">Mã học viên <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="CapNhatHVmahv" ng-model="mahv" required name="mahv" placeholder="Nhập mã học viên..." class="form-control">
+                                        <div ng-show="FormAdd.mahv.$touched" class="text-danger">
+                                            <span ng-show="FormAdd.mahv.$error.required">
+                                                Vui lòng nhập mã học viên
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="CapNhatHVpassword" class=" form-control-label">Mật khẩu <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="password" ng-model="password" required id="CapNhatHVpassword" name="password" placeholder="Nhập mật khẩu..." class="form-control">
+                                        <div ng-show="FormAdd.password.$touched" class="text-danger">
+                                            <span ng-show="FormAdd.password.$error.required">
+                                                Vui lòng nhập mật khẩu
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="CapNhatHVkhoahoc" class=" form-control-label">Khoá học <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-9 col-md-9">
+                                        <select required name="khoahoc" id="CapNhatHVkhoahoc" class="form-control" ng-change="selectKhoaHoc(SelectKhoaHoc)" ng-model="SelectKhoaHoc">
+                                            <option ng-repeat="row in khoahoc" value="{{row.makhoahoc}}">{{row.tenkhoahoc}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="CapNhatHVloaihocvien" class=" form-control-label">Loại học viên <strong class="text-danger">*</strong></label>
+                                    </div>
+                                    <div class="col-9 col-md-9">
+                                        <select required name="loaihocvien" id="CapNhatHVloaihocvien" class="form-control" ng-change="selectLoaiHocVien(SelectLoaiHocVien)" ng-model="SelectLoaiHocVien">
+
+                                            <option ng-repeat="row in loaihocvien" value="{{row.id}}">{{row.tenloai}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="CapNhatHVtgcothedilam" class=" form-control-label">Thời gian dự kiến đi làm</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="date" id="CapNhatHVtgcothedilam" ng-model="tgcothedilam" name="tgcothedilam" placeholder="Nhập thời gian dự kiến đi làm..." class="form-control">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" name="create" ng-click="updateStudent()">Cập nhật học viên</button>
+            </div>
         </div>
-
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-        <button type="button" class="btn btn-primary" name="create" ng-click="updateStudent()">Cập nhật học viên</button>
-      </div>
     </div>
-  </div>
 </div>
 
 
 
 <!-- Modal -->
 <div class="modal fade bg-secondary" data-backdrop="false" id="XoaHV" tabindex="-1" role="dialog" aria-labelledby="XoaHV" aria-hidden="true">
-  <div class="modal-dialog modal-md" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="XoaHV">Cảnh báo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h1>Bạn có chắc muốn xoá không?</h1>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Không</button>
-        <button type="button" class="btn btn-danger" name="delete" ng-click="deleteStudent()">Đồng ý</button>
-      </div>
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="XoaHV">Cảnh báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h1>Bạn có chắc muốn xoá không?</h1>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Không</button>
+                <button type="button" class="btn btn-danger" name="delete" ng-click="deleteStudent()">Đồng ý</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 
 <!---Show infor student--->
 <div class="modal fade bg-secondary" data-backdrop="false" id="ShowInfor" tabindex="-1" role="dialog" aria-labelledby="ShowInfor" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="ShowInfor">HỌC VIÊN</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-
-
-        <div>
-          <div class="card">
-
-            <div class="card-body card-block">
-              <form action="" method="post" class="form-horizontal">
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="ho" class=" form-control-label">Họ</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input disabled type="text" id="ho" name="ho" ng-model="ho" placeholder="Nhập họ..." class="form-control">
-                  </div>
-                </div>
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="tenlot" class=" form-control-label">Tên lót</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input disabled type="text" id="tenlot" ng-model="tenlot" name="tenlot" placeholder="Nhập tên lót..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="ten" class=" form-control-label">Tên</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input disabled type="text" id="ten" ng-model="ten" name="ten" placeholder="Nhập tên..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="gioitinh" class=" form-control-label">Giới tính</label>
-                  </div>
-                  <div class="col col-md-9">
-                    <div class="form-check-inline form-check">
-                      <label for="gioitinh1" class="form-check-label ">
-                        <input disabled type="radio" id="gioitinh1" ng-model="gioitinh" name="gioitinh" value="Nam" class="form-check-input">Nam
-                      </label>
-                      <label for="gioitinh2" class="form-check-label m-l-20">
-                        <input disabled type="radio" id="gioitinh2" ng-model="gioitinh" name="gioitinh" value="Nữ" class="form-check-input">Nữ
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="ngaysinh" class="form-control-label">Ngày sinh</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input disabled type="date" id="ngaysinh" ng-model="ngaysinh" name="ngaysinh" placeholder="Nhập ngày sinh..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="noisinh" class=" form-control-label">Nơi sinh</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input disabled type="text" id="noisinh" ng-model="noisinh" name="noisinh" placeholder="Nhập nơi sinh..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="cmnd" class=" form-control-label">Chứng minh nhân dân</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input disabled type="number" id="cmnd" ng-model="cmnd" name="cmnd" placeholder="Nhập số chứng minh nhân dân..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="sdt" class=" form-control-label">Số điện thoại</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input disabled type="tel" id="sdt" ng-model="sdt" name="sdt" placeholder="Nhập số điện thoại..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="email" class=" form-control-label">Email</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input disabled type="email" id="email" ng-model="email" name="email" placeholder="quynguyen97cntt@gmail.com" class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="diachi" class=" form-control-label">Địa chỉ</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input disabled type="text" id="diachi" ng-model="diachi" name="diachi" placeholder="Nhập địa chỉ..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="mahv" class=" form-control-label">Mã học viên</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input disabled type="text" id="mahv" ng-model="mahv" name="mahv" placeholder="Nhập mã học viên..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="password" class=" form-control-label">Mật khẩu</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input disabled type="password" ng-model="password" id="password" name="password" placeholder="Nhập mật khẩu..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="tgcothedilam" class=" form-control-label">Thời gian dự kiến đi làm</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input disabled type="date" id="tgcothedilam" ng-model="tgcothedilam" name="tgcothedilam" placeholder="Nhập thời gian dự kiến đi làm..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="truonghoc" class=" form-control-label">Trường học</label>
-                  </div>
-                  <div class="col-9 col-md-9 text-dark">
-                    <select disabled name="truonghoc" id="truonghoc" class="form-control" ng-change="selectTruongHoc(SelectTruongHoc)" ng-model="SelectTruongHoc">
-
-                      <option ng-repeat="row in truonghoc" value="{{row.matruong}}">{{row.tentruong}}</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="loaitaikhoan" class=" form-control-label">Loại tài khoản</label>
-                  </div>
-                  <div class="col-9 col-md-9">
-                    <select disabled name="loaitaikhoan" id="loaitaikhoan" class="form-control" ng-change="selectLoaiTaiKhoan(SelectLoaiTaiKhoan)" ng-model="SelectLoaiTaiKhoan">
-
-                      <option ng-repeat="row in loaitaikhoan" value="{{row.id}}">{{row.tenloai}}</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="khoahoc" class=" form-control-label">Khoá học</label>
-                  </div>
-                  <div class="col-9 col-md-9">
-                    <select disabled name="khoahoc" id="khoahoc" class="form-control" ng-change="selectKhoaHoc(SelectKhoaHoc)" ng-model="SelectKhoaHoc">
-                      <option ng-repeat="row in khoahoc" value="{{row.makhoahoc}}">{{row.tenkhoahoc}}</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="loaihocvien" class=" form-control-label">Loại học viên</label>
-                  </div>
-                  <div class="col-9 col-md-9">
-                    <select disabled name="loaihocvien" id="loaihocvien" class="form-control" ng-change="selectLoaiHocVien(SelectLoaiHocVien)" ng-model="SelectLoaiHocVien">
-
-                      <option ng-repeat="row in loaihocvien" value="{{row.id}}">{{row.tenloai}}</option>
-                    </select>
-                  </div>
-                </div>
-              </form>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ShowInfor">HỌC VIÊN</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-          </div>
+            <div class="modal-body">
+
+
+
+                <div>
+                    <div class="card">
+
+                        <div class="card-body card-block">
+                            <form action="" method="post" class="form-horizontal">
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ShowInforho" class=" form-control-label">Họ</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input disabled type="text" id="ShowInforho" name="ho" ng-model="ho" placeholder="Nhập họ..." class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ShowInfortenlot" class=" form-control-label">Tên lót</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input disabled type="text" id="ShowInfortenlot" ng-model="tenlot" name="tenlot" placeholder="Nhập tên lót..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ShowInforten" class=" form-control-label">Tên</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input disabled type="text" id="ShowInforten" ng-model="ten" name="ten" placeholder="Nhập tên..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ShowInforgioitinh" class=" form-control-label">Giới tính</label>
+                                    </div>
+                                    <div class="col col-md-9">
+                                        <div class="form-check-inline form-check">
+                                            <label for="ShowInforgioitinh1" class="form-check-label ">
+                                                <input disabled type="radio" id="ShowInforgioitinh1" ng-model="gioitinh" name="gioitinh" value="Nam" class="form-check-input">Nam
+                                            </label>
+                                            <label for="ShowInforgioitinh2" class="form-check-label m-l-20">
+                                                <input disabled type="radio" id="ShowInforgioitinh2" ng-model="gioitinh" name="gioitinh" value="Nữ" class="form-check-input">Nữ
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ShowInforngaysinh" class="form-control-label">Ngày sinh</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input disabled type="date" id="ShowInforngaysinh" ng-model="ngaysinh" name="ngaysinh" placeholder="Nhập ngày sinh..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ShowInfornoisinh" class=" form-control-label">Nơi sinh</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input disabled type="text" id="ShowInfornoisinh" ng-model="noisinh" name="noisinh" placeholder="Nhập nơi sinh..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ShowInforcmnd" class=" form-control-label">Chứng minh nhân dân</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input disabled type="number" id="ShowInforcmnd" ng-model="cmnd" name="cmnd" placeholder="Nhập số chứng minh nhân dân..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ShowInforsdt" class=" form-control-label">Số điện thoại</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input disabled type="tel" id="ShowInforsdt" ng-model="sdt" name="sdt" placeholder="Nhập số điện thoại..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ShowInforemail" class=" form-control-label">Email</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input disabled type="email" id="ShowInforemail" ng-model="email" name="email" placeholder="quynguyen97cntt@gmail.com" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ShowInfordiachi" class=" form-control-label">Địa chỉ</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input disabled type="text" id="ShowInfordiachi" ng-model="diachi" name="diachi" placeholder="Nhập địa chỉ..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ShowInformahv" class=" form-control-label">Mã học viên</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input disabled type="text" id="ShowInformahv" ng-model="mahv" name="mahv" placeholder="Nhập mã học viên..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ShowInforpassword" class=" form-control-label">Mật khẩu</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input disabled type="password" ng-model="password" id="ShowInforpassword" name="password" placeholder="Nhập mật khẩu..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ShowInfortgcothedilam" class=" form-control-label">Thời gian dự kiến đi làm</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input disabled type="date" id="ShowInfortgcothedilam" ng-model="tgcothedilam" name="tgcothedilam" placeholder="Nhập thời gian dự kiến đi làm..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ShowInfortruonghoc" class=" form-control-label">Trường học</label>
+                                    </div>
+                                    <div class="col-9 col-md-9 text-dark">
+                                        <select disabled name="truonghoc" id="ShowInfortruonghoc" class="form-control" ng-change="selectTruongHoc(SelectTruongHoc)" ng-model="SelectTruongHoc">
+
+                                            <option ng-repeat="row in truonghoc" value="{{row.matruong}}">{{row.tentruong}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ShowInforloaitaikhoan" class=" form-control-label">Loại tài khoản</label>
+                                    </div>
+                                    <div class="col-9 col-md-9">
+                                        <select disabled name="loaitaikhoan" id="ShowInforloaitaikhoan" class="form-control" ng-change="selectLoaiTaiKhoan(SelectLoaiTaiKhoan)" ng-model="SelectLoaiTaiKhoan">
+
+                                            <option ng-repeat="row in loaitaikhoan" value="{{row.id}}">{{row.tenloai}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ShowInforkhoahoc" class=" form-control-label">Khoá học</label>
+                                    </div>
+                                    <div class="col-9 col-md-9">
+                                        <select disabled name="khoahoc" id="ShowInforkhoahoc" class="form-control" ng-change="selectKhoaHoc(SelectKhoaHoc)" ng-model="SelectKhoaHoc">
+                                            <option ng-repeat="row in khoahoc" value="{{row.makhoahoc}}">{{row.tenkhoahoc}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="ShowInforloaihocvien" class=" form-control-label">Loại học viên</label>
+                                    </div>
+                                    <div class="col-9 col-md-9">
+                                        <select disabled name="loaihocvien" id="ShowInforloaihocvien" class="form-control" ng-change="selectLoaiHocVien(SelectLoaiHocVien)" ng-model="SelectLoaiHocVien">
+
+                                            <option ng-repeat="row in loaihocvien" value="{{row.id}}">{{row.tenloai}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Thoát</button>
+            </div>
         </div>
-
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Thoát</button>
-      </div>
     </div>
-  </div>
 </div>
 <!---End show infor student--->
 
@@ -832,254 +832,254 @@
 
 <!---Show infor student 2--->
 <div class="modal fade bg-secondary" data-backdrop="false" id="ShowInfor2" tabindex="-1" role="dialog" aria-labelledby="ShowInfor2" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-
-
-        <div>
-          <div class="card">
-
-            <div class="card-body card-block">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
 
 
-              <div class="table-responsive table--no-card m-b-30">
-                <table class="table table-borderless table-striped">
-                  <tr>
-                    <td>
-                      <strong>THÔNG TIN HỌC VIÊN</strong>
-                    </td>
-                    <td>
-                      <input style="height:0" disabled />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td rowspan="5">
-                      <img src="./assets/lib/images/avatars/{{anhdaidien}}" style="width: 200px; height:280px" alt="Avatar" />
-                    </td>
-                    <td>
-                      Họ
-                    </td>
-                    <td>
-                      <input disabled type="text" id="ho" name="ho" ng-model="ho" placeholder="Nhập họ..." class="form-control">
-                    </td>
-                  </tr>
 
-                  <tr>
-                    <td>
-                      Tên lót
-                    </td>
-                    <td>
-                      <input disabled type="text" id="tenlot" ng-model="tenlot" name="tenlot" placeholder="Nhập tên lót..." class="form-control">
-                    </td>
-                  </tr>
+                <div>
+                    <div class="card">
 
-                  <tr>
-                    <td>
-                      Tên
-                    </td>
-                    <td>
-                      <input disabled type="text" id="ten" ng-model="ten" name="ten" placeholder="Nhập tên..." class="form-control">
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      Giới tính
-                    </td>
-                    <td>
-                      <div class="form-check-inline form-check">
-                        <label for="gioitinh1" class="form-check-label ">
-                          <input disabled type="radio" id="gioitinh1" ng-model="gioitinh" name="gioitinh" value="Nam" class="form-check-input">Nam
-                        </label>
-                        <label for="gioitinh2" class="form-check-label m-l-20">
-                          <input disabled type="radio" id="gioitinh2" ng-model="gioitinh" name="gioitinh" value="Nữ" class="form-check-input">Nữ
-                        </label>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      Ngày sinh
-                    </td>
-                    <td>
-                      <input disabled type="date" id="ngaysinh" ng-model="ngaysinh" name="ngaysinh" placeholder="Nhập ngày sinh..." class="form-control">
-                    </td>
-                  </tr>
+                        <div class="card-body card-block">
 
 
-                  <tr>
-                    <td>
-                      Nơi sinh
-                    </td>
-                    <td colspan="2">
-                      <input disabled type="text" id="noisinh" ng-model="noisinh" name="noisinh" placeholder="Nhập nơi sinh..." class="form-control">
-                    </td>
-                  </tr>
+                            <div class="table-responsive table--no-card m-b-30">
+                                <table class="table table-borderless table-striped">
+                                    <tr>
+                                        <td>
+                                            <strong>THÔNG TIN HỌC VIÊN</strong>
+                                        </td>
+                                        <td>
+                                            <input style="height:0" disabled />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="5">
+                                            <img src="./assets/lib/images/avatars/{{anhdaidien}}" style="width: 200px; height:280px" alt="Avatar" />
+                                        </td>
+                                        <td>
+                                            Họ
+                                        </td>
+                                        <td>
+                                            <input disabled type="text" id="ho" name="ho" ng-model="ho" placeholder="Nhập họ..." class="form-control">
+                                        </td>
+                                    </tr>
 
-                  <tr>
-                    <td>
-                      CMND
-                    </td>
-                    <td colspan="2">
-                      <input disabled type="number" id="cmnd" ng-model="cmnd" name="cmnd" placeholder="Nhập số chứng minh nhân dân..." class="form-control">
-                    </td>
-                  </tr>
+                                    <tr>
+                                        <td>
+                                            Tên lót
+                                        </td>
+                                        <td>
+                                            <input disabled type="text" id="tenlot" ng-model="tenlot" name="tenlot" placeholder="Nhập tên lót..." class="form-control">
+                                        </td>
+                                    </tr>
 
-                  <tr>
-                    <td>
-                      Số điện thoại
-                    </td>
-                    <td colspan="2">
-                      <input disabled type="tel" id="sdt" ng-model="sdt" name="sdt" placeholder="Nhập số điện thoại..." class="form-control">
-                    </td>
-                  </tr>
+                                    <tr>
+                                        <td>
+                                            Tên
+                                        </td>
+                                        <td>
+                                            <input disabled type="text" id="ten" ng-model="ten" name="ten" placeholder="Nhập tên..." class="form-control">
+                                        </td>
+                                    </tr>
 
-                  <tr>
-                    <td>
-                      Email
-                    </td>
-                    <td colspan="2">
-                      <input disabled type="email" id="email" ng-model="email" name="email" placeholder="quynguyen97cntt@gmail.com" class="form-control">
-                    </td>
-                  </tr>
+                                    <tr>
+                                        <td>
+                                            Giới tính
+                                        </td>
+                                        <td>
+                                            <div class="form-check-inline form-check">
+                                                <label for="gioitinh1" class="form-check-label ">
+                                                    <input disabled type="radio" id="gioitinh1" ng-model="gioitinh" name="gioitinh" value="Nam" class="form-check-input">Nam
+                                                </label>
+                                                <label for="gioitinh2" class="form-check-label m-l-20">
+                                                    <input disabled type="radio" id="gioitinh2" ng-model="gioitinh" name="gioitinh" value="Nữ" class="form-check-input">Nữ
+                                                </label>
+                                            </div>
+                                        </td>
+                                    </tr>
 
-                  <tr>
-                    <td>
-                      Địa chỉ
-                    </td>
-                    <td colspan="2">
-                      <input disabled type="text" id="diachi" ng-model="diachi" name="diachi" placeholder="Nhập địa chỉ..." class="form-control">
-                    </td>
-                  </tr>
+                                    <tr>
+                                        <td>
+                                            Ngày sinh
+                                        </td>
+                                        <td>
+                                            <input disabled type="date" id="ngaysinh" ng-model="ngaysinh" name="ngaysinh" placeholder="Nhập ngày sinh..." class="form-control">
+                                        </td>
+                                    </tr>
 
-                  <tr>
-                    <td>
-                      Trường học
-                    </td>
-                    <td colspan="2">
-                      <select disabled name="truonghoc" id="truonghoc" class="form-control" ng-change="selectTruongHoc(SelectTruongHoc)" ng-model="SelectTruongHoc">
 
-                        <option ng-repeat="row in truonghoc" value="{{row.matruong}}">{{row.tentruong}}</option>
-                      </select>
-                    </td>
-                  </tr>
+                                    <tr>
+                                        <td>
+                                            Nơi sinh
+                                        </td>
+                                        <td colspan="2">
+                                            <input disabled type="text" id="noisinh" ng-model="noisinh" name="noisinh" placeholder="Nhập nơi sinh..." class="form-control">
+                                        </td>
+                                    </tr>
 
-                  <tr>
-                    <td>
-                      Mã học viên
-                    </td>
-                    <td colspan="2">
-                      <input disabled type="text" id="mahv" ng-model="mahv" name="mahv" placeholder="Nhập mã học viên..." class="form-control">
-                    </td>
-                  </tr>
+                                    <tr>
+                                        <td>
+                                            CMND
+                                        </td>
+                                        <td colspan="2">
+                                            <input disabled type="number" id="cmnd" ng-model="cmnd" name="cmnd" placeholder="Nhập số chứng minh nhân dân..." class="form-control">
+                                        </td>
+                                    </tr>
 
-                  <tr>
-                    <td>
-                      Mật khẩu
-                    </td>
-                    <td colspan="2">
-                      <input disabled type="password" ng-model="password" id="password" name="password" placeholder="Nhập mật khẩu..." class="form-control">
-                    </td>
-                  </tr>
+                                    <tr>
+                                        <td>
+                                            Số điện thoại
+                                        </td>
+                                        <td colspan="2">
+                                            <input disabled type="tel" id="sdt" ng-model="sdt" name="sdt" placeholder="Nhập số điện thoại..." class="form-control">
+                                        </td>
+                                    </tr>
 
-                  <tr>
-                    <td>
-                      Loại tài khoản
-                    </td>
-                    <td colspan="2">
-                      <select disabled name="loaitaikhoan" id="loaitaikhoan" class="form-control" ng-change="selectLoaiTaiKhoan(SelectLoaiTaiKhoan)" ng-model="SelectLoaiTaiKhoan">
+                                    <tr>
+                                        <td>
+                                            Email
+                                        </td>
+                                        <td colspan="2">
+                                            <input disabled type="email" id="email" ng-model="email" name="email" placeholder="quynguyen97cntt@gmail.com" class="form-control">
+                                        </td>
+                                    </tr>
 
-                        <option ng-repeat="row in loaitaikhoan" value="{{row.id}}">{{row.tenloai}}</option>
-                      </select>
-                    </td>
-                  </tr>
+                                    <tr>
+                                        <td>
+                                            Địa chỉ
+                                        </td>
+                                        <td colspan="2">
+                                            <input disabled type="text" id="diachi" ng-model="diachi" name="diachi" placeholder="Nhập địa chỉ..." class="form-control">
+                                        </td>
+                                    </tr>
 
-                  <tr>
-                    <td>
-                      Khoá học
-                    </td>
-                    <td colspan="2">
-                      <select disabled name="khoahoc" id="khoahoc" class="form-control" ng-change="selectKhoaHoc(SelectKhoaHoc)" ng-model="SelectKhoaHoc">
-                        <option ng-repeat="row in khoahoc" value="{{row.makhoahoc}}">{{row.tenkhoahoc}}</option>
-                      </select>
-                    </td>
-                  </tr>
+                                    <tr>
+                                        <td>
+                                            Trường học
+                                        </td>
+                                        <td colspan="2">
+                                            <select disabled name="truonghoc" id="truonghoc" class="form-control" ng-change="selectTruongHoc(SelectTruongHoc)" ng-model="SelectTruongHoc">
 
-                  <tr>
-                    <td>
-                      Loại học viên
-                    </td>
-                    <td colspan="2">
-                      <select disabled name="loaihocvien" id="loaihocvien" class="form-control" ng-change="selectLoaiHocVien(SelectLoaiHocVien)" ng-model="SelectLoaiHocVien">
+                                                <option ng-repeat="row in truonghoc" value="{{row.matruong}}">{{row.tentruong}}</option>
+                                            </select>
+                                        </td>
+                                    </tr>
 
-                        <option ng-repeat="row in loaihocvien" value="{{row.id}}">{{row.tenloai}}</option>
-                      </select>
-                    </td>
-                  </tr>
+                                    <tr>
+                                        <td>
+                                            Mã học viên
+                                        </td>
+                                        <td colspan="2">
+                                            <input disabled type="text" id="mahv" ng-model="mahv" name="mahv" placeholder="Nhập mã học viên..." class="form-control">
+                                        </td>
+                                    </tr>
 
-                  <tr>
-                    <td>
-                      Thời gian dự kiến đi làm
-                    </td>
-                    <td colspan="2">
-                      <input disabled type="date" id="tgcothedilam" ng-model="tgcothedilam" name="tgcothedilam" placeholder="Nhập thời gian dự kiến đi làm..." class="form-control">
-                    </td>
-                  </tr>
-                </table>
-              </div>
+                                    <tr>
+                                        <td>
+                                            Mật khẩu
+                                        </td>
+                                        <td colspan="2">
+                                            <input disabled type="password" ng-model="password" id="password" name="password" placeholder="Nhập mật khẩu..." class="form-control">
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            Loại tài khoản
+                                        </td>
+                                        <td colspan="2">
+                                            <select disabled name="loaitaikhoan" id="loaitaikhoan" class="form-control" ng-change="selectLoaiTaiKhoan(SelectLoaiTaiKhoan)" ng-model="SelectLoaiTaiKhoan">
+
+                                                <option ng-repeat="row in loaitaikhoan" value="{{row.id}}">{{row.tenloai}}</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            Khoá học
+                                        </td>
+                                        <td colspan="2">
+                                            <select disabled name="khoahoc" id="khoahoc" class="form-control" ng-change="selectKhoaHoc(SelectKhoaHoc)" ng-model="SelectKhoaHoc">
+                                                <option ng-repeat="row in khoahoc" value="{{row.makhoahoc}}">{{row.tenkhoahoc}}</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            Loại học viên
+                                        </td>
+                                        <td colspan="2">
+                                            <select disabled name="loaihocvien" id="loaihocvien" class="form-control" ng-change="selectLoaiHocVien(SelectLoaiHocVien)" ng-model="SelectLoaiHocVien">
+
+                                                <option ng-repeat="row in loaihocvien" value="{{row.id}}">{{row.tenloai}}</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            Thời gian dự kiến đi làm
+                                        </td>
+                                        <td colspan="2">
+                                            <input disabled type="date" id="tgcothedilam" ng-model="tgcothedilam" name="tgcothedilam" placeholder="Nhập thời gian dự kiến đi làm..." class="form-control">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
 
 
             </div>
-          </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Thoát</button>
+            </div>
         </div>
-
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Thoát</button>
-      </div>
     </div>
-  </div>
 </div>
 <!---End show infor  2--->
 
 
 <script type="text/javascript">
-  $('#header-button').click(function(event) {
-    myFunction2();
-    //$(event.target).modal('hide');
-  });
-  $('#ThemHV').click(function(event) {
-    $(event.target).modal('hide');
-  });
-  $('#ShowInfor').click(function(event) {
-    $(event.target).modal('hide');
-  });
-  $('#ShowInfor2').click(function(event) {
-    $(event.target).modal('hide');
-  });
-  $('#CapNhatHV').click(function(event) {
-    $(event.target).modal('hide');
-  });
-  $('#XoaHV').click(function(event) {
-    $(event.target).modal('hide');
-  });
+    $('#header-button').click(function(event) {
+        myFunction2();
+        //$(event.target).modal('hide');
+    });
+    $('#ThemHV').click(function(event) {
+        $(event.target).modal('hide');
+    });
+    $('#ShowInfor').click(function(event) {
+        $(event.target).modal('hide');
+    });
+    $('#ShowInfor2').click(function(event) {
+        $(event.target).modal('hide');
+    });
+    $('#CapNhatHV').click(function(event) {
+        $(event.target).modal('hide');
+    });
+    $('#XoaHV').click(function(event) {
+        $(event.target).modal('hide');
+    });
 
-  function myFunction() {
-    document.getElementById("header-desktop").style.zIndex = "1";
-  }
+    function myFunction() {
+        document.getElementById("header-desktop").style.zIndex = "1";
+    }
 
-  function myFunction2() {
-    document.getElementById("header-desktop").style.zIndex = "2";
-  }
+    function myFunction2() {
+        document.getElementById("header-desktop").style.zIndex = "2";
+    }
 </script>

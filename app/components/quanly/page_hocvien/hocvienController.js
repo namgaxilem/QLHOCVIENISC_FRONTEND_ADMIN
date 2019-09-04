@@ -483,21 +483,21 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', '$root
 adminApp.constant('urls', {
   DOC_URL: 'http://localhost:8080/doc/'
 });
-adminApp.directive('cOnChange', function() {
-  'use strict';
-
-  return {
-    restrict: "A",
-    scope: {
-      cOnChange: '&'
-    },
-    link: function(scope, element) {
-      element.on('change', function() {
-        scope.cOnChange();
-      });
-    }
-  };
-});
+// adminApp.directive('cOnChange', function() {
+//   'use strict';
+//
+//   return {
+//     restrict: "A", replace: false,
+//     scope: {
+//       cOnChange: '&'
+//     },
+//     link: function(scope, element) {
+//       element.on('change', function() {
+//         scope.cOnChange();
+//       });
+//     }
+//   };
+// });
 
 adminApp.directive('fileModel', ['$parse', function($parse) {
   return {

@@ -72,7 +72,7 @@ adminApp.controller('thongbaoController', ['$scope', '$http', '$resource', funct
 
     $scope.Message = ThongBao.save($scope.thongbaoThem);
 
-    location.reload();
+    // location.reload();
   };
 
   $scope.setMaThongBaoDelete = function(ThongBao) {
