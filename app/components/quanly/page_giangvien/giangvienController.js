@@ -42,33 +42,22 @@ $scope.searchCBGV = function(macbgv){
 
   $scope.model = {};
   $scope.createCBGV = function() {
-  if ($scope.password != '' && $scope.email != '' && $scope.sdt != '' && $scope.ho != '' && $scope.ngaysinh != '' && $scope.cmnd != '' && $scope.ten != '' && $scope.macbgv != '' && $scope.diachi != '')
-  {
-    $scope.loadData();
-    for (var i = 0; i < $scope.canbogiangvienList.length; i++)
+    if ( ($scope.model.ho == null) || ($scope.model.ten == null) || ($scope.model.cmnd == null) || ($scope.model.sdt == null) || ($scope.model.email == null) || ($scope.model.macbgv == null) || ($scope.model.password == null) || ($scope.model.diachi == null))
     {
-      if ($scope.macbgv != $scope.canbogiangvienList[i].macbgv)
-      {
-        $http.post(apiBaseUrl + '/add_canbogiangvien', $scope.model).then(function(res){
-          console.log('success ', res);
-          //location.reload();
-          $scope.model = null;
-          //$scope.loadData();
-          location.reload();
-        }, function(err) {
-          alert("Vui lòng nhập đủ các trường bắt buộc!");
-        });
-      }
-      else
-      {
-        alert("Mã CBGV bị trùng!");
-      }
-    }
-  }
-  else
-  {
       alert("Vui lòng nhập đủ các trường bắt buộc!");
-  }
+    }
+    else
+    {
+      $http.post(apiBaseUrl + '/add_canbogiangvien', $scope.model).then(function(res){
+        console.log('success ', res);
+        //location.reload();
+        $scope.model = null;
+        //$scope.loadData();
+        location.reload();
+      }, function(err) {
+        alert("Vui lòng nhập đủ các trường bắt buộc!");
+      });
+    }
 }
 
 $scope.editModel = {};
@@ -82,15 +71,22 @@ $scope.loadDataForEdit = function(macbgv) {
 
 
 $scope.editCBGV = function(maCBGV){
-  var url = apiBaseUrl + '/update_canbogiangvien/' + $scope.editModel.macbgv;
-  $http.put(url, $scope.editModel).then(function(res){
-    console.log('success ', res);
-    //location.reload();
-    //$scope.loadData();
-    location.reload();
-  }, function(err) {
+  if ($scope.editModel.ho == null || $scope.editModel.ten == null || $scope.editModel.cmnd == null || $scope.editModel.sdt == null || $scope.editModel.email == null || $scope.editModel.macbgv == null || $scope.editModel.password == null)
+  {
+    alert("Vui lòng nhập đủ các trường bắt buộc!");
+  }
+  else
+  {
+    var url = apiBaseUrl + '/update_canbogiangvien/' + $scope.editModel.macbgv;
+    $http.put(url, $scope.editModel).then(function(res){
+      console.log('success ', res);
+      //location.reload();
+      //$scope.loadData();
+      location.reload();
+    }, function(err) {
 
-  });
+    });
+  }
 }
 
 $scope.setCBGVDelete = function(maCBGV){

@@ -87,7 +87,7 @@
 
                 <div class="row form-group">
                   <div class="col col-md-3">
-                    <label for="gioitinh" class=" form-control-label">Giới tính <strong class="text-danger">*</strong></label>
+                    <label for="gioitinh" class=" form-control-label">Giới tính</label>
                   </div>
                   <div class="col col-md-9">
                     <div class="form-check-inline form-check">
@@ -103,15 +103,10 @@
 
                 <div class="row form-group">
                   <div class="col col-md-3">
-                    <label for="ngaysinh" class="form-control-label">Ngày sinh <strong class="text-danger">*</strong></label>
+                    <label for="ngaysinh" class="form-control-label">Ngày sinh</label>
                   </div>
                   <div class="col-12 col-md-9">
-                    <input type="date" id="ngaysinh" ng-model="model.ngaysinh" required name="ngaysinh" placeholder="Nhập ngày sinh..." class="form-control">
-                    <div ng-show="FormAdd.ngaysinh.$touched" class="text-danger">
-                      <span ng-show="FormAdd.ngaysinh.$error.required">
-                        Vui lòng nhập ngày sinh
-                      </span>
-                    </div>
+                    <input type="date" id="ngaysinh" ng-model="model.ngaysinh" name="ngaysinh" placeholder="Nhập ngày sinh..." class="form-control">
                   </div>
                 </div>
 
@@ -259,12 +254,12 @@
     <thead class="table-dark text-light">
       <tr>
         <th style="width:5%">STT</th>
-        <th ng-click="changeSortPage('MACBGV')" ng-class="sortClass('MACBGV')">Mã CBGV</th>
+        <th ng-click="changeSortPage('MACBGV')" ng-class="sortClass('MACBGV')" style="width:12%">Mã CBGV</th>
         <th ng-click="changeSortPage('HO')" ng-class="sortClass('HO')" style="width:10%">Họ</th>
         <th ng-click="changeSortPage('TEN')" ng-class="sortClass('TEN')"style="width:15%">Tên</th>
         <th style="width:10%">Giới tính</th>
         <th>Điện thoại</th>
-        <th style="width:30%">Email</th>
+        <th style="width:25%">Email</th>
         <th style="width:5%"></th>
         <th style="width:5%"></th>
       </tr>
