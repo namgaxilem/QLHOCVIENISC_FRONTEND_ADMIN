@@ -1,8 +1,8 @@
 <!-- Tim kiem -->
 <div class="row">
-    <form class="form-header mb-3" action="" method="POST">
-        <input class="au-input au-input--xl" type="text" name="search" placeholder="Nhập mã học viên..." />
-        <button class="au-btn--submit" type="submit">
+    <form class="form-header mb-3" >
+        <input class="au-input au-input--xl" type="text" name="search" ng-model="timkiemhocvien" placeholder="Nhập mã học viên..." />
+        <button class="au-btn--submit" ng-click="timkiemHocvien(timkiemhocvien)">
             <i class="zmdi zmdi-search"></i>
         </button>
     </form>

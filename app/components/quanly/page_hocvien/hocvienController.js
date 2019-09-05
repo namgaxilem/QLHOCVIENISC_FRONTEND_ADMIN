@@ -36,6 +36,17 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', '$root
   };
   fetchAllCourse();
 
+$scope.timkiemhocvien="";
+$scope.timkiemHocvien= function(idHocvien){
+  $http.get("http://localhost:8080/timkiemhocvien/" + idHocvien).then(
+    function(response) {
+      $scope.timkiem = response.data;
+      alert($scope.timkiem.ho+" "+$scope.timkiem.tenlot+" "+$scope.timkiem.ten);
+    },
+    function() {
+      alert("Mã học viên chưa chính xác! Vui lòng nhập lại!");
+    });
+};
 
   $scope.seletedLoaitaikhoan = "";
   $scope.statusAccounttype = "";
