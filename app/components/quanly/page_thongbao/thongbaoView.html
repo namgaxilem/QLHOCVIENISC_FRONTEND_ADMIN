@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-success float-right mb-3 mr-2" data-toggle="modal" data-target="#Them" onclick="myFunction()" ng-click="refAdd()">
-    Thêm thông báo
+<button type="button" class="btn btn-success rounded-circle float-right mb-3 mr-2" data-toggle="modal" data-target="#Them" onclick="myFunction()" ng-click="refAdd()">
+    <span class="fa fa-plus"> </span>
 </button>
 
 <div class="table-responsive table--no-card m-b-30">
@@ -101,7 +101,7 @@
                                     <label for="khoahoc" class=" form-control-label">Khóa học</label>
                                 </div>
                                 <div class="col-9 col-md-9 text-dark">
-                                    <select id="khoahoc"  name="khoahoc" class="form-control" ng-model="thongbaoThem.khoahoc.makhoahoc" ng-options="kh.makhoahoc as kh.tenkhoahoc for kh in khoahoc" required>
+                                    <select id="khoahoc"  name="khoahoc" class="form-control" ng-model="thongbaoThem.makhoahoc" ng-options="kh.makhoahoc as kh.tenkhoahoc for kh in khoahoc" required>
                                     </select>
                                 </div>
                             </div>

@@ -1,3 +1,10 @@
 table {
   table-layout: fixed;
+  font-size: 13px;
+}
+
+table tbody tr td {
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
