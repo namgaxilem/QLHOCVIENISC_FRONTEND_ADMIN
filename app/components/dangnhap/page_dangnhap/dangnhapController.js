@@ -1,4 +1,6 @@
-adminApp.controller('dangnhapController', ['$scope','$http', '$resource', '$window', function($scope, $http, $resource, $window) {
+adminApp.controller('dangnhapController', ['$scope', '$rootScope', '$http', '$resource', '$window', function($scope, $rootScope, $http, $resource, $window) {
+  $rootScope.title = 'Đăng nhập';
+  
   $scope.username = '';
   $scope.password = '';
 

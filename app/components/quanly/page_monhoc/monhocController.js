@@ -1,5 +1,5 @@
-adminApp.controller('monhocController', ['$scope','$http', '$resource', function($scope, $http, $resource) {
-
+adminApp.controller('monhocController', ['$scope','$rootScope','$http','$resource', function($scope, $rootScope, $http, $resource) {
+  $rootScope.title = 'Môn học';
 
   function fetchAllStudents() {
     $scope.hocvien = $resource('http://localhost:8080/hocvien').query(function(data) {

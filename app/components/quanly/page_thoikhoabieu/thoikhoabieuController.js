@@ -1,4 +1,5 @@
-adminApp.controller('thoikhoabieuController', ['$scope', '$http', '$resource', '$filter', function($scope, $http, $resource, $filter) {
+adminApp.controller('thoikhoabieuController', ['$scope', '$rootScope', '$http', '$resource', '$filter', function($scope, $rootScope, $http, $resource, $filter) {
+  $rootScope.title = 'Thời khóa biểu';
 
   $scope.thoikhoabieuThem = {
     id: "",

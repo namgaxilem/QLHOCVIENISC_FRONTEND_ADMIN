@@ -1,4 +1,5 @@
-adminApp.controller('doanhnghiepController', ['$scope','$http', '$resource', function($scope, $http, $resource) {
+adminApp.controller('doanhnghiepController', ['$scope','$rootScope','$http','$resource', function($scope, $rootScope, $http, $resource) {
+  $rootScope.title = 'Doanh nghiệp';
 
     function fetchAllBusiness() {
         $scope.doanhnghiep = $resource('http://localhost:8080/doanhnghiep').query(function(data) {
@@ -27,7 +28,7 @@ adminApp.controller('doanhnghiepController', ['$scope','$http', '$resource', fun
       };
 
 
-      
+
       $scope.setMaDNDelete = function(id) {
         $scope.MaDNDelete=id;
       };
@@ -79,14 +80,14 @@ adminApp.controller('doanhnghiepController', ['$scope','$http', '$resource', fun
             }
           }
         );
-    
+
         var user = {};
-    
+
         user.tendoanhnghiep = $scope.tendoanhnghiep;
         user.diachi = $scope.diachi;
         user.sdt = $scope.sdt;
         user.id = $scope.id;
-    
+
         $scope.Message = User.save({
           id: $scope.id
         }, user);

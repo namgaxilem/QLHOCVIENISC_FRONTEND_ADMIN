@@ -1,5 +1,5 @@
 adminApp.controller('hocvienController', ['$scope', '$http', '$resource', '$rootScope', 'docService', function($scope, $http, $resource, $rootScope, docService) {
-
+  $rootScope.title = 'Học viên';
 
   function fetchAllStudents() {
     $scope.hocvien = $resource('http://localhost:8080/hocvien').query(function(data) {

@@ -1,5 +1,5 @@
-adminApp.controller('daotaoController', ['$scope','$http', '$resource', function($scope, $http, $resource) {
-
+adminApp.controller('daotaoController', ['$scope', '$rootScope','$http', '$resource', function($scope, $rootScope, $http, $resource) {
+  $rootScope.title = "Đào tạo";
 
   function fetchAllStudents() {
     $scope.hocvien = $resource('http://localhost:8080/hocvien').query(function(data) {
