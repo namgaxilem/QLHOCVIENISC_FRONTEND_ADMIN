@@ -23,7 +23,7 @@ adminApp.controller('giangvienController', ['$scope','$http', '$resource', 'apiB
 $scope.searchCBGV = function(macbgv){
   var url = apiBaseUrl + '/canbogiangvien/' + $scope.searchModel.macbgv;
   $http.get(url, $scope.editModel).then(function(res){
-    
+
     console.log('success ', res);
     $scope.resultCBGV = res.data;
 
@@ -74,6 +74,8 @@ $scope.editModel = {};
 $scope.loadDataForEdit = function(macbgv) {
   $http.get(apiBaseUrl + '/canbogiangvien/' + macbgv).then(function(res){
     $scope.editModel = res.data;
+    $scope.editModel.ngaysinh = new Date(res.data.ngaysinh);
+    $scope.editModel.ngayvaolam = new Date(res.data.ngayvaolam);
   });
 }
 
