@@ -1,4 +1,6 @@
-adminApp.controller('diemhocvienController', ['$scope', '$http', '$resource', '$filter', function($scope, $http, $resource, $filter) {
+adminApp.controller('diemhocvienController', ['$scope', '$rootScope', '$http', '$resource', '$filter', function($scope, $rootScope, $http, $resource, $filter) {
+  $rootScope.title = 'Điểm môn học';
+
   $scope.mamh = "";
   $scope.makh = "";
   $scope.showdiem = false;

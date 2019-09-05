@@ -1,5 +1,6 @@
-adminApp.controller('tinhnangController', ['$scope','$http', '$resource', 'apiBaseUrl', function($scope, $http, $resource, apiBaseUrl) {
-
+adminApp.controller('tinhnangController', ['$scope', '$rootScope', '$http', '$resource', 'apiBaseUrl', function($scope, $rootScope, $http, $resource, apiBaseUrl) {
+  $rootScope.title = 'Tính năng';
+  
   $scope.loadData = function() {
     $http.get(apiBaseUrl + '/tinhnang').then(function(res){
       $scope.tinhnangList = res.data;

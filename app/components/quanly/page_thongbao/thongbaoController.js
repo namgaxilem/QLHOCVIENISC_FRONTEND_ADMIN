@@ -1,4 +1,5 @@
-adminApp.controller('thongbaoController', ['$scope', '$http', '$resource', function($scope, $http, $resource) {
+adminApp.controller('thongbaoController', ['$scope', '$rootScope', '$http', '$resource', function($scope, $rootScope, $http, $resource) {
+  $rootScope.title = 'Thông báo';
 
   $scope.thongbaoThem = {
     tieude: "",

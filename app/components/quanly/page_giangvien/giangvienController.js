@@ -1,4 +1,5 @@
-adminApp.controller('giangvienController', ['$scope','$http', '$resource', 'apiBaseUrl','$rootScope', 'docService', function($scope, $http, $resource, apiBaseUrl, $rootScope, docService) {
+adminApp.controller('giangvienController', ['$scope', '$http', '$resource', 'apiBaseUrl','$rootScope', 'docService', function($scope, $rootScope, $http, $resource, apiBaseUrl, docService) {
+  $rootScope.title = 'Giảng viên';
 
   $scope.loadData = function() {
     $http.get(apiBaseUrl + '/canbogiangvien').then(function(res){
@@ -23,7 +24,7 @@ adminApp.controller('giangvienController', ['$scope','$http', '$resource', 'apiB
 $scope.searchCBGV = function(macbgv){
   var url = apiBaseUrl + '/canbogiangvien/' + $scope.searchModel.macbgv;
   $http.get(url, $scope.editModel).then(function(res){
-    
+
     console.log('success ', res);
     $scope.resultCBGV = res.data;
 

@@ -1,4 +1,5 @@
-adminApp.controller('gopyController', ['$scope','$http', '$resource', 'apiBaseUrl', function($scope, $http, $resource, apiBaseUrl) {
+adminApp.controller('gopyController', ['$scope', '$rootScope', '$http', '$resource', 'apiBaseUrl', function($scope, $rootScope, $http, $resource, apiBaseUrl) {
+  $rootScope.title = 'Góp ý';
 
   $scope.loadData = function() {
     $http.get(apiBaseUrl + '/gopy').then(function(res){
