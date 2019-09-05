@@ -75,6 +75,8 @@ $scope.editModel = {};
 $scope.loadDataForEdit = function(macbgv) {
   $http.get(apiBaseUrl + '/canbogiangvien/' + macbgv).then(function(res){
     $scope.editModel = res.data;
+    $scope.editModel.ngaysinh = new Date(res.data.ngaysinh);
+    $scope.editModel.ngayvaolam = new Date(res.data.ngayvaolam);
   });
 }
 
