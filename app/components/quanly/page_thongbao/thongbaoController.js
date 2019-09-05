@@ -3,13 +3,9 @@ adminApp.controller('thongbaoController', ['$scope', '$http', '$resource', funct
   $scope.thongbaoThem = {
     tieude: "",
     noidung: "",
-    nql: {
-      manql: ""
-    },
+    nguoidang: "",
     ngaydang: "",
-    khoahoc: {
-      makhoahoc: ""
-    }
+    makhoahoc: ""
   };
 
   function fetchAllKhoaHoc() {
@@ -50,9 +46,7 @@ adminApp.controller('thongbaoController', ['$scope', '$http', '$resource', funct
       }
     );
 
-    $scope.thongbaoThem.nql = {
-      manql: "1"
-    };
+    $scope.thongbaoThem.nguoidang = "1";
     $scope.thongbaoThem.ngaydang = new Date();
     console.log($scope.thongbaoThem);
     var thongbaoThem = angular.toJson($scope.thongbaoThem);
