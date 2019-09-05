@@ -29,15 +29,15 @@ adminApp.controller('diemhocvienController', ['$scope', '$rootScope', '$http', '
       for (var i = 0; i < $scope.diemmonhoc.length; i++) {
         if ($scope.diemmonhoc[i].makh == $scope.makh &&
           $scope.diemmonhoc[i].mamh == $scope.mamh) {
-          $scope.diemmonhoc[i].diemgk == null ? ($scope.diemmonhoc[i].diemgk = "Trống") : $scope.diemmonhoc[i].diemgk;
-          $scope.diemmonhoc[i].diemhp == null ? ($scope.diemmonhoc[i].diemhp = "Trống") : $scope.diemmonhoc[i].diemhp;
-          $scope.diemmonhoc[i].ketqua == null ? ($scope.diemmonhoc[i].ketqua = "Trống") : $scope.diemmonhoc[i].ketqua;
+          $scope.diemmonhoc[i].diemgk == null ? ($scope.diemmonhoc[i].diemgk = "#") : $scope.diemmonhoc[i].diemgk;
+          $scope.diemmonhoc[i].diemhp == null ? ($scope.diemmonhoc[i].diemhp = "#") : $scope.diemmonhoc[i].diemhp;
+          $scope.diemmonhoc[i].ketqua == null ? ($scope.diemmonhoc[i].ketqua = "#") : $scope.diemmonhoc[i].ketqua;
 
           $scope.diemmonhocFilter.push($scope.diemmonhoc[i]);
+          console.log($scope.diemmonhocFilter);
         }
       }
 
-      console.log($scope.diemmonhocFilter);
     }
   }
 
