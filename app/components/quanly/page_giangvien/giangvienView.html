@@ -258,15 +258,15 @@
   <table class="table table-borderless table-striped">
     <thead class="table-dark text-light">
       <tr>
-        <th>STT</th>
+        <th style="width:5%">STT</th>
         <th ng-click="changeSortPage('MACBGV')" ng-class="sortClass('MACBGV')">Mã CBGV</th>
-        <th ng-click="changeSortPage('HO')" ng-class="sortClass('HO')">Họ</th>
-        <th ng-click="changeSortPage('TEN')" ng-class="sortClass('TEN')">Tên</th>
-        <th>Giới tính</th>
+        <th ng-click="changeSortPage('HO')" ng-class="sortClass('HO')" style="width:10%">Họ</th>
+        <th ng-click="changeSortPage('TEN')" ng-class="sortClass('TEN')"style="width:15%">Tên</th>
+        <th style="width:10%">Giới tính</th>
         <th>Điện thoại</th>
-        <th>Email</th>
-        <th></th>
-        <th></th>
+        <th style="width:30%">Email</th>
+        <th style="width:5%"></th>
+        <th style="width:5%"></th>
       </tr>
     </thead>
     <tbody>
@@ -288,10 +288,10 @@
         <td><span ng-bind="item.sdt"></span></td>
         <td><span ng-bind="item.email"></span></td>
         <td>
-          <button type="button" name="update" data-toggle="modal" data-target="#CapNhatCBGV"  ng-click="loadDataForEdit(item.macbgv)"> <span class="fa fa-edit"></span> Sửa </button>
+          <button type="button" name="update" data-toggle="modal" data-target="#CapNhatCBGV"  ng-click="loadDataForEdit(item.macbgv)"> <span class="fa fa-edit"></span></button>
         </td>
         <td>
-          <button type="button" name="delete" data-toggle="modal" data-target="#XoaCBGV"  ng-click="setCBGVDelete(item.macbgv)""><span class="fa fa-trash"></span> Xoá</button>
+          <button type="button" name="delete" data-toggle="modal" data-target="#XoaCBGV"  ng-click="setCBGVDelete(item.macbgv)""><span class="fa fa-trash"></span></button>
         </td>
       </tr>
     </tbody>
