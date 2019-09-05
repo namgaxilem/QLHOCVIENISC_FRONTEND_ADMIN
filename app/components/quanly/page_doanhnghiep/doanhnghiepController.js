@@ -1,6 +1,6 @@
-adminApp.controller('doanhnghiepController', ['$scope','$http', '$resource', function($scope, $http, $resource) {
+adminApp.controller('doanhnghiepController', ['$scope','$rootScope','$http','$resource', function($scope, $rootScope, $http, $resource) {
   $rootScope.title = 'Doanh nghiệp';
-  
+
     function fetchAllBusiness() {
         $scope.doanhnghiep = $resource('http://localhost:8080/doanhnghiep').query(function(data) {
           return data;

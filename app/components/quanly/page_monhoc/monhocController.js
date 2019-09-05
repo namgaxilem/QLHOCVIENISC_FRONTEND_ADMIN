@@ -1,4 +1,4 @@
-adminApp.controller('monhocController', ['$scope','$http', '$rootScope', '$resource', function($scope, $rootScope, $http, $resource) {
+adminApp.controller('monhocController', ['$scope','$rootScope','$http','$resource', function($scope, $rootScope, $http, $resource) {
   $rootScope.title = 'Môn học';
 
   function fetchAllStudents() {

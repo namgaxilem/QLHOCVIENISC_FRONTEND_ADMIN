@@ -1,4 +1,4 @@
-adminApp.controller('giangvienController', ['$scope', '$http', '$resource', 'apiBaseUrl','$rootScope', 'docService', function($scope, $rootScope, $http, $resource, apiBaseUrl, docService) {
+adminApp.controller('giangvienController', ['$scope', '$http', '$resource', 'apiBaseUrl','$rootScope', 'docService', function($scope, $http, $resource, apiBaseUrl, $rootScope, docService) {
   $rootScope.title = 'Giảng viên';
 
   $scope.loadData = function() {
