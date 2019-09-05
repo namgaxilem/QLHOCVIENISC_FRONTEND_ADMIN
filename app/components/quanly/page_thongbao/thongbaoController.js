@@ -46,11 +46,11 @@ adminApp.controller('thongbaoController', ['$scope', '$rootScope', '$http', '$re
 
     $scope.Message = ThongBao.save($scope.thongbaoThem);
 
-    // location.reload();
+    location.reload();
   };
 
-  $scope.setMaThongBaoDelete = function(ThongBao) {
-    $scope.MaThongBaoDelete = ThongBao;
+  $scope.setMaThongBaoDelete = function(id) {
+    $scope.MaThongBaoDelete = id;
   };
   $scope.deleteThongBao = function() {
     User = $resource(
@@ -70,10 +70,13 @@ adminApp.controller('thongbaoController', ['$scope', '$rootScope', '$http', '$re
     location.reload();
   };
   $scope.refAdd = function() {
-    $scope.makhoahoc = "";
-    $scope.tenkhoahoc = "";
-    $scope.ngaybd = "";
-    $scope.ngaykt = "";
+    $scope.thongbaoThem = {
+      tieude: "",
+      noidung: "",
+      nguoidang: "",
+      ngaydang: "",
+      makhoahoc: ""
+    };
   };
 
   $scope.xemThongBao = function(row) {
