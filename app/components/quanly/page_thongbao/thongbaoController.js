@@ -16,27 +16,6 @@ adminApp.controller('thongbaoController', ['$scope', '$rootScope', '$http', '$re
   };
   fetchAllKhoaHoc();
 
-  $scope.seletedKhoahoc = "";
-  $scope.statusCourse = "";
-  $scope.selectKhoaHoc = function(SelectKhoaHoc) {
-    $scope.seletedKhoahoc = SelectKhoaHoc;
-    for (var i = 0; i < $scope.khoahoc.length; i++) {
-      if ($scope.seletedKhoahoc == $scope.khoahoc[i].makhoahoc) {
-        $scope.resultKhoaHoc = $scope.khoahoc[i];
-        return $scope.resultKhoaHoc;
-        $scope.statusCourse = 1;
-      } else {
-
-      }
-    }
-    if ($scope.statusCourse == 1) {
-      alert("Tim thay");
-    } else {
-      alert("Khong tim thay");
-    }
-
-  }
-
   $scope.createThongBao = function() {
     ThongBao = $resource(
       "http://localhost:8080/thongbao", {}, {
