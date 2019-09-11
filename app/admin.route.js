@@ -138,12 +138,6 @@ adminApp.config(['$stateProvider', '$urlRouterProvider',
         templateUrl: 'app/components/quanly/page_giangvien/giangvienView.html',
         controller: 'giangvienController'
       })
-      .state('tinhnang', {
-        url: '/tinhnang',
-        parent: 'common',
-        templateUrl: 'app/components/quanly/page_tinhnang/tinhnangView.html',
-        controller: 'tinhnangController'
-      })
       .state('gopy', {
         url: '/gopy',
         parent: 'common',
@@ -168,7 +162,7 @@ adminApp.config(['$stateProvider', '$urlRouterProvider',
         templateUrl: 'app/components/quanly/page_doanhnghiep/doanhnghiepView.html',
         controller: 'doanhnghiepController'
       })
-
+      //đăng nhập
       .state('dangnhap', {
         url: '/dangnhap',
         templateUrl: 'app/components/dangnhap/page_dangnhap/dangnhapView.html',
