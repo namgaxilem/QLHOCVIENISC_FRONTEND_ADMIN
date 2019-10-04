@@ -28,21 +28,7 @@ adminApp.controller('thongbaoController', ['$scope', '$rootScope', '$http', '$re
 
     $scope.thongbaoThem.nguoidang = "1";
     $scope.thongbaoThem.ngaydang = new Date();
-    console.log($scope.thongbaoThem);
-    var thongbaoThem = angular.toJson($scope.thongbaoThem);
-
-    // $http({
-    //   method : "POST",
-    //   url : "http://localhost:8080/thongbao",
-    //   data: thongbaoThem,
-    //   headers: {
-    //     "Content-Type" : "application/json"
-    //   }
-    // }).then(function(data) {
-    //   console.log('thanh cong');
-    // },function(data){
-    //   console.log('that bai');
-    // });
+    //var thongbaoThem = angular.toJson($scope.thongbaoThem);
 
     $scope.Message = ThongBao.save($scope.thongbaoThem);
 

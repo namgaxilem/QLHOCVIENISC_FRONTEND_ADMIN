@@ -1,109 +1,106 @@
-adminApp.controller('giangvienController', ['$scope', '$http', '$resource', 'apiBaseUrl','$rootScope', 'docService', function($scope, $http, $resource, apiBaseUrl, $rootScope, docService) {
+adminApp.controller('giangvienController', ['$scope', '$http', '$resource', 'apiBaseUrl', '$rootScope', 'docService', function($scope, $http, $resource, apiBaseUrl, $rootScope, docService) {
   $rootScope.title = 'Giảng viên';
 
+  $scope.model = {
+    ho: "",
+    tenlot: "",
+    ten: "",
+    gioitinh: "",
+    ngaysinh: "",
+    sdt: "",
+    email: "",
+    diachi: "",
+    password: "",
+    accounttype: "",
+    macbgv: ""
+  };
+
   $scope.loadData = function() {
-    $http.get(apiBaseUrl + '/canbogiangvien').then(function(res){
+    $http.get(apiBaseUrl + '/canbogiangvien').then(function(res) {
       $scope.canbogiangvienList = res.data;
     });
   }
 
   $scope.loadDataSearch = function(macbgv) {
     var url = apiBaseUrl + '/canbogiangvien/' + macbgv;
-    $http.get(url, macbgv).then(function(res){
-      console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+    $http.get(url, macbgv).then(function(res) {
       console.log('success ', res);
-      //$scope.giangvienpage = res.data;
-      //$scope.searchCBGV($scope.searchModel.macbgv);
-      //$scope.loadData();
-      //location.reload();
+
     }, function(err) {
 
     });
   }
 
-$scope.searchCBGV = function(macbgv){
-  var url = apiBaseUrl + '/canbogiangvien/' + $scope.searchModel.macbgv;
-  $http.get(url, $scope.editModel).then(function(res){
+  $scope.searchCBGV = function(macbgv) {
+    var url = apiBaseUrl + '/canbogiangvien/' + $scope.searchModel.macbgv;
+    $http.get(url, $scope.editModel).then(function(res) {
 
-    console.log('success ', res);
-    $scope.resultCBGV = res.data;
+      console.log('success ', res);
+      $scope.resultCBGV = res.data;
 
-    console.log($scope.resultCBGV);
-    //$scope.searchCBGV($scope.searchModel.macbgv);
-    //$scope.loadData();
-    //location.reload();
-    //$scope.loadDataSearch($scope.searchModel.macbgv);
-    //getGiangVienPage();
-    //alert(res.data);
-  }, function(err) {
-    alert("Không tìm thấy học viên!");
-  });
-}
+      console.log($scope.resultCBGV);
 
-  $scope.model = {};
+    }, function(err) {
+      alert("Không tìm thấy học viên!");
+    });
+  }
+
   $scope.createCBGV = function() {
-    if ( ($scope.model.ho == null) || ($scope.model.ten == null) || ($scope.model.cmnd == null) || ($scope.model.sdt == null) || ($scope.model.email == null) || ($scope.model.macbgv == null) || ($scope.model.password == null) || ($scope.model.diachi == null))
-    {
+    if (($scope.model.ho == "") ||
+      ($scope.model.ten == "") ||
+      ($scope.model.sdt == "") ||
+      ($scope.model.email == "") ||
+      ($scope.model.macbgv == "") ||
+      ($scope.model.password == "") ||
+      ($scope.model.diachi == "")) {
       alert("Vui lòng nhập đủ các trường bắt buộc!");
-    }
-    else
-    {
-      $http.post(apiBaseUrl + '/add_canbogiangvien', $scope.model).then(function(res){
-        console.log('success ', res);
-        //location.reload();
-        $scope.model = null;
-        //$scope.loadData();
+    } else {
+      $scope.model.accounttype = 1;
+      $http.post(apiBaseUrl + '/add_canbogiangvien', $scope.model).then(function(res) {
         location.reload();
       }, function(err) {
-        alert("Vui lòng nhập đủ các trường bắt buộc!");
+        alert("Lỗi");
       });
     }
-}
-
-$scope.editModel = {};
-$scope.loadDataForEdit = function(macbgv) {
-  $http.get(apiBaseUrl + '/canbogiangvien/' + macbgv).then(function(res){
-    $scope.editModel = res.data;
-    $scope.editModel.ngaysinh = new Date(res.data.ngaysinh);
-    $scope.editModel.ngayvaolam = new Date(res.data.ngayvaolam);
-  });
-}
-
-
-$scope.editCBGV = function(maCBGV){
-  if ($scope.editModel.ho == null || $scope.editModel.ten == null || $scope.editModel.cmnd == null || $scope.editModel.sdt == null || $scope.editModel.email == null || $scope.editModel.macbgv == null || $scope.editModel.password == null)
-  {
-    alert("Vui lòng nhập đủ các trường bắt buộc!");
   }
-  else
-  {
-    var url = apiBaseUrl + '/update_canbogiangvien/' + $scope.editModel.macbgv;
-    $http.put(url, $scope.editModel).then(function(res){
-      console.log('success ', res);
-      //location.reload();
-      //$scope.loadData();
+
+  $scope.loadDataForEdit = function(macbgv) {
+    $http.get(apiBaseUrl + '/canbogiangvien/' + macbgv).then(function(res) {
+      $scope.editModel = res.data;
+      $scope.editModel.ngaysinh = new Date(res.data.ngaysinh);
+      $scope.editModel.ngayvaolam = new Date(res.data.ngayvaolam);
+    });
+  }
+
+  $scope.editCBGV = function(maCBGV) {
+    if ($scope.editModel.ho == null ||
+      $scope.editModel.ten == null ||
+      $scope.editModel.sdt == null ||
+      $scope.editModel.email == null ||
+      $scope.editModel.macbgv == null ||
+      $scope.editModel.password == null) {
+      alert("Vui lòng nhập đủ các trường bắt buộc!");
+    } else {
+      var url = apiBaseUrl + '/update_canbogiangvien/' + $scope.editModel.macbgv;
+      $http.put(url, $scope.editModel).then(function(res) {
+        location.reload();
+      }, function(err) {
+
+      });
+    }
+  }
+
+  $scope.setCBGVDelete = function(maCBGV) {
+    $scope.maCBGVDelete = maCBGV;
+  }
+
+  $scope.deleteCBGV = function(maCBGV) {
+    $http.delete(apiBaseUrl + '/delete_canbogiangvien/' + maCBGV).then(function(res) {
       location.reload();
     }, function(err) {
 
     });
   }
-}
-
-$scope.setCBGVDelete = function(maCBGV){
-  $scope.maCBGVDelete = maCBGV;
-}
-
-$scope.deleteCBGV =  function(maCBGV){
-  $http.delete(apiBaseUrl + '/delete_canbogiangvien/' + maCBGV).then(function(res){
-    console.log('success ', res);
-    //location.reload();
-    //$scope.loadData();
-    location.reload();
-  }, function(err) {
-
-  });
-}
-
 
   $scope.loadData();
 
@@ -155,7 +152,7 @@ $scope.deleteCBGV =  function(maCBGV){
   };
 
   function getGiangVienPage() {
-    $http.get("http://localhost:8080/canbogiangvien2?pageNo=" + $scope.pageNo + "&pageSize=" + $scope.pageSize + "&typeSort=" + $scope.typeSort  + "&sortBy=" +   $scope.sortBy).then(
+    $http.get("http://localhost:8080/canbogiangvien2?pageNo=" + $scope.pageNo + "&pageSize=" + $scope.pageSize + "&typeSort=" + $scope.typeSort + "&sortBy=" + $scope.sortBy).then(
       function(response) {
         $scope.soluonghienthi = response.data.length;
         $scope.giangvienpage = response.data;

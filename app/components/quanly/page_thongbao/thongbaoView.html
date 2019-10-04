@@ -25,7 +25,6 @@
                 <td>
                     <button type="button" data-toggle="modal" data-target="#Xoa" onclick="myFunction()" ng-click="setMaThongBaoDelete(row.id)">
                         <span data-toggle="tooltip" title="Xóa thông báo" class=" fa fa-trash"></span>
-
                     </button>
                 </td>
             </tr>
@@ -36,11 +35,11 @@
 <nav aria-label="Page navigation" class="m-b-30">
     <ul class="pagination justify-content-end">
         <li class="page-item">
-            <button class="page-link" tabindex="-1" ng-click="preCount()">Previous</button>
+            <button class="page-link" tabindex="-1" ng-click="preCount()">Trước</button>
         </li>
         <li class="page-item" ng-repeat="row in arrSLThongBao"><button class="page-link" ng-model="number" ng-click="numb(row)">{{row+1}}</button></li>
         <li class="page-item">
-            <button class="page-link" ng-click="nextCount()">Next</button>
+            <button class="page-link" ng-click="nextCount()">Sau</button>
         </li>
     </ul>
 </nav>
@@ -56,12 +55,9 @@
                 </button>
             </div>
             <div class="modal-body">
-
                 <div class="card">
-
                     <div class="card-body card-block">
                         <form name="themthongbaoForm" class="form-horizontal" novalidate>
-
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label for="tieude" class=" form-control-label">Tiêu đề</label>
@@ -70,7 +66,6 @@
                                     <input type="text" id="tieude" name="tieude" ng-model="thongbaoThem.tieude" class="form-control" required>
                                 </div>
                             </div>
-
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                 </div>
@@ -78,7 +73,6 @@
                                     <span style="color:red" ng-show="themthongbaoForm.tieude.$touched && themthongbaoForm.tieude.$invalid">Tiêu đề chưa hợp lệ!</span>
                                 </div>
                             </div>
-
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label for="noidung" class=" form-control-label">Nội dung</label>
@@ -87,7 +81,6 @@
                                     <textarea id="noidung" name="noidung" ng-model="thongbaoThem.noidung" class="form-control" rows="8" cols="80" required></textarea>
                                 </div>
                             </div>
-
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                 </div>
@@ -95,17 +88,15 @@
                                     <span style="color:red" ng-show="themthongbaoForm.noidung.$touched && themthongbaoForm.noidung.$invalid">Nội dung chưa hợp lệ!</span>
                                 </div>
                             </div>
-
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label for="khoahoc" class=" form-control-label">Khóa học</label>
                                 </div>
                                 <div class="col-9 col-md-9 text-dark">
-                                    <select id="khoahoc"  name="khoahoc" class="form-control" ng-model="thongbaoThem.makhoahoc" ng-options="kh.makhoahoc as kh.tenkhoahoc for kh in khoahoc" required>
+                                    <select id="khoahoc" name="khoahoc" class="form-control" ng-model="thongbaoThem.makhoahoc" ng-options="kh.makhoahoc as kh.tenkhoahoc for kh in khoahoc" required>
                                     </select>
                                 </div>
                             </div>
-
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                 </div>
@@ -113,11 +104,9 @@
                                     <span style="color:red" ng-show="themthongbaoForm.khoahoc.$touched && themthongbaoForm.khoahoc.$invalid">Hãy chọn khóa học!</span>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
@@ -159,9 +148,7 @@
                 </button>
             </div>
             <div class="modal-body">
-
                 <div class="card">
-
                     <div class="card-body card-block">
                         <form action="" method="post" class="form-horizontal">
                             <div class="row form-group">
@@ -196,11 +183,9 @@
                                     <div> {{thongbaoXem.tenkhoahoc }} </div>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>

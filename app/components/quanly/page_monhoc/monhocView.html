@@ -1,262 +1,236 @@
-
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-success rounded-circle float-right mb-3 mr-2" data-toggle="modal" data-target="#Them" onclick="myFunction()" ng-click="refAdd()">
-  <span class="fa fa-plus"></span>
+    <span class="fa fa-plus"></span>
 </button>
 
 <!-- Loc theo so luong mon hoc -->
 <div class="row mb-3">
-  <div class="pt-2">
-    <strong>Số lượng môn học</strong>
-  </div>
-  <div class="ml-2 mr-2">
-    <select id="pageSize" class="form-control control-color" ng-model="pageSize" ng-change="changePageSize(pageSize)">
-      <option value="5">5</option>
-      <option value="10">10</option>
-      <option value="25">25</option>
-      <option value="50">50</option>
-    </select>
-  </div>
-</div>
-<!-- Ket thuc loc theo so luong mon hoc -->
-
-<!-- Modal -->
-<div class="modal fade bg-secondary" data-backdrop="false" id="Them" tabindex="-1" role="dialog" aria-labelledby="Them" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="Them">MÔN HỌC</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-
-
-        <div>
-          <div class="card">
-
-            <div class="card-body card-block">
-              <form action="" method="post" class="form-horizontal">
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="mamh" class=" form-control-label">Mã môn học</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="text" id="mamh" name="mamh" ng-model="mamh" placeholder="Nhập mã môn học..." class="form-control">
-                  </div>
-                </div>
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="tenmh" class=" form-control-label">Tên môn học</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="text" id="tenmh" ng-model="tenmh" name="tenmh" placeholder="Nhập tên môn học..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="sogio" class=" form-control-label">Tổng số giờ</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="number" id="sogio" ng-model="sogio" name="sogio" placeholder="Nhập tổng số giờ học..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="sotc" class=" form-control-label">Số tín chỉ</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="number" id="sotc" ng-model="sotc" name="sotc" placeholder="Nhập số tín chỉ..." class="form-control">
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-        <button type="button" class="btn btn-primary" name="create" ng-click="createMonHoc()">Thêm môn học</button>
-      </div>
+    <div class="pt-2">
+        <strong>Số lượng môn học</strong>
     </div>
-  </div>
+    <div class="ml-2 mr-2">
+        <select id="pageSize" class="form-control control-color" ng-model="pageSize" ng-change="changePageSize(pageSize)">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+        </select>
+    </div>
 </div>
 
 <div class="table-responsive table--no-card m-b-30">
-  <table class="table table-borderless table-striped">
-    <thead class="table-dark text-light">
-      <tr>
-        <th style="width:5%">STT</th>
-        <th>Mã môn học</th>
-        <th style="width:45%">Tên môn học</th>
-        <th>Số giờ</th>
-        <th>Số tín chỉ</th>
-        <th style="width:5%"></th>
-        <th style="width:5%"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="font-size: 13px" ng-repeat="row in monhocpage">
-        <td>
-          <span ng-bind="temp2 + $index"></span>
-        </td>
-        <td>
-          <span ng-bind="row.mamh"></span>
-        </td>
-        <td>
-          <span ng-bind="row.tenmh"></span>
-        </td>
-        <td>
-          <span ng-bind="row.sogio"></span>
-        </td>
-        <td>
-          <span ng-bind="row.sotc"></span>
-        </td>
-        <td>
-          <button type="button" name="update" data-toggle="modal" data-target="#CapNhat" onclick="myFunction()" ng-click="getMaMH(row)"> <span class="fa fa-edit"></span></button>
-        </td>
-        <td>
-          <button type="button" name="delete" data-toggle="modal" data-target="#Xoa" onclick="myFunction()" ng-click="setMaMHDelete(row.mamh)""><span class="fa fa-trash"></span></button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <table class="table table-borderless table-striped">
+        <thead class="table-dark text-light">
+            <tr>
+                <th style="width:5%">STT</th>
+                <th>Mã môn học</th>
+                <th style="width:45%">Tên môn học</th>
+                <th>Số giờ</th>
+                <th>Số tín chỉ</th>
+                <th style="width:5%"></th>
+                <th style="width:5%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="font-size: 13px" ng-repeat="row in monhocpage">
+                <td>
+                    <span ng-bind="temp2 + $index"></span>
+                </td>
+                <td>
+                    <span ng-bind="row.mamh"></span>
+                </td>
+                <td>
+                    <span ng-bind="row.tenmh"></span>
+                </td>
+                <td>
+                    <span ng-bind="row.sogio"></span>
+                </td>
+                <td>
+                    <span ng-bind="row.sotc"></span>
+                </td>
+                <td>
+                    <button type="button" name="update" data-toggle="modal" data-target="#CapNhat" onclick="myFunction()" ng-click="getMaMH(row)"> <span class="fa fa-edit"></span></button>
+                </td>
+                <td>
+                    <button type="button" name="delete" data-toggle="modal" data-target="#Xoa" onclick="myFunction()" ng-click="setMaMHDelete(row.mamh)""><span class=" fa fa-trash"></span></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <div>
     Hiển thị: {{soluonghienthi}}/{{soluonghocvien}} trường học
-  </div>
+</div>
 <nav aria-label="Page navigation" class="m-b-30">
-  <ul class="pagination justify-content-end">
-      <li class="page-item">
-          <button class="page-link" tabindex="-1" ng-click="preCount()">Previous</button>
-      </li>
-      <li class="page-item" ng-repeat="row in arrSLHocvien"><button class="page-link" ng-model="number" ng-click="numb(row)">{{row+1}}</button></li>
-      <li class="page-item">
-          <button class="page-link" ng-click="nextCount()">Next</button>
-      </li>
-  </ul>
+    <ul class="pagination justify-content-end">
+        <li class="page-item">
+            <button class="page-link" tabindex="-1" ng-click="preCount()">Trước</button>
+        </li>
+        <li class="page-item" ng-repeat="row in arrSLHocvien"><button class="page-link" ng-model="number" ng-click="numb(row)">{{row+1}}</button></li>
+        <li class="page-item">
+            <button class="page-link" ng-click="nextCount()">Sau</button>
+        </li>
+    </ul>
 </nav>
 
+<!-- Modal -->
+<div class="modal fade bg-secondary" data-backdrop="false" id="Them" tabindex="-1" role="dialog" aria-labelledby="Them" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Them">MÔN HỌC</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
 
+                    <div class="card-body card-block">
+                        <form action="" method="post" class="form-horizontal">
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="mamh" class=" form-control-label">Mã môn học</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="mamh" name="mamh" ng-model="mamh" placeholder="Nhập mã môn học..." class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="tenmh" class=" form-control-label">Tên môn học</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="tenmh" ng-model="tenmh" name="tenmh" placeholder="Nhập tên môn học..." class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="sogio" class=" form-control-label">Tổng số giờ</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="number" id="sogio" ng-model="sogio" name="sogio" placeholder="Nhập tổng số giờ học..." class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="sotc" class=" form-control-label">Số tín chỉ</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="number" id="sotc" ng-model="sotc" name="sotc" placeholder="Nhập số tín chỉ..." class="form-control">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" name="create" ng-click="createMonHoc()">Thêm môn học</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade bg-secondary" data-backdrop="false" id="CapNhat" tabindex="-1" role="dialog" aria-labelledby="CapNhat" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="CapNhat">MÔN HỌC</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-
-
-        <div>
-          <div class="card">
-
-            <div class="card-body card-block">
-              <form action="" method="post" class="form-horizontal">
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="tenmh" class=" form-control-label">Tên môn học</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="text" id="tenmh" ng-model="tenmh" name="tenmh" placeholder="Nhập tên môn học..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="sogio" class=" form-control-label">Tổng số giờ</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="number" id="sogio" ng-model="sogio" name="sogio" placeholder="Nhập tổng số giờ học..." class="form-control">
-                  </div>
-                </div>
-
-                <div class="row form-group">
-                  <div class="col col-md-3">
-                    <label for="sotc" class=" form-control-label">Số tín chỉ</label>
-                  </div>
-                  <div class="col-12 col-md-9">
-                    <input type="number" id="sotc" ng-model="sotc" name="sotc" placeholder="Nhập số tín chỉ..." class="form-control">
-                  </div>
-                </div>
-
-              </form>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CapNhat">MÔN HỌC</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-          </div>
+            <div class="modal-body">
+                    <div class="card">
+
+                        <div class="card-body card-block">
+                            <form action="" method="post" class="form-horizontal">
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="tenmh" class=" form-control-label">Tên môn học</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="tenmh" ng-model="tenmh" name="tenmh" placeholder="Nhập tên môn học..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="sogio" class=" form-control-label">Tổng số giờ</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="number" id="sogio" ng-model="sogio" name="sogio" placeholder="Nhập tổng số giờ học..." class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="sotc" class=" form-control-label">Số tín chỉ</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="number" id="sotc" ng-model="sotc" name="sotc" placeholder="Nhập số tín chỉ..." class="form-control">
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" name="create" ng-click="updateMonHoc()">Cập nhật môn học</button>
+            </div>
         </div>
-
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-        <button type="button" class="btn btn-primary" name="create" ng-click="updateMonHoc()">Cập nhật môn học</button>
-      </div>
     </div>
-  </div>
 </div>
-
-
-
-
-
 
 <!-- Modal -->
 <div class="modal fade bg-secondary" data-backdrop="false" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="Xoa" aria-hidden="true">
-  <div class="modal-dialog modal-md" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="Xoa">Cảnh báo</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h1>Bạn có chắc muốn xoá không?</h1>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Không</button>
-        <button type="button" class="btn btn-danger" name="delete" ng-click="deleteMonHoc()">Đồng ý</button>
-      </div>
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Xoa">Cảnh báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h1>Bạn có chắc muốn xoá không?</h1>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Không</button>
+                <button type="button" class="btn btn-danger" name="delete" ng-click="deleteMonHoc()">Đồng ý</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
-
 <script type="text/javascript">
-  $('#header-button').click(function(event) {
-    myFunction2();
-    //$(event.target).modal('hide');
-  });
-  $('#Them').click(function(event) {
-    $(event.target).modal('hide');
-  });
-  $('#CapNhat').click(function(event) {
-    $(event.target).modal('hide');
-  });
-  $('#Xoa').click(function(event) {
-    $(event.target).modal('hide');
-  });
+    $('#header-button').click(function(event) {
+        myFunction2();
+        //$(event.target).modal('hide');
+    });
+    $('#Them').click(function(event) {
+        $(event.target).modal('hide');
+    });
+    $('#CapNhat').click(function(event) {
+        $(event.target).modal('hide');
+    });
+    $('#Xoa').click(function(event) {
+        $(event.target).modal('hide');
+    });
 
-  function myFunction() {
-      document.getElementById("header-desktop").style.zIndex = "1";
-}
+    function myFunction() {
+        document.getElementById("header-desktop").style.zIndex = "1";
+    }
 
-function myFunction2() {
-  document.getElementById("header-desktop").style.zIndex = "2";
-}
+    function myFunction2() {
+        document.getElementById("header-desktop").style.zIndex = "2";
+    }
 </script>
