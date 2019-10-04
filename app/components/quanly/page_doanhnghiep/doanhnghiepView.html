@@ -1,113 +1,34 @@
 <style>
-    input.ng-invalid{
+    input.ng-invalid {
         border: 1px solid red;
     }
 </style>
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-success float-right mb-3 mr-2" data-toggle="modal" data-target="#Them" onclick="myFunction()" ng-click="refAdd()">
-    Thêm doanh nghiệp
+<button type="button" class="btn btn-success rounded-circle float-right mb-3 mr-2" data-toggle="modal" data-target="#Them" onclick="myFunction()" ng-click="refAdd()">
+    <span class="fa fa-plus"></span>
 </button>
-<!-- Modal -->
-<div class="modal fade bg-secondary" data-backdrop="false" id="Them" tabindex="-1" role="dialog" aria-labelledby="Them" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="Them">DOANH NGHIỆP</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-<div class="modal-body">
-    <div>
-        <div class="card">
-            <div class="card-body card-block">
-                <form action="" name="frm" method="post" class="form-horizontal">
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="mamh" class=" form-control-label">ID</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="number" id="id" name="id" ng-model="id" placeholder="Nhập ID..." class="form-control" required>
-                            <span ng-show="frm.id.$error.required">
-                                Required!
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="mamh" class=" form-control-label">Tên doanh nghiệp</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" id="tendoanhnghiep" name="tendoanhnghiep" ng-model="tendoanhnghiep" placeholder="Nhập tên doanh nghiệp..." class="form-control" required>
-                            <span ng-show="frm.tendoanhnghiep.$error.required">
-                                Required!
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="tenmh" class=" form-control-label">Địa chỉ</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="text" id="diachi" ng-model="diachi" name="diachi" placeholder="Nhập địa chỉ doanh nghiệp..." class="form-control" required>
-                            <span ng-show="frm.diachi.$error.required">
-                                Required!
-                            </span>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">
-                            <label for="tenmh" class=" form-control-label">Số điện thoại</label>
-                        </div>
-                        <div class="col-12 col-md-9">
-                            <input type="number" id="sdt" ng-model="sdt" name="sdt" placeholder="Nhập số điện thoại..." class="form-control" required ng-minlength="10" ng-maxlength="10">
-                            <span ng-show="frm.sdt.$error.required">
-                                Required!
-                            </span>
-                            <span ng-show="frm.sdt.$error.number">
-                                Not a number!
-                            </span>
-                            <span ng-show="frm.sdt.$error.minlength || frm.sdt.$error.maxlength">
-                                Certainly 10 numbers!
-                            </span>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-            <button type="button" class="btn btn-primary" name="create" ng-click="createDoanhNghiep()">Thêm doanh nghiệp</button>
-        </div>
-    </div>
-  </div>
-</div>
-
 
 <div class="row">
-    <div class="col-3 col-md-3 text-dark">
-        <h4>
-        Chọn số lượng
-        </h4>
+    <!-- Loc theo khoa hoc -->
+    <div class="pt-2">
+        <strong>Hiển thị</strong>
     </div>
-    <div class="col-5 col-md-5 text-dark">
-        <select name="phantrang" id="phantrang" class="form-control" ng-change="selectPhanTrang(SelectPhanTrang)" ng-model="SelectPhanTrang">
-        <!-- <option value="" selected disabled hidden>Choose here</option> -->
-        <option value=2>2</option>
-        <option value=5>5</option>
-        <option value=6>6</option>
-        <option value=8>8</option>
-        <option value=10>10</option>
-        <option value=12>12</option>
-        </select>
+    <div class="ml-2 mr-2">
+      <select name="phantrang" id="phantrang" class="form-control" ng-change="selectPhanTrang(SelectPhanTrang)" ng-model="SelectPhanTrang">
+          <!-- <option value="" selected disabled hidden>Choose here</option> -->
+          <option value=2>2</option>
+          <option value=5>5</option>
+          <option value=6>6</option>
+          <option value=8>8</option>
+          <option value=10>10</option>
+          <option value=12>12</option>
+      </select>
     </div>
-    <div class="col-3 col-md-3 text-dark">
-        <button type="button" class="btn btn-success float-right mb-3 mr-2" ng-click="changePage()">
-            Chọn số lượng
-        </button>
+    <div>
+      <button type="button" class="btn btn-primary float-right mb-3 mr-2" ng-click="changePage()">
+          Xem
+      </button>
     </div>
 </div>
 
@@ -143,113 +64,187 @@
 <nav aria-label="Page navigation" class="m-b-30">
     <ul class="pagination justify-content-end">
         <li class="page-item">
-            <button class="page-link" tabindex="-1" ng-click="preCount()">Previous</button>
+            <button class="page-link" tabindex="-1" ng-click="preCount()">Trước</button>
         </li>
         <li class="page-item" ng-repeat="row in arrSLDoanhNghiep"><button class="page-link" ng-model="number" ng-click="numb(row)">{{row+1}}</button></li>
         <li class="page-item">
-            <button class="page-link" ng-click="nextCount()">Next</button>
+            <button class="page-link" ng-click="nextCount()">Sau</button>
         </li>
     </ul>
 </nav>
 
 <!-- Modal -->
-<div class="modal fade bg-secondary" data-backdrop="false" id="CapNhat" tabindex="-1" role="dialog" aria-labelledby="CapNhat" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
+<div class="modal fade bg-secondary" data-backdrop="false" id="Them" tabindex="-1" role="dialog" aria-labelledby="Them" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="CapNhat">DOANH NGHIỆP</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+                <h5 class="modal-title" id="Them">DOANH NGHIỆP</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
-              <div>
-                <div class="card">
-      
-                  <div class="card-body card-block">
-                    <form action="" method="post" class="form-horizontal">
-      
-                        <div class="row form-group">
-                            <div class="col col-md-3">
-                            <label for="tenmh" class=" form-control-label">Tên doanh nghiệp</label>
-                            </div>
-                            <div class="col-12 col-md-9">
-                            <input type="text" id="tendoanhnghiep" ng-model="tendoanhnghiep" name="tendoanhnghiep" placeholder="Nhập tên doanh nghiệp..." class="form-control">
-                            </div>
+                <div>
+                    <div class="card">
+                        <div class="card-body card-block">
+                            <form action="" name="frm" method="post" class="form-horizontal">
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="mamh" class=" form-control-label">ID</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="number" id="id" name="id" ng-model="id" placeholder="Nhập ID..." class="form-control" required>
+                                        <span ng-show="frm.id.$error.required">
+                                            Required!
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="mamh" class=" form-control-label">Tên doanh nghiệp</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="tendoanhnghiep" name="tendoanhnghiep" ng-model="tendoanhnghiep" placeholder="Nhập tên doanh nghiệp..." class="form-control" required>
+                                        <span ng-show="frm.tendoanhnghiep.$error.required">
+                                            Required!
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="tenmh" class=" form-control-label">Địa chỉ</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="diachi" ng-model="diachi" name="diachi" placeholder="Nhập địa chỉ doanh nghiệp..." class="form-control" required>
+                                        <span ng-show="frm.diachi.$error.required">
+                                            Required!
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="tenmh" class=" form-control-label">Số điện thoại</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="number" id="sdt" ng-model="sdt" name="sdt" placeholder="Nhập số điện thoại..." class="form-control" required ng-minlength="10" ng-maxlength="10">
+                                        <span ng-show="frm.sdt.$error.required">
+                                            Required!
+                                        </span>
+                                        <span ng-show="frm.sdt.$error.number">
+                                            Not a number!
+                                        </span>
+                                        <span ng-show="frm.sdt.$error.minlength || frm.sdt.$error.maxlength">
+                                            Certainly 10 numbers!
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-
-                        <div class="row form-group">
-                            <div class="col col-md-3">
-                                <label for="tenmh" class=" form-control-label">Địa chỉ</label>
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <input type="text" id="diachi" ng-model="diachi" name="diachi" placeholder="Nhập địa chỉ..." class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="row form-group">
-                            <div class="col col-md-3">
-                                <label for="tenmh" class=" form-control-label">Số điện thoại</label>
-                            </div>
-                            <div class="col-12 col-md-9">
-                                <input type="text" id="sdt" ng-model="sdt" name="sdt" placeholder="Nhập số điện thoại..." class="form-control">
-                            </div>
-                        </div>
-      
-                    </form>
-                  </div>
+                    </div>
                 </div>
-              </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-              <button type="button" class="btn btn-primary" name="create" ng-click="updateDoanhNghiep()">Cập nhật doanh nghiệp</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" name="create" ng-click="createDoanhNghiep()">Thêm doanh nghiệp</button>
             </div>
-          </div>
+        </div>
     </div>
 </div>
 
- <!-- Modal -->
- <div class="modal fade bg-secondary" data-backdrop="false" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="Xoa" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade bg-secondary" data-backdrop="false" id="CapNhat" tabindex="-1" role="dialog" aria-labelledby="CapNhat" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CapNhat">DOANH NGHIỆP</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body card-block">
+                        <form action="" method="post" class="form-horizontal">
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="tenmh" class=" form-control-label">Tên doanh nghiệp</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="tendoanhnghiep" ng-model="tendoanhnghiep" name="tendoanhnghiep" placeholder="Nhập tên doanh nghiệp..." class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="tenmh" class=" form-control-label">Địa chỉ</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="diachi" ng-model="diachi" name="diachi" placeholder="Nhập địa chỉ..." class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="tenmh" class=" form-control-label">Số điện thoại</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="sdt" ng-model="sdt" name="sdt" placeholder="Nhập số điện thoại..." class="form-control">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" name="create" ng-click="updateDoanhNghiep()">Cập nhật doanh nghiệp</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade bg-secondary" data-backdrop="false" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="Xoa" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="Xoa">Cảnh báo</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <h1>Bạn có chắc muốn xoá không?</h1>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Không</button>
-            <button type="button" class="btn btn-danger" name="delete" ng-click="deleteDoanhNghiep()">Đồng ý</button>
-        </div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="Xoa">Cảnh báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h1>Bạn có chắc muốn xoá không?</h1>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Không</button>
+                <button type="button" class="btn btn-danger" name="delete" ng-click="deleteDoanhNghiep()">Đồng ý</button>
+            </div>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
     $('#header-button').click(function(event) {
-      myFunction2();
-      //$(event.target).modal('hide');
+        myFunction2();
+        //$(event.target).modal('hide');
     });
     $('#Them').click(function(event) {
-      $(event.target).modal('hide');
+        $(event.target).modal('hide');
     });
     $('#CapNhat').click(function(event) {
-      $(event.target).modal('hide');
+        $(event.target).modal('hide');
     });
     $('#Xoa').click(function(event) {
-      $(event.target).modal('hide');
+        $(event.target).modal('hide');
     });
-  
+
     function myFunction() {
         document.getElementById("header-desktop").style.zIndex = "1";
-  }
-  
-  function myFunction2() {
-    document.getElementById("header-desktop").style.zIndex = "2";
-  }
+    }
+
+    function myFunction2() {
+        document.getElementById("header-desktop").style.zIndex = "2";
+    }
 </script>

@@ -1,225 +1,203 @@
-﻿
-
-<style>
-    input.ng-invalid{
-      border: 1px solid red;
+﻿<style>
+    input.ng-invalid {
+        border: 1px solid red;
     }
-  </style>
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-success float-right mb-3 mr-2" data-toggle="modal" data-target="#Them" onclick="myFunction()" ng-click="refAdd()">
-    Thêm phòng học
-  </button>
-    
-    <!-- Modal -->
-    <div class="modal fade bg-secondary" data-backdrop="false" id="Them" tabindex="-1" role="dialog" aria-labelledby="Them" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="Them">PHÒNG HỌC</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div>
-              <div class="card">
-    
-                <div class="card-body card-block">
-                  <form action="" name="frm" method="post" class="form-horizontal">
-                    <div class="row form-group">
-                      <div class="col col-md-3">
-                        <label for="mamh" class=" form-control-label">Mã phòng</label>
-                      </div>
-                      <div class="col-10 col-md-9">
-                        <input type="text" id="maphg" name="maphg" ng-model="maphg" placeholder="Nhập mã phòng học..." class="form-control" required>
-                        <span ng-show="frm.maphg.$error.required">
-                          Required!
-                        </span>
-                      </div>
-                      
-                    </div>
-                    <div class="row form-group">
-                      <div class="col col-md-3">
-                        <label for="tenmh" class=" form-control-label">Tên phòng học</label>
-                      </div>
-                      <div class="col-10 col-md-9">
-                        <input type="text" id="tenphg" ng-model="tenphg" name="tenphg" placeholder="Nhập tên phòng học..." class="form-control" required>
-                        <span ng-show="frm.tenphg.$error.required">
-                          Required!
-                        </span>
-                      </div>
-                    </div>
-    
-                  </form>
-                </div>
-              </div>
-            </div>
-    
-    
-    
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-            <button type="button" class="btn btn-primary" name="create" ng-click="createPhonngHoc()">Thêm phòng học</button>
-          </div>
-        </div>
-      </div>
+</style>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-success rounded-circle float-right mb-3 mr-2" data-toggle="modal" data-target="#Them" onclick="myFunction()" ng-click="refAdd()">
+  <span class="fa fa-plus"></span>
+</button>
+
+<div class="row">
+    <!-- Loc theo khoa hoc -->
+    <div class="pt-2">
+        <strong>Hiển thị</strong>
     </div>
-  
-  
-  <div class="row">
-    <div class="col-3 col-md-3 text-dark">
-      <h4>
-        Chọn số lượng
-      </h4>
+    <div class="ml-2 mr-2">
+        <select name="phantrang" id="phantrang" class="form-control" ng-change="selectPhanTrang(SelectPhanTrang)" ng-model="SelectPhanTrang">
+            <!-- <option value="" selected disabled hidden>Choose here</option> -->
+            <option value=2>2</option>
+            <option value=5 selected>5</option>
+            <option value=6>6</option>
+            <option value=8>8</option>
+            <option value=10>10</option>
+            <option value=12>12</option>
+        </select>
     </div>
-    <div class="col-5 col-md-5 text-dark">
-      <select name="phantrang" id="phantrang" class="form-control" ng-change="selectPhanTrang(SelectPhanTrang)" ng-model="SelectPhanTrang">
-        <!-- <option value="" selected disabled hidden>Choose here</option> -->
-        <option value=2>2</option>
-        <option value=5 selected>5</option>
-        <option value=6>6</option>
-        <option value=8>8</option>
-        <option value=10>10</option>
-        <option value=12>12</option>
-      </select>
+    <div>
+        <button type="button" class="btn btn-primary float-right mb-3 mr-2" ng-click="changePage()">
+            Xem
+        </button>
     </div>
-    <div class="col-3 col-md-3 text-dark">
-      <button type="button" class="btn btn-success float-right mb-3 mr-2" ng-click="changePage()">
-        Chọn số lượng
-      </button>
-    </div>
-  </div>
-  
-    
-  
-  <div class="table-responsive table--no-card m-b-30">
-      <table class="table table-borderless table-striped">
-          <thead class="table-dark text-light">
-              <tr>
-                  <th class="w-5 text-center">STT</th>
-                  <th data-toggle="tooltip" data-placement="bottom" title="Click để sắp xếp!" class="w-10" ng-click="sortData('maphg')">Mã phòng</th>
-                  <th data-toggle="tooltip" data-placement="bottom" title="Click để sắp xếp!" class="w-50" ng-click="sortData('tenphg')">Tên phòng</th>
-                  <th></th>
-                  <th></th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr ng-repeat="row in phonghocpage | orderBy:sortColumn:reverse">
-                  <td class="w-5 text-center">{{$index + 1}}</td>
-                  <td class="w-10">{{row.maphg}}</td>
-                  <td class="w-50">{{row.tenphg}}</td>
-                 
-                  <td>
-                      <button type="button" name="update" data-toggle="modal" data-target="#CapNhat" onclick="myFunction()" ng-click="getMaPH(row)"> <span class="fa fa-edit"></span></button>
-                  </td>
-                  <td>
-                      <button type="button" name="delete" data-toggle="modal" data-target="#Xoa" onclick="myFunction()" ng-click="setMaPHDelete(row.maphg)"><span class="fa fa-trash"></span></button>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
-  </div>
-  
-  <nav aria-label="Page navigation" class="m-b-30">
+</div>
+
+<div class="table-responsive table--no-card m-b-30">
+    <table class="table table-borderless table-striped">
+        <thead class="table-dark text-light">
+            <tr>
+                <th class="w-5 text-center">STT</th>
+                <th data-toggle="tooltip" data-placement="bottom" title="Click để sắp xếp!" class="w-10" ng-click="sortData('maphg')">Mã phòng</th>
+                <th data-toggle="tooltip" data-placement="bottom" title="Click để sắp xếp!" class="w-50" ng-click="sortData('tenphg')">Tên phòng</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="row in phonghocpage | orderBy:sortColumn:reverse">
+                <td class="w-5 text-center">{{$index + 1}}</td>
+                <td class="w-10">{{row.maphg}}</td>
+                <td class="w-50">{{row.tenphg}}</td>
+
+                <td>
+                    <button type="button" name="update" data-toggle="modal" data-target="#CapNhat" onclick="myFunction()" ng-click="getMaPH(row)"> <span class="fa fa-edit"></span></button>
+                </td>
+                <td>
+                    <button type="button" name="delete" data-toggle="modal" data-target="#Xoa" onclick="myFunction()" ng-click="setMaPHDelete(row.maphg)"><span class="fa fa-trash"></span></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<nav aria-label="Page navigation" class="m-b-30">
     <ul class="pagination justify-content-end">
         <li class="page-item">
-            <button class="page-link" tabindex="-1" ng-click="preCount()">Previous</button>
+            <button class="page-link" tabindex="-1" ng-click="preCount()">Trước</button>
         </li>
         <li class="page-item" ng-repeat="row in arrSLPhongHoc"><button class="page-link" ng-model="number" ng-click="numb(row)">{{row+1}}</button></li>
         <li class="page-item">
-            <button class="page-link" ng-click="nextCount()">Next</button>
+            <button class="page-link" ng-click="nextCount()">Sau</button>
         </li>
     </ul>
-  </nav>
-  
-  
-  <!-- Modal -->
-  <div class="modal fade bg-secondary" data-backdrop="false" id="CapNhat" tabindex="-1" role="dialog" aria-labelledby="CapNhat" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
+</nav>
+
+<!-- Modal -->
+<div class="modal fade bg-secondary" data-backdrop="false" id="Them" tabindex="-1" role="dialog" aria-labelledby="Them" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="CapNhat">MÔN HỌC</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-    
-    
-    
-            <div>
-              <div class="card">
-    
-                <div class="card-body card-block">
-                  <form action="" method="post" class="form-horizontal">
-    
-                    <div class="row form-group">
-                      <div class="col col-md-3">
-                        <label for="tenmh" class=" form-control-label">Tên phòng học</label>
-                      </div>
-                      <div class="col-12 col-md-9">
-                        <input type="text" id="tenphg" ng-model="tenphg" name="tenphg" placeholder="Nhập tên phòng học..." class="form-control">
-                      </div>
-                    </div>
-    
-                  </form>
-                </div>
-              </div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="Them">PHÒNG HỌC</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-    
-    
-    
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-            <button type="button" class="btn btn-primary" name="create" ng-click="updatePhongHoc()">Cập nhật môn học</button>
-          </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body card-block">
+                        <form action="" name="frm" method="post" class="form-horizontal">
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="mamh" class=" form-control-label">Mã phòng</label>
+                                </div>
+                                <div class="col-10 col-md-9">
+                                    <input type="text" id="maphg" name="maphg" ng-model="maphg" placeholder="Nhập mã phòng học..." class="form-control" required>
+                                    <span ng-show="frm.maphg.$error.required">
+                                        Required!
+                                    </span>
+                                </div>
+
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="tenmh" class=" form-control-label">Tên phòng học</label>
+                                </div>
+                                <div class="col-10 col-md-9">
+                                    <input type="text" id="tenphg" ng-model="tenphg" name="tenphg" placeholder="Nhập tên phòng học..." class="form-control" required>
+                                    <span ng-show="frm.tenphg.$error.required">
+                                        Required!
+                                    </span>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" name="create" ng-click="createPhonngHoc()">Thêm phòng học</button>
+            </div>
         </div>
-      </div>
     </div>
-  
-    <!-- Modal -->
-  <div class="modal fade bg-secondary" data-backdrop="false" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="Xoa" aria-hidden="true">
-      <div class="modal-dialog modal-md" role="document">
+</div>
+
+<!-- Modal -->
+<div class="modal fade bg-secondary" data-backdrop="false" id="CapNhat" tabindex="-1" role="dialog" aria-labelledby="CapNhat" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="Xoa">Cảnh báo</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <h1>Bạn có chắc muốn xoá không?</h1>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Không</button>
-            <button type="button" class="btn btn-danger" name="delete" ng-click="deletePhongHoc()">Đồng ý</button>
-          </div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="CapNhat">MÔN HỌC</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body card-block">
+                        <form action="" method="post" class="form-horizontal">
+
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    <label for="tenmh" class=" form-control-label">Tên phòng học</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <input type="text" id="tenphg" ng-model="tenphg" name="tenphg" placeholder="Nhập tên phòng học..." class="form-control">
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-primary" name="create" ng-click="updatePhongHoc()">Cập nhật môn học</button>
+            </div>
         </div>
-      </div>
     </div>
-  
-    <script type="text/javascript">
-      $('#header-button').click(function(event) {
+</div>
+
+<!-- Modal -->
+<div class="modal fade bg-secondary" data-backdrop="false" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="Xoa" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Xoa">Cảnh báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h1>Bạn có chắc muốn xoá không?</h1>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Không</button>
+                <button type="button" class="btn btn-danger" name="delete" ng-click="deletePhongHoc()">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('#header-button').click(function(event) {
         myFunction2();
         //$(event.target).modal('hide');
-      });
-      $('#Them').click(function(event) {
+    });
+    $('#Them').click(function(event) {
         $(event.target).modal('hide');
-      });
-      $('#CapNhat').click(function(event) {
+    });
+    $('#CapNhat').click(function(event) {
         $(event.target).modal('hide');
-      });
-      $('#Xoa').click(function(event) {
+    });
+    $('#Xoa').click(function(event) {
         $(event.target).modal('hide');
-      });
-    
-      function myFunction() {
-          document.getElementById("header-desktop").style.zIndex = "1";
+    });
+
+    function myFunction() {
+        document.getElementById("header-desktop").style.zIndex = "1";
     }
-    
+
     function myFunction2() {
-      document.getElementById("header-desktop").style.zIndex = "2";
+        document.getElementById("header-desktop").style.zIndex = "2";
     }
-    </script>
+</script>
