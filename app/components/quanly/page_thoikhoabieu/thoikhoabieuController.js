@@ -127,23 +127,6 @@ adminApp.controller('thoikhoabieuController', ['$scope', '$rootScope', '$http', 
   };
 
   $scope.updateThoiKhoaBieu = function() {
-    // ThoiKhoaBieu = $resource(
-    //   "http://localhost:8080/thoikhoabieu/:id", {}, {
-    //     save: {
-    //       method: 'PUT',
-    //       params: {
-    //         id: '@id'
-    //       }
-    //     }
-    //   }
-    // );
-    //
-    // $scope.Message = ThoiKhoaBieu.save({
-    //   id: $scope.thoikhoabieuSua.id
-    // }, $scope.thoikhoabieuSua);
-
-    console.log($scope.thoikhoabieuSua);
-
     var hour = $scope.thoikhoabieuSua.giobd.getHours();
     var minute = $scope.thoikhoabieuSua.giobd.getMinutes();
     if (hour < 10) {
@@ -206,8 +189,6 @@ adminApp.controller('thoikhoabieuController', ['$scope', '$rootScope', '$http', 
     $scope.thoikhoabieuSua.giokt.setMinutes(parts[1]);
     $scope.thoikhoabieuSua.giokt.setSeconds(parts[2]);
 
-    // $scope.thoikhoabieuSua.giobd = $filter('date')($scope.thoikhoabieuSua.giobd, 'HH:mm');
-    // $scope.thoikhoabieuSua.giokt = $filter('date')($scope.thoikhoabieuSua.giokt, 'HH:mm');
     console.log($scope.thoikhoabieuSua);
 
   }

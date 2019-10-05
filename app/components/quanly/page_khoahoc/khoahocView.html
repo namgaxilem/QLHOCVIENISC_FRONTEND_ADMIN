@@ -73,7 +73,7 @@
 </nav>
 
 <!-- Modal -->
-<div class="modal fade bg-secondary" data-backdrop="false" id="Them" tabindex="-1" role="dialog" aria-labelledby="Them" aria-hidden="true">
+<div class="modal fade" data-backdrop="false" id="Them" tabindex="-1" role="dialog" aria-labelledby="Them" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -101,7 +101,6 @@
                                     <input type="text" id="tenkhoahoc" ng-model="tenkhoahoc" name="tenkhoahoc" placeholder="Nhập tên khoá học..." class="form-control">
                                 </div>
                             </div>
-
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label for="ngaybd" class=" form-control-label">Ngày bắt đầu</label>
@@ -118,14 +117,12 @@
                                     <input type="date" id="ngaykt" ng-model="ngaykt" name="ngaykt" placeholder="Nhập ngày kết thúc..." class="form-control">
                                 </div>
                             </div>
-
                             <div class="row form-group">
                                 <div class="col col-md-3">
                                     <label for="chuyennganh" class=" form-control-label">Chuyên ngành</label>
                                 </div>
                                 <div class="col-9 col-md-9 text-dark">
                                     <select name="chuyennganh" id="chuyennganh" class="form-control" ng-change="selectChuyenNganh(SelectChuyenNganh)" ng-model="SelectChuyenNganh">
-
                                         <option ng-repeat="row in chuyennganh" value="{{row.id}}">{{row.tencn}}</option>
                                     </select>
                                 </div>
@@ -144,7 +141,7 @@
 </div>
 
 <!-- Modal update-->
-<div class="modal fade bg-secondary" data-backdrop="false" id="CapNhat" tabindex="-1" role="dialog" aria-labelledby="CapNhat" aria-hidden="true">
+<div class="modal fade" data-backdrop="false" id="CapNhat" tabindex="-1" role="dialog" aria-labelledby="CapNhat" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -154,12 +151,7 @@
                 </button>
             </div>
             <div class="modal-body">
-
-
-
-                <div>
                     <div class="card">
-
                         <div class="card-body card-block">
                             <form action="" method="post" class="form-horizontal">
 
@@ -204,10 +196,6 @@
                             </form>
                         </div>
                     </div>
-                </div>
-
-
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
@@ -218,7 +206,7 @@
 </div>
 
 <!-- Modal delete-->
-<div class="modal fade bg-secondary" data-backdrop="false" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="Xoa" aria-hidden="true">
+<div class="modal fade" data-backdrop="false" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="Xoa" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -228,7 +216,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h1>Bạn có chắc muốn xoá không?</h1>
+                <h2>Xóa khóa học sẽ xóa tất cả sinh viên trong khóa học!</h3>
+            </div>
+            <div class="modal-body">
+                <h3>Vẫn muốn xóa?</h3>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Không</button>

@@ -3,7 +3,6 @@
         border: 1px solid red;
     }
 </style>
-
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-success rounded-circle float-right mb-3 mr-2" data-toggle="modal" data-target="#Them" onclick="myFunction()" ng-click="refAdd()">
     <span class="fa fa-plus"></span>
@@ -15,20 +14,20 @@
         <strong>Hiển thị</strong>
     </div>
     <div class="ml-2 mr-2">
-      <select name="phantrang" id="phantrang" class="form-control" ng-change="selectPhanTrang(SelectPhanTrang)" ng-model="SelectPhanTrang">
-          <!-- <option value="" selected disabled hidden>Choose here</option> -->
-          <option value=2>2</option>
-          <option value=5>5</option>
-          <option value=6>6</option>
-          <option value=8>8</option>
-          <option value=10>10</option>
-          <option value=12>12</option>
-      </select>
+        <select name="phantrang" id="phantrang" class="form-control" ng-change="selectPhanTrang(SelectPhanTrang)" ng-model="SelectPhanTrang">
+            <!-- <option value="" selected disabled hidden>Choose here</option> -->
+            <option value=2>2</option>
+            <option value=5>5</option>
+            <option value=6>6</option>
+            <option value=8>8</option>
+            <option value=10>10</option>
+            <option value=12>12</option>
+        </select>
     </div>
     <div>
-      <button type="button" class="btn btn-primary float-right mb-3 mr-2" ng-click="changePage()">
-          Xem
-      </button>
+        <button type="button" class="btn btn-primary float-right mb-3 mr-2" ng-click="changePage()">
+            Xem
+        </button>
     </div>
 </div>
 
@@ -74,11 +73,11 @@
 </nav>
 
 <!-- Modal -->
-<div class="modal fade bg-secondary" data-backdrop="false" id="Them" tabindex="-1" role="dialog" aria-labelledby="Them" aria-hidden="true">
+<div class="modal fade" data-backdrop="false" id="Them" tabindex="-1" role="dialog" aria-labelledby="Them" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="Them">DOANH NGHIỆP</h5>
+                <h5 class="modal-title" id="Them">THÊM DOANH NGHIỆP</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -88,7 +87,7 @@
                     <div class="card">
                         <div class="card-body card-block">
                             <form action="" name="frm" method="post" class="form-horizontal">
-                                <div class="row form-group">
+                                <!-- <div class="row form-group">
                                     <div class="col col-md-3">
                                         <label for="mamh" class=" form-control-label">ID</label>
                                     </div>
@@ -98,7 +97,7 @@
                                             Required!
                                         </span>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="row form-group">
                                     <div class="col col-md-3">
                                         <label for="mamh" class=" form-control-label">Tên doanh nghiệp</label>
@@ -152,7 +151,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade bg-secondary" data-backdrop="false" id="CapNhat" tabindex="-1" role="dialog" aria-labelledby="CapNhat" aria-hidden="true">
+<div class="modal fade" data-backdrop="false" id="CapNhat" tabindex="-1" role="dialog" aria-labelledby="CapNhat" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -205,7 +204,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade bg-secondary" data-backdrop="false" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="Xoa" aria-hidden="true">
+<div class="modal fade" data-backdrop="false" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="Xoa" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">

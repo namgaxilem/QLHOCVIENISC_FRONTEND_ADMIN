@@ -8,3 +8,8 @@ table tbody tr td {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.modal-backdrop
+{
+    opacity:0.5 !important;
+}
