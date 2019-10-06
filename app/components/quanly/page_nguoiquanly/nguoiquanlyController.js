@@ -1,13 +1,26 @@
 adminApp.controller('nguoiquanlyController', ['$scope', '$rootScope', '$http', '$resource', function($scope, $rootScope, $http, $resource) {
   $rootScope.title = 'Người quản lý';
 
-  function fetchAllAccounttype() {
-    $scope.loaitaikhoan = $resource('http://localhost:8080/loaitaikhoan').query(function(data) {
-      return data;
-    });
-  };
+  function tatModal() {
+    $('#Xoa').modal('hide');
+    $('#Them').modal('hide');
+    $('#CapNhat').modal('hide');
+  }
 
-  fetchAllAccounttype();
+  $scope.pageNo = 0;
+  $scope.pageSize = 50;
+  $scope.total = 0;
+
+  function getNguoiQuanLyPage() {
+    $http.get("http://localhost:8080/nguoiquanly2?pageNo=" + $scope.pageNo + "&pageSize=" + $scope.pageSize).then(
+      function(response) {
+        $scope.nguoiquanlypage = response.data;
+      },
+      function(err) {
+        var error = err;
+      });
+  }
+  getNguoiQuanLyPage();
 
   $scope.seletedLoaitaikhoan = "";
   $scope.statusAccounttype = "";
@@ -29,7 +42,6 @@ adminApp.controller('nguoiquanlyController', ['$scope', '$rootScope', '$http', '
     }
   }
 
-  //lấy dữ liệu
   function fetchAllManager() {
     $scope.nguoiquanly = $resource('http://localhost:8080/nguoiquanly').query(function(data) {
       return data;
@@ -64,8 +76,11 @@ adminApp.controller('nguoiquanlyController', ['$scope', '$rootScope', '$http', '
     user.ngayvaolam = $scope.ngayvaolam;
     user.password = $scope.password;
     user.accounttype = $scope.SelectLoaiTaiKhoan;
-    $scope.Message = User.save(user);
-    location.reload();
+    $scope.Message = User.save(user).$promise.then(() => {
+      tatModal();
+      getNguoiQuanLyPage();
+      alert('Thêm người quản lý thành công');
+    });
   };
 
   //lấy mã người quản lý
@@ -87,9 +102,11 @@ adminApp.controller('nguoiquanlyController', ['$scope', '$rootScope', '$http', '
 
     $scope.Message = User.delete({
       id: $scope.MaNQLDelete
+    }).$promise.then(() => {
+      tatModal();
+      getNguoiQuanLyPage();
+      alert('Xóa người quản lý thành công');
     });
-    //console.log($scope.MaNQLDelete);
-    location.reload();
   };
 
   $scope.refAdd = function() {
@@ -166,8 +183,11 @@ adminApp.controller('nguoiquanlyController', ['$scope', '$rootScope', '$http', '
 
     $scope.Message = User.save({
       id: $scope.manql
-    }, user);
-    location.reload();
+    }, user).$promise.then(() => {
+      tatModal();
+      getNguoiQuanLyPage();
+      alert('Sửa người quản lý thành công');
+    });
   };
 
   //sắp xếp dữ liệu sử dụng header click
@@ -182,14 +202,8 @@ adminApp.controller('nguoiquanlyController', ['$scope', '$rootScope', '$http', '
     $scope.sortColumn = column;
   }
 
-  //phân trang
-  $scope.pageNo = 0;
-  $scope.pageSize = 5;
-  $scope.total = 0;
-
   $scope.selectPhanTrang = function(SelectPhanTrang) {
     $scope.pageSize = SelectPhanTrang;
-    //location.reload();
   }
 
   function getCountNguoiQuanLy() {
@@ -204,17 +218,6 @@ adminApp.controller('nguoiquanlyController', ['$scope', '$rootScope', '$http', '
       });
   }
   getCountNguoiQuanLy();
-
-  function getNguoiQuanLyPage() {
-    $http.get("http://localhost:8080/nguoiquanly2?pageNo=" + $scope.pageNo + "&pageSize=" + $scope.pageSize).then(
-      function(response) {
-        $scope.nguoiquanlypage = response.data;
-      },
-      function(err) {
-        var error = err;
-      });
-  }
-  getNguoiQuanLyPage();
 
   $scope.numb = function(So) {
     $scope.pageNo = So;
@@ -233,7 +236,6 @@ adminApp.controller('nguoiquanlyController', ['$scope', '$rootScope', '$http', '
 
   $scope.nextCount = function() {
     getCountNguoiQuanLy();
-    //alert($scope.pageNo);
     if ($scope.pageNo < $scope.total) {
       $scope.pageNo++;
       if ($scope.pageNo >= $scope.total) {

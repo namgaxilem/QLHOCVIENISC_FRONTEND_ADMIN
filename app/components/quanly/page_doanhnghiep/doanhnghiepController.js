@@ -10,11 +10,7 @@ adminApp.controller('doanhnghiepController', ['$scope', '$rootScope', '$http', '
   function fetchAllBusiness() {
     $http.get("http://localhost:8080/doanhnghiep2?pageNo=" + $scope.pageNo + "&pageSize=" + $scope.pageSize).then(
       function(response) {
-        $scope.doanhnghieppage = [];
-        //$scope.doanhnghieppage = response.data;
-        for (i = 0; i < response.data.length; i++) {
-          $scope.doanhnghieppage.push(response.data[i]);
-        }
+        $scope.doanhnghieppage = response.data;
       },
       function(err) {
         var error = err;
@@ -41,9 +37,7 @@ adminApp.controller('doanhnghiepController', ['$scope', '$rootScope', '$http', '
       tatModal();
       fetchAllBusiness();
       alert('Tạo doanh nghiệp thành công');
-    });;
-
-    //location.reload();
+    });
   };
 
   $scope.setMaDNDelete = function(id) {
@@ -120,8 +114,7 @@ adminApp.controller('doanhnghiepController', ['$scope', '$rootScope', '$http', '
       tatModal();
       fetchAllBusiness();
       alert('Sửa doanh nghiệp thành công');
-    });;;
-    //location.reload();
+    });
   };
 
   //sắp xếp dữ liệu sử dụng header click

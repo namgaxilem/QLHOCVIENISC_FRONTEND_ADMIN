@@ -2,68 +2,81 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', '$root
   $rootScope.title = 'Học viên';
 
   $scope.hocvienThem = {
-    password : "",
-    tgcothedilam : "",
-    email : "",
-    diachi : "",
-    matruong : "",
-    sdt : "",
-    ho : "",
-    tenlot : "",
-    makhoahoc : "",
-    gioitinh : "",
-    ngaysinh : "",
-    ten : "",
-    anhdaidien : "avatar.png",
-    mahv : "",
-    type : "",
-    accounttype : "0"
+    password: "",
+    tgcothedilam: "",
+    email: "",
+    diachi: "",
+    matruong: "",
+    sdt: "",
+    ho: "",
+    tenlot: "",
+    makhoahoc: "",
+    gioitinh: "",
+    ngaysinh: "",
+    ten: "",
+    anhdaidien: "avatar.png",
+    mahv: "",
+    type: "",
+    accounttype: "0"
   };
 
   $scope.hocvienSua = {
-    password : "",
-    tgcothedilam : "",
-    email : "",
-    diachi : "",
-    matruong : "",
-    sdt : "",
-    ho : "",
-    tenlot : "",
-    makhoahoc : "",
-    gioitinh : "",
-    ngaysinh : "",
-    ten : "",
-    anhdaidien : "avatar.png",
-    mahv : "",
-    type : "",
-    accounttype : "0"
+    password: "",
+    tgcothedilam: "",
+    email: "",
+    diachi: "",
+    matruong: "",
+    sdt: "",
+    ho: "",
+    tenlot: "",
+    makhoahoc: "",
+    gioitinh: "",
+    ngaysinh: "",
+    ten: "",
+    anhdaidien: "avatar.png",
+    mahv: "",
+    type: "",
+    accounttype: "0"
   };
 
   $scope.hocvienXem = {
-    password : "",
-    tgcothedilam : "",
-    email : "",
-    diachi : "",
-    matruong : "",
-    sdt : "",
-    ho : "",
-    tenlot : "",
-    makhoahoc : "",
-    gioitinh : "",
-    ngaysinh : "",
-    ten : "",
-    anhdaidien : "",
-    mahv : "",
-    type : "",
-    accounttype : "0"
+    password: "",
+    tgcothedilam: "",
+    email: "",
+    diachi: "",
+    matruong: "",
+    sdt: "",
+    ho: "",
+    tenlot: "",
+    makhoahoc: "",
+    gioitinh: "",
+    ngaysinh: "",
+    ten: "",
+    anhdaidien: "",
+    mahv: "",
+    type: "",
+    accounttype: "0"
   };
 
-  function fetchAllStudents() {
-    $scope.hocvienpage = $resource('http://localhost:8080/hocvien').query(function(data) {
-      return data;
-    });
-  };
-  fetchAllStudents();
+  $scope.pageNo = 0;
+  $scope.pageSize = 200;
+  $scope.typeSort = 1;
+  $scope.sortBy = "MAHV";
+  $scope.makhoahoc = "ISC09";
+  $scope.arrSLHocvien = [];
+
+  function getHocvienPage() {
+    $http.get("http://localhost:8080/hocvien2?pageNo=" + $scope.pageNo + "&pageSize=" + $scope.pageSize + "&typeSort=" + $scope.typeSort + "&makhoahoc=" + $scope.makhoahoc + "&sortBy=" + $scope.sortBy).then(
+      function(response) {
+        $scope.hocvienpage = response.data;
+        $scope.soluonghienthi = response.data.length;
+        $scope.total = $scope.hocvienpage.length / $scope.pageSize;
+      },
+      function(err) {
+        var error = err;
+      });
+  }
+  getHocvienPage();
 
   function fetchAllStudentsType() {
     $scope.loaihocvien = $resource('http://localhost:8080/danhmuchocvien').query(function(data) {
@@ -78,13 +91,6 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', '$root
     });
   };
   fetchAllSchool();
-
-  function fetchAllAccounttype() {
-    $scope.loaitaikhoan = $resource('http://localhost:8080/loaitaikhoan').query(function(data) {
-      return data;
-    });
-  };
-  fetchAllAccounttype();
 
   function fetchAllCourse() {
     $scope.khoahoc = $resource('http://localhost:8080/khoahoc').query(function(data) {
@@ -127,6 +133,12 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', '$root
   };
   //End upload file
 
+  function tatModal() {
+    $('#XoaHV').modal('hide');
+    $('#ThemHV').modal('hide');
+    $('#CapNhatHV').modal('hide');
+  }
+
   $scope.createStudent = function() {
     User = $resource(
       "http://localhost:8080/themhocvien", {}, {
@@ -137,18 +149,16 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', '$root
       }
     );
 
-    console.log($scope.hocvienThem);
-
     if ($scope.hocvienThem.password != "" &&
-    $scope.hocvienThem.email != "" &&
-    $scope.hocvienThem.matruong != "" &&
-    $scope.hocvienThem.sdt != "" &&
-    $scope.hocvienThem.ho != "" &&
-    $scope.hocvienThem.makhoahoc != "" &&
-    $scope.hocvienThem.ngaysinh != "" &&
-    $scope.hocvienThem.ten != "" &&
-    $scope.hocvienThem.mahv != "" &&
-    $scope.hocvienThem.type != "") {
+      $scope.hocvienThem.email != "" &&
+      $scope.hocvienThem.matruong != "" &&
+      $scope.hocvienThem.sdt != "" &&
+      $scope.hocvienThem.ho != "" &&
+      $scope.hocvienThem.makhoahoc != "" &&
+      $scope.hocvienThem.ngaysinh != "" &&
+      $scope.hocvienThem.ten != "" &&
+      $scope.hocvienThem.mahv != "" &&
+      $scope.hocvienThem.type != "") {
       if ($scope.anhdaidien == "avatar.png") {
 
       } else {
@@ -160,9 +170,11 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', '$root
       }
 
       var hocvienThem = angular.toJson($scope.hocvienThem);
-      $scope.Message = User.save(hocvienThem);
-
-      location.reload();
+      $scope.Message = User.save(hocvienThem).$promise.then(() => {
+        tatModal();
+        getHocvienPage();
+        alert('Thêm học viên thành công');
+      });;
     } else {
       alert("Vui lòng nhập đủ các trường bắt buộc!");
     }
@@ -185,8 +197,11 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', '$root
 
     $scope.Message = User.delete({
       id: $scope.MaHVDelete
-    });
-    location.reload();
+    }).$promise.then(() => {
+      tatModal();
+      getHocvienPage();
+      alert('Xóa học viên thành công');
+    });;
   };
 
   $scope.xemhocvien = function(student) {
@@ -214,14 +229,14 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', '$root
     );
 
     if ($scope.hocvienSua.password != "" &&
-    $scope.hocvienSua.email != "" &&
-    $scope.hocvienSua.matruong != "" &&
-    $scope.hocvienSua.sdt != "" &&
-    $scope.hocvienSua.ho != "" &&
-    $scope.hocvienSua.makhoahoc != "" &&
-    $scope.hocvienSua.ngaysinh != "" &&
-    $scope.hocvienSua.ten != "" &&
-    $scope.hocvienSua.type != "") {
+      $scope.hocvienSua.email != "" &&
+      $scope.hocvienSua.matruong != "" &&
+      $scope.hocvienSua.sdt != "" &&
+      $scope.hocvienSua.ho != "" &&
+      $scope.hocvienSua.makhoahoc != "" &&
+      $scope.hocvienSua.ngaysinh != "" &&
+      $scope.hocvienSua.ten != "" &&
+      $scope.hocvienSua.type != "") {
       if ($scope.anhdaidien == "avatar.png" || $scope.anhdaidien == "female.jpg") {
         if ($scope.gioitinh == "Nam") {
           $scope.anhdaidien = "avatar.png";
@@ -234,20 +249,15 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', '$root
 
       $scope.Message = User.save({
         id: $scope.hocvienSua.mahv
-      }, $scope.hocvienSua);
-      location.reload();
+      }, $scope.hocvienSua).$promise.then(() => {
+        tatModal();
+        getHocvienPage();
+        alert('Sửa học viên thành công');
+      });
     } else {
       alert("Vui lòng nhập đủ các trường bắt buộc!");
     }
   };
-
-  $scope.pageNo = 0;
-  $scope.pageSize = 200;
-  $scope.total = $scope.hocvienpage.length / $scope.pageSize;
-  $scope.typeSort = 1;
-  $scope.sortBy = "MAHV";
-  $scope.makhoahoc = "ISC09";
-  $scope.arrSLHocvien = [];
 
   $scope.changeCourse = function() {
     $scope.typeSort = 1;
@@ -261,21 +271,8 @@ adminApp.controller('hocvienController', ['$scope', '$http', '$resource', '$root
       $scope.typeSort = 1;
     }
     $scope.sortBy = SortPage;
-    console.log($scope.makhoahoc);
     getHocvienPage();
   };
-
-  function getHocvienPage() {
-    $http.get("http://localhost:8080/hocvien2?pageNo=" + $scope.pageNo + "&pageSize=" + $scope.pageSize + "&typeSort=" + $scope.typeSort + "&makhoahoc=" + $scope.makhoahoc + "&sortBy=" + $scope.sortBy).then(
-      function(response) {
-        $scope.hocvienpage = response.data;
-        $scope.soluonghienthi = response.data.length;
-      },
-      function(err) {
-        var error = err;
-      });
-  }
-  getHocvienPage();
 
   // remove and change class
   $scope.sortClass = function(Sort) {

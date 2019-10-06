@@ -1,6 +1,11 @@
 adminApp.controller('thongbaoController', ['$scope', '$rootScope', '$http', '$resource', function($scope, $rootScope, $http, $resource) {
   $rootScope.title = 'Thông báo';
 
+  function tatModal() {
+    $('#Xoa').modal('hide');
+    $('#Them').modal('hide');
+  }
+
   $scope.thongbaoThem = {
     tieude: "",
     noidung: "",
@@ -8,6 +13,30 @@ adminApp.controller('thongbaoController', ['$scope', '$rootScope', '$http', '$re
     ngaydang: "",
     makhoahoc: ""
   };
+
+  $scope.pageNo = 0;
+  $scope.pageSize = 50;
+  $scope.totalpage = 0;
+  $scope.arrSLThongBao = [];
+
+  function getThongBaoPage() {
+    $http.get("http://localhost:8080/thongbao2?pageNo=" + $scope.pageNo + "&pageSize=" + $scope.pageSize).then(
+      function(response) {
+        $scope.thongbao = response.data;
+        //Đánh số thứ tự
+        $scope.thongbao.stt = [];
+        var stt = $scope.pageNo * $scope.pageSize;
+        for (var i = 0; i < $scope.pageSize; i++) {
+          stt++;
+          $scope.thongbao.stt[i] = stt;
+        }
+
+      },
+      function(err) {
+        var error = err;
+      });
+  }
+  getThongBaoPage();
 
   function fetchAllKhoaHoc() {
     $scope.khoahoc = $resource('http://localhost:8080/khoahoc').query(function(data) {
@@ -28,11 +57,12 @@ adminApp.controller('thongbaoController', ['$scope', '$rootScope', '$http', '$re
 
     $scope.thongbaoThem.nguoidang = "1";
     $scope.thongbaoThem.ngaydang = new Date();
-    //var thongbaoThem = angular.toJson($scope.thongbaoThem);
 
-    $scope.Message = ThongBao.save($scope.thongbaoThem);
-
-    location.reload();
+    $scope.Message = ThongBao.save($scope.thongbaoThem).$promise.then(() => {
+      tatModal();
+      getThongBaoPage();
+      alert('Thêm thống báo thành công');
+    });
   };
 
   $scope.setMaThongBaoDelete = function(id) {
@@ -52,8 +82,11 @@ adminApp.controller('thongbaoController', ['$scope', '$rootScope', '$http', '$re
 
     $scope.Message = User.delete({
       id: $scope.MaThongBaoDelete
+    }).$promise.then(() => {
+      tatModal();
+      getThongBaoPage();
+      alert('Xóa thông báo thành công');
     });
-    location.reload();
   };
   $scope.refAdd = function() {
     $scope.thongbaoThem = {
@@ -69,13 +102,6 @@ adminApp.controller('thongbaoController', ['$scope', '$rootScope', '$http', '$re
     $scope.thongbaoXem = angular.copy(row);
   }
 
-  //Phân trang
-
-  $scope.pageNo = 0;
-  $scope.pageSize = 5;
-  $scope.totalpage = 0;
-  $scope.arrSLThongBao = [];
-
   function getCountThongBao() {
     $http.get("http://localhost:8080/thongbao").then(
       function(response) {
@@ -86,29 +112,10 @@ adminApp.controller('thongbaoController', ['$scope', '$rootScope', '$http', '$re
         }
       },
       function(err) {
-        console.log(err);
+        alert(err);
       });
   }
   getCountThongBao();
-
-  function getThongBaoPage() {
-    $http.get("http://localhost:8080/thongbao2?pageNo=" + $scope.pageNo + "&pageSize=" + $scope.pageSize).then(
-      function(response) {
-        $scope.thongbao = response.data;
-        //Đánh số thứ tự
-        $scope.thongbao.stt = [];
-        var stt = $scope.pageNo * $scope.pageSize;
-        for (var i = 0; i < $scope.pageSize; i++) {
-          stt++;
-          $scope.thongbao.stt[i] = stt;
-        }
-
-      },
-      function(err) {
-        var error = err;
-      });
-  }
-  getThongBaoPage();
 
   $scope.numb = function(So) {
     $scope.pageNo = So;

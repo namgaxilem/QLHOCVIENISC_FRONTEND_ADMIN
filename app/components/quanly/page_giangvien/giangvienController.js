@@ -57,9 +57,11 @@ adminApp.controller('giangvienController', ['$scope', '$http', '$resource', 'api
     } else {
       $scope.model.accounttype = 1;
       $http.post(apiBaseUrl + '/add_canbogiangvien', $scope.model).then(function(res) {
-        location.reload();
+        tatModal();
+        getGiangVienPage();
+        alert('Thêm giảng viên thành công');
       }, function(err) {
-        alert("Lỗi");
+        alert("Kiểm tra lại các trường");
       });
     }
   }
@@ -83,7 +85,9 @@ adminApp.controller('giangvienController', ['$scope', '$http', '$resource', 'api
     } else {
       var url = apiBaseUrl + '/update_canbogiangvien/' + $scope.editModel.macbgv;
       $http.put(url, $scope.editModel).then(function(res) {
-        location.reload();
+        tatModal();
+        getGiangVienPage();
+        alert('Sửa giảng viên thành công');
       }, function(err) {
 
       });
@@ -96,10 +100,18 @@ adminApp.controller('giangvienController', ['$scope', '$http', '$resource', 'api
 
   $scope.deleteCBGV = function(maCBGV) {
     $http.delete(apiBaseUrl + '/delete_canbogiangvien/' + maCBGV).then(function(res) {
-      location.reload();
+      tatModal();
+      getGiangVienPage();
+      alert('Xóa giảng viên thành công');
     }, function(err) {
 
     });
+  }
+
+  function tatModal() {
+    $('#XoaCBGV').modal('hide');
+    $('#ThemCBGV').modal('hide');
+    $('#CapNhatCBGV').modal('hide');
   }
 
   $scope.loadData();
