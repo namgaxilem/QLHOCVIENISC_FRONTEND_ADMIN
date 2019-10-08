@@ -47,7 +47,6 @@
                 <td class="w-5 text-center">{{$index + 1}}</td>
                 <td class="w-10">{{row.maphg}}</td>
                 <td class="w-50">{{row.tenphg}}</td>
-
                 <td>
                     <button type="button" name="update" data-toggle="modal" data-target="#CapNhat" onclick="myFunction()" ng-click="getMaPH(row)"> <span class="fa fa-edit"></span></button>
                 </td>
@@ -72,7 +71,7 @@
 </nav>
 
 <!-- Modal -->
-<div class="modal fade bg-secondary" data-backdrop="false" id="Them" tabindex="-1" role="dialog" aria-labelledby="Them" aria-hidden="true">
+<div class="modal fade" data-backdrop="false" id="Them" tabindex="-1" role="dialog" aria-labelledby="Them" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -122,7 +121,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade bg-secondary" data-backdrop="false" id="CapNhat" tabindex="-1" role="dialog" aria-labelledby="CapNhat" aria-hidden="true">
+<div class="modal fade" data-backdrop="false" id="CapNhat" tabindex="-1" role="dialog" aria-labelledby="CapNhat" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -158,7 +157,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade bg-secondary" data-backdrop="false" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="Xoa" aria-hidden="true">
+<div class="modal fade" data-backdrop="false" id="Xoa" tabindex="-1" role="dialog" aria-labelledby="Xoa" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">

@@ -1,6 +1,12 @@
 adminApp.controller('doanhnghiepController', ['$scope', '$rootScope', '$http', '$resource', function($scope, $rootScope, $http, $resource) {
   $rootScope.title = 'Doanh nghiệp';
 
+  function tatModal() {
+    $('#Xoa').modal('hide');
+    $('#Them').modal('hide');
+    $('#CapNhat').modal('hide');
+  }
+  
   $scope.pageNo = 0;
   $scope.pageSize = 50;
   $scope.total = 0;
@@ -64,12 +70,6 @@ adminApp.controller('doanhnghiepController', ['$scope', '$rootScope', '$http', '
       alert('Xóa doanh nghiệp thành công');
     });
   };
-
-  function tatModal() {
-    $('#Xoa').modal('hide');
-    $('#Them').modal('hide');
-    $('#CapNhat').modal('hide');
-  }
 
   //reset lại các input
   $scope.refAdd = function() {

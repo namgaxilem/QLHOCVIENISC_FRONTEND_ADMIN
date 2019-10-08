@@ -1,12 +1,11 @@
 adminApp.controller('phonghocController', ['$scope', '$rootScope', '$http', '$resource', function($scope, $rootScope, $http, $resource) {
   $rootScope.title = 'Phòng học';
 
-  function fetchAllClassroom() {
-    $scope.phonghoc = $resource('http://localhost:8080/phonghoc').query(function(data) {
-      return data;
-    });
-  };
-  fetchAllClassroom();
+  function tatModal() {
+    $('#Xoa').modal('hide');
+    $('#Them').modal('hide');
+    $('#CapNhat').modal('hide');
+  }
 
   $scope.createPhonngHoc = function() {
     User = $resource(
@@ -21,8 +20,11 @@ adminApp.controller('phonghocController', ['$scope', '$rootScope', '$http', '$re
     var user = {};
     user.maphg = $scope.maphg;
     user.tenphg = $scope.tenphg;
-    $scope.Message = User.save(user);
-    location.reload();
+    $scope.Message = User.save(user).$promise.then(() => {
+      tatModal();
+      getPhongHocPage();
+      alert('Thêm phòng học thành công');
+    });
   };
 
   $scope.setMaPHDelete = function(maphg) {
@@ -43,8 +45,11 @@ adminApp.controller('phonghocController', ['$scope', '$rootScope', '$http', '$re
 
     $scope.Message = User.delete({
       id: $scope.MaPHDelete
+    }).$promise.then(() => {
+      tatModal();
+      getPhongHocPage();
+      alert('Xóa phòng học thành công');
     });
-    location.reload();
   };
 
   $scope.refAdd = function() {
@@ -77,8 +82,11 @@ adminApp.controller('phonghocController', ['$scope', '$rootScope', '$http', '$re
 
     $scope.Message = User.save({
       id: $scope.uMaPH
-    }, user);
-    location.reload();
+    }, user).$promise.then(() => {
+      tatModal();
+      getPhongHocPage();
+      alert('Sửa phòng học thành công');
+    });
   };
 
   //sắp xếp dữ liệu sử dụng header click

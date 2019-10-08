@@ -196,7 +196,7 @@ adminApp.controller('thoikhoabieuController', ['$scope', '$rootScope', '$http', 
   //Phân trang
 
   $scope.pageNo = 0;
-  $scope.pageSize = 5;
+  $scope.pageSize = 50;
   $scope.totalpage = 0;
   $scope.arrSLThoiKhoaBieu = [];
 

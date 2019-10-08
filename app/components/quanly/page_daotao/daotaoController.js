@@ -1,8 +1,13 @@
 adminApp.controller('daotaoController', ['$scope', '$rootScope', '$http', '$resource', function($scope, $rootScope, $http, $resource) {
   $rootScope.title = "Đào tạo";
 
+  function tatModal() {
+    $('#Xoa').modal('hide');
+    $('#Them').modal('hide');
+  }
+
   $scope.pageNo = 0;
-  $scope.pageSize = 5;
+  $scope.pageSize = 50;
   $scope.total = 0;
   $scope.arrSLTrang = [];
 
@@ -130,9 +135,12 @@ adminApp.controller('daotaoController', ['$scope', '$rootScope', '$http', '$reso
     var user = {};
     user.chuyennganh_ID = $scope.SelectChuyenNganh;
     user.mamh_ID = $scope.resultMonHoc.mamh;
-    $scope.Message = User.save(user);
-
-    location.reload();
+    $scope.Message = User.save(user).$promise.then(() => {
+      tatModal();
+      fetchAllSubjects();
+      getChuyenNganhPage3();
+      alert('Thêm thành công');
+    });
   };
 
   $scope.setMaDelete = function(IdChuyennganh, IdMonhoc) {
@@ -157,6 +165,11 @@ adminApp.controller('daotaoController', ['$scope', '$rootScope', '$http', '$reso
     $scope.Message = User.delete({
       id: $scope.MaMonhocDelete.mamh,
       id2: $scope.MaChuyennganhDelete.id
+    }).$promise.then(() => {
+      tatModal();
+      fetchAllSubjects();
+      getChuyenNganhPage3();
+      alert('Xóa môn học thành công');
     });
     //location.reload();
   };
