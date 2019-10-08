@@ -1,5 +1,9 @@
-adminApp.controller('chuyennganhController', ['$scope', '$rootScope', '$http', '$resource', function($scope, $rootScope, $http, $resource) {
+adminApp.controller('chuyennganhController', ['$scope', '$rootScope', '$http', '$resource', '$window', function($scope, $rootScope, $http, $resource, $window) {
   $rootScope.title = 'Chuyên ngành';
+
+  if ($rootScope.logged == false || $rootScope.logged == undefined) {
+    $window.location.href = '#!/dangnhap';
+  }
 
   function tatModal() {
     $('#Xoa').modal('hide');

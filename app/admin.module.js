@@ -2,6 +2,9 @@ var adminApp = angular.module("adminApp", ["ngRoute", "ngResource", "ui.router"]
 adminApp.constant('apiBaseUrl', 'http://localhost:8080');
 adminApp.run(function($rootScope) {
   // $rootScope.domainService = "http://localhost:8080/";
+  $rootScope.dangxuat = function () {
+    $rootScope.logged = false;
+  }
 });
 adminApp.factory('docService', ['$http', '$q', 'urls', function($http, $q, urls) {
 

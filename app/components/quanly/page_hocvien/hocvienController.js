@@ -1,5 +1,9 @@
-adminApp.controller('hocvienController', ['$scope', '$http', '$resource', '$rootScope', 'docService', function($scope, $http, $resource, $rootScope, docService) {
+adminApp.controller('hocvienController', ['$scope', '$http', '$resource', '$rootScope', 'docService', '$window', function($scope, $http, $resource, $rootScope, docService, $window) {
   $rootScope.title = 'Học viên';
+
+  if ($rootScope.logged === false || $rootScope.logged === undefined) {
+    $window.location.href = '#!/dangnhap';
+  }
 
   $scope.hocvienThem = {
     password: "",

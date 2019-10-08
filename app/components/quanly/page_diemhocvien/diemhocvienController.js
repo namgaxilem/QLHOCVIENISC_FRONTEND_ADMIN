@@ -1,5 +1,9 @@
-adminApp.controller('diemhocvienController', ['$scope', '$rootScope', '$http', '$resource', '$filter', function($scope, $rootScope, $http, $resource, $filter) {
+adminApp.controller('diemhocvienController', ['$scope', '$rootScope', '$http', '$resource', '$filter', '$window', function($scope, $rootScope, $http, $resource, $filter, $window) {
   $rootScope.title = 'Điểm môn học';
+
+  if ($rootScope.logged == false || $rootScope.logged == undefined) {
+    $window.location.href = '#!/dangnhap';
+  }
 
   $scope.mamh = "";
   $scope.makh = "";

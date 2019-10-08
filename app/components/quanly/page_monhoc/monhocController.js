@@ -1,5 +1,9 @@
-adminApp.controller('monhocController', ['$scope', '$rootScope', '$http', '$resource', function($scope, $rootScope, $http, $resource) {
+adminApp.controller('monhocController', ['$scope', '$rootScope', '$http', '$resource', '$window', function($scope, $rootScope, $http, $resource, $window) {
   $rootScope.title = 'Môn học';
+
+  if ($rootScope.logged == false || $rootScope.logged == undefined) {
+    $window.location.href = '#!/dangnhap';
+  }
 
   function tatModal() {
     $('#Xoa').modal('hide');

@@ -1,5 +1,9 @@
-adminApp.controller('giangvienController', ['$scope', '$http', '$resource', 'apiBaseUrl', '$rootScope', 'docService', function($scope, $http, $resource, apiBaseUrl, $rootScope, docService) {
+adminApp.controller('giangvienController', ['$scope', '$http', '$resource', 'apiBaseUrl', '$rootScope', 'docService', '$window', function($scope, $http, $resource, apiBaseUrl, $rootScope, docService, $window) {
   $rootScope.title = 'Giảng viên';
+
+  if ($rootScope.logged == false || $rootScope.logged == undefined) {
+    $window.location.href = '#!/dangnhap';
+  }
 
   $scope.model = {
     ho: "",

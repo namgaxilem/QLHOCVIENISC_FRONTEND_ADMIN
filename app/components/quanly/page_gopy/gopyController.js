@@ -1,5 +1,9 @@
-adminApp.controller('gopyController', ['$scope', '$rootScope', '$http', '$resource', 'apiBaseUrl', function($scope, $rootScope, $http, $resource, apiBaseUrl) {
+adminApp.controller('gopyController', ['$scope', '$rootScope', '$http', '$resource', 'apiBaseUrl', '$window', function($scope, $rootScope, $http, $resource, apiBaseUrl, $window) {
   $rootScope.title = 'Góp ý';
+
+  if ($rootScope.logged == false || $rootScope.logged == undefined) {
+    $window.location.href = '#!/dangnhap';
+  }
 
   $scope.loadData = function() {
     $http.get(apiBaseUrl + '/gopy').then(function(res){

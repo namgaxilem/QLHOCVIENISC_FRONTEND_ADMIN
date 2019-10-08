@@ -1,5 +1,9 @@
-adminApp.controller('khoahocController', ['$scope', '$rootScope', '$http', '$resource', function($scope, $rootScope, $http, $resource) {
+adminApp.controller('khoahocController', ['$scope', '$rootScope', '$http', '$resource', '$window', function($scope, $rootScope, $http, $resource, $window) {
   $rootScope.title = 'Khóa học';
+
+  if ($rootScope.logged == false || $rootScope.logged == undefined) {
+    $window.location.href = '#!/dangnhap';
+  }
 
   $scope.pageNo = 0;
   $scope.pageSize = 50;
